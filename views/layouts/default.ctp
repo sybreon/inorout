@@ -31,20 +31,25 @@
 	</title>
 	<?php
 		echo $html->meta('icon');
-
-		echo $html->css('cake.generic');
-
+		echo $html->css('reset');
+		echo $html->css('text');
+		echo $html->css('960');
 		echo $scripts_for_layout;
 	?>
 </head>
 <body>
-	<div id="container">
+	<div class="container_12" id="container">
 		<div id="header">
+		<ul>
+		<li><?php echo $html->link('About Us', array('controller' => 'pages', 'action' => 'about')); ?> </li>
+		</ul>
 		</div>
+		<div class="clear">&nbsp;</div>
 		<div id="content">
 			<?php $session->flash(); ?>
 			<?php echo $content_for_layout; ?>
 		</div>
+		<div class="clear">&nbsp;</div>
 		<div id="footer">
 		</div>
 	</div>
