@@ -47,7 +47,7 @@ class PostsController extends AppController {
 	function delete($id = null) {
 	  // TODO: Check for ACL
 	  $this->Post->updateAll(array('Post.flags' => 'Post.flags|0x01'), array('Post.id' => $id));
-	  $this->Session->setFlash('Post #'. $id .' flagged for deletion.');
+	  $this->Session->setFlash('Post #'. $id .' flagged as deleted.');
 	  $this->redirect(array('action' => 'post', $id));
 	}
 

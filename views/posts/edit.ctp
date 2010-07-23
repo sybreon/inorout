@@ -12,7 +12,7 @@ print($form->input('teaser',array('rows'=>'5')));
 <div class="grid_4">
 	<ul>
 		<li><?php echo $html->link('Delete', array('action' => 'delete', $form->value('Post.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $form->value('Post.id'))); ?></li>
-		<li><?php echo $html->link('List Posts', array('action' => 'index'));?></li>
-		<li><?php echo $html->link($html->image('img.png'), array('action' => 'index'), array('escape' => false));?></li>
+		<li><?php echo $html->link('Read', array('action' => 'post', $form->value('Post.id'))); ?></li>
+		<li><?php echo $html->link('List', array('action' => 'index'));?></li>
 	</ul>
 </div>

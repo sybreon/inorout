@@ -3,8 +3,11 @@
 <?php foreach ($ins as $post) { ?>
 	<dt>
 	<?php
+		$strike = $post['Post']['flags'] & 0x01;
+		if ($strike == 1) { echo '<strike>'; }
 		print($html->link($post['Post']['title'], array('action' => 'post', $post['Post']['id'])));
 	?>
+	</strike>
 	</dt>
 	<dd>
 	<?php 
@@ -21,8 +24,10 @@
 <?php foreach ($outs as $post) { ?>
 	<dt>
 	<?php
+		$strike = $post['Post']['flags'] & 0x01;
+		if ($strike == 1) { echo '<strike>'; }
 		print($html->link($post['Post']['title'], array('action' => 'post', $post['Post']['id'])));
-	?>
+	?></strike>
 	</dt>
 	<dd>
 	<?php 
