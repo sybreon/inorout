@@ -34,14 +34,16 @@
 		echo $html->css('reset');
 		echo $html->css('text');
 		echo $html->css('960');
+		echo $html->css('inorout');
 		echo $scripts_for_layout;
 	?>
 </head>
 <body>
 	<div class="container_12" id="container">
 		<div id="header">
-		<ul>
+		<ul id="primary">
 		<li><?php echo $html->link('About Us', array('controller' => 'pages', 'action' => 'about')); ?> </li>
+		<li><?php echo $html->link('Posts', array('controller' => 'posts', 'action' => 'index')); ?> </li>
 		</ul>
 		</div>
 		<div class="clear">&nbsp;</div>

@@ -10,9 +10,9 @@ class Post extends AppModel {
 					   'message'=>'Must be a valid url to an online resource.',
 					   ),
 			      'teaser'=>array(
-					      'rule'=>array('minLength',128),
+					      'rule'=>array('minLength',32),
 					      'required'=>true,
-					      'message'=>'Teaser must be longer than 128 characters.'
+					      'message'=>'Teaser must be longer than 32 characters.'
 					      ),
 			      'title'=>array(
 					     'rule'=>array('maxLength',128),

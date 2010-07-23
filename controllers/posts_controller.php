@@ -3,36 +3,66 @@ class PostsController extends AppController {
 
 	var $name = 'Posts';
 
+	/**
+	 Default - lists all posts
+	 */
+
 	function index() {
 	  $this->set('ins', $this->Post->find('all', 
 						array('limit' => 10,
-						      'order' => 'Post.id DESC',
 						      'conditions' => array('Post.ins >= Post.outs'),
+						      'order' => 'Post.id DESC',
 						      )
 						)
 		     );	  
 	  $this->set('outs', $this->Post->find('all', 
 						array('limit' => 10,
-						      'order' => 'Post.id DESC',
 						      'conditions' => array('Post.outs >= Post.ins'),
+						      'order' => 'Post.id DESC',
 						      )
 						)
 		     );	  
 	}
 
 	/**
-	 Add a new post.
+	 Retrieves and reads a single post.
 	 */
 
-	function add() {
-	  $this->pageTitle = 'Add a Post';
-	  // check if form is submitted
-	  if (!empty($this->data)) {	    
-	    // Shorten the URL if it is > 128
+	function post($id = null) {
+	  $this->pageTitle = 'In/Out #'. $id;
+
+	  // Increment counter once in a session
+	  if (!$this->Session->check('Post.'.$id)) {
+	    $this->Post->updateAll(array('Post.views' => 'Post.views+1'), array('Post.id' => $id));
+	    $this->Session->write('Post.'.$id,'');
+	  }
+
+	  // Extract the post
+	  $this->set('post',$this->Post->read(null,$id));
+	}
+
+	/**
+	 Flag a post as DELETED
+	 */
+	function delete($id = null) {
+	  // TODO: Check for ACL
+	  $this->Post->updateAll(array('Post.flags' => 'Post.flags|0x01'), array('Post.id' => $id));
+	  $this->Session->setFlash('Post #'. $id .' flagged for deletion.');
+	  $this->redirect(array('action' => 'post', $id));
+	}
+
+	/**
+	 Edit an existing post
+	 */
+	function edit($id = null) {
+	  if (empty($this->data)) {
+	    $this->pageTitle = ($id > 0) ? 'Edit In/Out #'.$id : 'Add In/Out';
+	    $this->data = $this->Post->read(null, $id);
+	  } else {
+	    // Shorten the URL using bitly
 	    if (!empty($this->data['Post']['url'])) {	      
 	      App::import('Core', 'HttpSocket');
 	      $HttpSocket = new HttpSocket();
-	      // use bitly api
 	      $bitly = $HttpSocket->get('http://api.bit.ly/v3/shorten', 
 					array('format' => 'txt',
 					      'login' => 'inorout',
@@ -41,23 +71,14 @@ class PostsController extends AppController {
 					      )
 					); 	    
 	      $this->data['Post']['url'] = trim($bitly); // strip whitespace
-	    }
-	    
+	    }	    
 	    // save the form
 	    if ($this->Post->save($this->data)) {	      	      
-	      $this->Session->setFlash('Your post was added successfully!');
-	      $this->redirect(array('action'=>'index'));
-	    }	    
+	      $id = $this->Post->id; // get new ID
+	      $this->Session->setFlash('Post #'. $id .' updated successfully.');
+	      $this->redirect(array('action'=>'post', $id));
+	    }
 	  }
-	}
-
-	/**
-	 Retrieves and reads a single post.
-	 */
-
-	function post($id = null) {
-	  $this->Post->id = $id;
-	  $this->set('post',$this->Post->read());
 	}
 }
 ?>

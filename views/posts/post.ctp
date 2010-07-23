@@ -6,7 +6,11 @@
 	<?php echo $post['Post']['teaser']; ?>
 </div>
 <div class="clear">&nbsp;</div>
-	<ul>
-		<li><?php echo $html->link('Edit Post', array('action' => 'edit', $post['Post']['id'])); ?> </li>
-		<li><?php echo $html->link('Delete Post', array('action' => 'delete', $post['Post']['id']), null, sprintf(__('Are you sure you want to delete Post #%s?', true), $post['Post']['id'])); ?> </li>
-	</ul>
+<ul>
+	<li><?php echo $html->link('Edit Post', array('action' => 'edit', $post['Post']['id'])); ?> </li>	
+	<li><?php echo $html->link('Delete Post', array('action' => 'delete', $post['Post']['id']), null, sprintf(__('Are you sure you want to delete Post #%s?', true), $post['Post']['id']));?> </li>
+</ul>
+
+<pre>
+<?php print_r($post); ?>
+</pre>

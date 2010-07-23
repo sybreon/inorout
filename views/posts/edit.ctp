@@ -1,23 +1,18 @@
-<div class="posts form">
-<?php echo $form->create('Post');?>
-	<fieldset>
- 		<legend><?php __('Edit Post');?></legend>
-	<?php
-		echo $form->input('id');
-		echo $form->input('title');
-		echo $form->input('url');
-		echo $form->input('teaser');
-		echo $form->input('view');
-		echo $form->input('ins');
-		echo $form->input('outs');
-		echo $form->input('heat');
-	?>
-	</fieldset>
-<?php echo $form->end('Submit');?>
+<div class="grid_8">
+<?php print($form->create('Post',array('action' => 'edit')));?>
+<fieldset>
+<?php 
+print($form->input('title'));
+print($form->input('url'));
+print($form->input('teaser',array('rows'=>'5')));
+?>
+</fieldset>
+<?php print($form->end('Save Post'));?>
 </div>
-<div class="actions">
+<div class="grid_4">
 	<ul>
-		<li><?php echo $html->link(__('Delete', true), array('action' => 'delete', $form->value('Post.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $form->value('Post.id'))); ?></li>
-		<li><?php echo $html->link(__('List Posts', true), array('action' => 'index'));?></li>
+		<li><?php echo $html->link('Delete', array('action' => 'delete', $form->value('Post.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $form->value('Post.id'))); ?></li>
+		<li><?php echo $html->link('List Posts', array('action' => 'index'));?></li>
+		<li><?php echo $html->link($html->image('img.png'), array('action' => 'index'), array('escape' => false));?></li>
 	</ul>
 </div>

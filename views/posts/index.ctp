@@ -37,6 +37,6 @@
 
 <div id="actions" class="grid_12">
 	<ul>
-		<li><?php echo $html->link('Add Post', array('action' => 'add'));?></li>
+		<li><?php echo $html->link('Add In/Out', array('action' => 'edit'));?></li>
 	</ul>
 </div>
