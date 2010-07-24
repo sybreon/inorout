@@ -1,43 +1,70 @@
 <?php
-/*
- INOROUT - Social Discussion Platform
- Copyright (C) 2010 Shawn Tan <shawn.tan@sybreon.com>
+  /**
+   INOROUT - Social Discussion Platform.
+   Copyright (C) 2010 Shawn Tan <shawn.tan@sybreon.com>
  
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU Affero General Public License as
- published by the Free Software Foundation, either version 3 of the
- License, or (at your option) any later version.
+   This program is free software: you can redistribute it and/or
+   modify it under the terms of the GNU Affero General Public License
+   as published by the Free Software Foundation, either version 3 of
+   the License, or (at your option) any later version.
  
- This program is distributed in the hope that it will be useful, but
- WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- Affero General Public License for more details.
+   This program is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Affero General Public License for more details.
    
- You should have received a copy of the GNU Affero General Public
- License along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+   You should have received a copy of the GNU Affero General Public
+   License along with this program.  If not, see
+   <http://www.gnu.org/licenses/>.
+  */
 
 App::import('Core', 'HttpSocket');
 App::import('Sanitize');
+
 class PostsController extends AppController {
 
 	var $name = 'Posts';
 	var $helpers = array ('Form','Html','Text','Ajax','Javascript');
 	var $components = array('RequestHandler');
 
+
+	private function bitly_shorten($url = null) {
+	  $HttpSocket = new HttpSocket();
+	  $bitly = $HttpSocket->get('http://api.bit.ly/v3/shorten', 
+				    array('format' => 'txt',
+					  'login' => 'inorout',
+					  'apiKey' => 'R_11acbfd4019e1d133a8dd8ebb339da03',
+					  'longUrl' => $url
+					  )
+				    ); 	    
+	  return trim($bitly);
+	}
+
+	private function bitly_expand($url = null) {
+	  $HttpSocket = new HttpSocket();
+	  $bitly = $HttpSocket->get('http://api.bit.ly/v3/expand', 
+				    array('format' => 'txt',
+					  'login' => 'inorout',
+					  'apiKey' => 'R_11acbfd4019e1d133a8dd8ebb339da03',
+					  'shortUrl' => $url
+					  )
+				    ); 	    
+	  return trim($bitly);
+	}
+
 	/**
 	 Default - lists all posts
 	 */
 
 	function index() {
-	  $this->set('ins', $this->Post->find('all', 
+	  $this->set('posts_in', $this->Post->find('all', 
 						array('limit' => 10,
 						      'conditions' => array('Post.ins >= Post.outs'),
 						      'order' => 'Post.id DESC',
 						      )
 						)
 		     );	  
-	  $this->set('outs', $this->Post->find('all', 
+	  $this->set('posts_out', $this->Post->find('all',
 						array('limit' => 10,
 						      'conditions' => array('Post.outs >= Post.ins'),
 						      'order' => 'Post.id DESC',
@@ -47,7 +74,7 @@ class PostsController extends AppController {
 	}
 
 	/**
-	 Retrieves and reads a single post.
+	 Retrieves and displays a single post.
 	 */
 
 	function view($id = null) {
@@ -65,36 +92,21 @@ class PostsController extends AppController {
 	}
 
 	/**
-	 Edit an existing post
+	 Edit an existing post or create a new one.
 	 */
+
 	function edit($id = null) {
 	  $this->pageTitle = ($id != null) ? 'Edit In/Out #'.$id : 'Add In/Out';
 	  if (empty($this->data)) {
 	    $this->data = $this->Post->read(null, $id);
-	    // Shorten the URL using bitly
+	    // Expand the URL using bitly
 	    if (!empty($this->data['Post']['url'])) {	      
-	      $HttpSocket = new HttpSocket();
-	      $bitly = $HttpSocket->get('http://api.bit.ly/v3/expand', 
-					array('format' => 'txt',
-					      'login' => 'inorout',
-					      'apiKey' => 'R_11acbfd4019e1d133a8dd8ebb339da03',
-					      'shortUrl' => $this->data['Post']['url']
-					      )
-					); 	    
-	      $this->data['Post']['url'] = trim($bitly); // strip whitespace
+	      $this->data['Post']['url'] = $this->bitly_expand($this->data['Post']['url']);
 	    }
 	  } else {
 	    // Shorten the URL using bitly
 	    if (!empty($this->data['Post']['url'])) {	      
-	      $HttpSocket = new HttpSocket();
-	      $bitly = $HttpSocket->get('http://api.bit.ly/v3/shorten', 
-					array('format' => 'txt',
-					      'login' => 'inorout',
-					      'apiKey' => 'R_11acbfd4019e1d133a8dd8ebb339da03',
-					      'longUrl' => $this->data['Post']['url']
-					      )
-					); 	    
-	      $this->data['Post']['url'] = trim($bitly); // strip whitespace
+	      $this->data['Post']['url'] = $this->bitly_shorten($this->data['Post']['url']);
 	    }	    
 	    // save the form
 	    if ($this->Post->save($this->data)) {	      	      

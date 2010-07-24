@@ -21,9 +21,9 @@ a {text-decoration:none;}
 
 div#flashMessage {color:#fff;background:#e12;padding:12px;}
 
-ul#pages {margin:0;padding:0;white-space:nowrap;}
+ul#pages {white-space:nowrap;}
 ul#pages li {margin:0;padding:0;display:inline;list-style-type:none;}
-ul#pages a {padding:4px 12px;color:#fff;font-weight:bold;font-size:large;}
+ul#pages a {padding:6px 15px;color:#fff;font-weight:bold;font-size:large;text-transform:capitalize;}
 ul#pages a:active {background-color:#e12;}
 ul#pages a:link, ul#pages a:visited {background-color:#07c;}
 
@@ -34,8 +34,8 @@ ul#acts2 a {padding:4px 12px;color:#333;font-weight:bold;background:#ccc;border:
 ul#acts {white-space:nowrap;}
 ul#acts li {padding:0;margin:0;display:inline;list-style-type:none;}
 ul#acts li.first {border-left:none;}
-ul#acts a {padding:3px 8px;font-size:small;color:#ccc;text-transform:lowercase;background:#eee;}
-ul#acts a.disable {background:#fff;}
+ul#acts a {padding:3px 8px;font-size:small;color:#333;text-transform:uppercase;background:#eee;border:1px solid #ccc;}
+ul#acts a.disable {background:none;border:none;color:#ccc;}
 
 /* forms ----------------------------------------------- */
 form {
