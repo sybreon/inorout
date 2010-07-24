@@ -5,7 +5,7 @@
 	<?php
 		$strike = $post['Post']['flags'] & 0x01;
 		if ($strike == 1) { echo '<strike>'; }
-		print($html->link($post['Post']['title'], array('action' => 'post', $post['Post']['id'])));
+		print($html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id'])));
 	?>
 	</strike>
 	</dt>
@@ -27,7 +27,7 @@
 	<?php
 		$strike = $post['Post']['flags'] & 0x01;
 		if ($strike == 1) { echo '<strike>'; }
-		print($html->link($post['Post']['title'], array('action' => 'post', $post['Post']['id'])));
+		print($html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id'])));
 	?></strike>
 	</dt>
 	<dd>

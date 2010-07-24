@@ -17,19 +17,6 @@
  License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-//echo $javascript->link('prototype');
-?>
-<?php print($form->create('Post',array('action' => 'edit')));?>
-<fieldset>
-<legend><?php echo $this->pageTitle; ?></legend>
-<?php 
-echo $form->input('title');
-echo $form->input('url', array('maxLength' => '2048')); // IE practical limit
-echo $form->input('teaser',array('rows'=>'9'));
-?>
-</fieldset>
-<?php print($form->end('Save'));?>
-<div id="typediv">&nbsp;</div>
-<?php
-// echo $ajax->observeField( 'PostUrl', array('url' => array('action' => 'bitly')));
+echo '<a href="#" class="disable">'. $result . '</a>';
+
 ?>

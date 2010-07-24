@@ -1,3 +1,22 @@
+/*
+ INOROUT - Social Discussion Platform
+ Copyright (C) 2010 Shawn Tan <shawn.tan@sybreon.com>
+ 
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Affero General Public License as
+ published by the Free Software Foundation, either version 3 of the
+ License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Affero General Public License for more details.
+   
+ You should have received a copy of the GNU Affero General Public
+ License along with this program.  If not, see
+ <http://www.gnu.org/licenses/>.
+*/
+
 a {text-decoration:none;}
 
 div#flashMessage {color:#fff;background:#e12;padding:12px;}
@@ -12,13 +31,16 @@ ul#acts2 {margin:0;padding:0;white-space:nowrap;}
 ul#acts2 li {margin:0;display:inline;list-style-type:none;}
 ul#acts2 a {padding:4px 12px;color:#333;font-weight:bold;background:#ccc;border:1px solid #888;}
 
-ul#acts {margin:0;padding:0;white-space:nowrap;}
-ul#acts li {margin:0;display:inline;list-style-type:none;}
-ul#acts a {padding:2px 6px;color:#333;font-size:small;color:#ccc;text-transform:lowercase;border:1px solid #eee;}
-/* forms
------------------------------------------------ */
+ul#acts {white-space:nowrap;}
+ul#acts li {padding:0;margin:0;display:inline;list-style-type:none;}
+ul#acts li.first {border-left:none;}
+ul#acts a {padding:3px 8px;font-size:small;color:#ccc;text-transform:lowercase;background:#eee;}
+ul#acts a.disable {background:#fff;}
+
+/* forms ----------------------------------------------- */
 form {
-    overflow:hidden;
+    overflow:hidden;  
+    margin-bottom:10px;
 }
 fieldset {
     border:1px solid #bbb;
