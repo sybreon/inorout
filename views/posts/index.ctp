@@ -19,7 +19,7 @@
   */
 ?>
 
-<dl class="grid_6 alpha" id="c-in">
+<dl class="grid_5 alpha" id="c-in">
 <?php foreach ($posts_in as $post) { ?>
 	<dt>
 	<?php
@@ -31,7 +31,7 @@
 	</dt>
 	<dd>
 	<?php 
-	      echo $text->truncate($text->stripLinks($post['Post']['teaser']), 48);
+	      echo $text->truncate($text->stripLinks($post['Post']['teaser']), 32);
 	      echo $html->image('emoticon_smile.png') . $post['Post']['ins']; 
 	      echo $html->image('eye.png') . $post['Post']['views']; 
 	      echo $html->image('emoticon_unhappy.png') . $post['Post']['outs']; 
@@ -40,7 +40,7 @@
 <?php	} ?>
 </dl>
 
-<dl class="grid_6 omega" id="c-out">
+<dl class="grid_5 push_2 omega" id="c-out">
 <?php foreach ($posts_out as $post) { ?>
 	<dt>
 	<?php

@@ -31,6 +31,7 @@ echo $html->meta('icon');
 echo $html->css('reset');
 echo $html->css('text');
 echo $html->css('960');
+//echo $html->css('grid');
 echo $html->css('inorout');
 echo $scripts_for_layout;
 ?>

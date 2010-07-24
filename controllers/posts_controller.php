@@ -88,7 +88,7 @@ class PostsController extends AppController {
 	  }
 
 	  // Extract the post
-	  $this->set('post',$this->Post->read(null,$id));
+	  $this->set('post',$this->Post->read(null,$id));	  
 	}
 
 	/**

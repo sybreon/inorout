@@ -37,8 +37,9 @@ ul#acts li.first {border-left:none;}
 ul#acts a {padding:3px 8px;font-size:xx-small;color:#333;text-transform:uppercase;background:#eee;border:1px solid #ccc;}
 ul#acts a.disable {background:none;border:none;color:#ccc;}
 
-#c-in { background:#888;color:#fff; }
-#c-out { background:#444;color:#fff; }
+#c-in { background:#e12;color:#fff; }
+#c-out { background:#07c;color:#fff; }
+#c-in a, #c-out a { color:#fff; }
 #c-in dd, #c-out dd { margin:8px; padding:8px; border:1px dashed #ccc; }
 #c-in dt, #c-out dt { margin:8px; padding:0px; }
 

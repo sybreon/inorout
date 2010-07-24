@@ -25,7 +25,7 @@
 ?></h3><hr/>
 <div id="vote" class="grid_1 alpha">
 <?php
-    echo $html->image('emoticon_smile.png') . $post['Post']['ins']; 
+echo $html->image('emoticon_smile.png') . $post['Post']['ins']; 
 echo $html->image('eye.png') . $post['Post']['views']; 
 echo $html->image('emoticon_unhappy.png') . $post['Post']['outs']; 
 ?>
@@ -43,33 +43,33 @@ if ($strike == 1) { echo '<strike>'; }
 </div>
 
 <div class="clear">&nbsp;</div>
-<ul id="acts" class="grid_8 alpha omega">
+<ul id="acts" class="grid_2 alpha">
   <li><?php echo $html->link('Edit', array('action' => 'edit', $post['Post']['id'])); ?></li>	
   <li id='actflg'><?php echo $ajax->link('Flag', array('controller' => 'posts', 'action' => 'flag', $post['Post']['id']), array('update' => 'actflg'), sprintf(__('Flag post #%s?', true), $post['Post']['id']));?></li>
   <li id='actdel'><?php echo $ajax->link('Delete', array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']), array('update' => 'actdel'), sprintf(__('Delete post #%s?', true), $post['Post']['id']));?></li>
 </ul>
-  <div class="clear">&nbsp;</div>
-<dl id="c-in" class="grid_4 alpha">
+<div class="grid_6 omega">
+  User details
+</div>
+<div class="clear">&nbsp;</div>
+<dl class="grid_8 alpha omega">
 <?php
-  foreach ($post['Comment'] as $comm) 
+  foreach ($post['Comment'] as $comm) {
+  
   if ($comm['inout'] == 0) {
+    echo '<dl id="c-out" class="grid_6 push_2 alpha omega">';
+  } else {
+    echo '<dl id="c-in" class="grid_6 alpha omega">';
+  }
+  
     echo '<dt>'. $comm['created'] .'</dt>';
     echo '<dd>'. $comm['comment'] .'</dd>';
-  }
-?>
-</dl>
-<dl id="c-out" class="grid_4 omega">
-<?php
-  foreach ($post['Comment'] as $comm) 
-  if ($comm['inout'] == 1) {
-    echo '<dt>'. $comm['created'] .'</dt>';
-    echo '<dd>'. $comm['comment'] .'</dd>';
-  }
+  echo '</dl>';
+}
 ?>
 </dl>
 <?php
-for ($i=0; $i<1; $i++) {
-  echo '<div id="f.comment" class="grid_8 alpha omega">';
+  echo '<div id="f.comment" class="grid_6 push_1 alpha omega">';
   echo $form->create('Comment', array('controller' => 'comments', 'action' => 'add'));
   echo '<fieldset>';
   echo '<legend>Add Comment</legend>';
@@ -78,8 +78,4 @@ for ($i=0; $i<1; $i++) {
   echo '</fieldset>';
   echo $form->end('Save');
   echo '</div>';
- }
 ?>
-<pre class="grid_8 alpha omega">
-<?php print($post); ?>
-</pre>
