@@ -34,64 +34,72 @@ ul#acts2 a {padding:4px 12px;color:#333;font-weight:bold;background:#ccc;border:
 ul#acts {white-space:nowrap;}
 ul#acts li {padding:0;margin:0;display:inline;list-style-type:none;}
 ul#acts li.first {border-left:none;}
-ul#acts a {padding:3px 8px;font-size:small;color:#333;text-transform:uppercase;background:#eee;border:1px solid #ccc;}
+ul#acts a {padding:3px 8px;font-size:xx-small;color:#333;text-transform:uppercase;background:#eee;border:1px solid #ccc;}
 ul#acts a.disable {background:none;border:none;color:#ccc;}
 
+#c-in { background:#888;color:#fff; }
+#c-out { background:#444;color:#fff; }
+#c-in dd, #c-out dd { margin:8px; padding:8px; border:1px dashed #ccc; }
+#c-in dt, #c-out dt { margin:8px; padding:0px; }
+
+input#CommentInout0, input#CommentInout1 { max-width:20px; }
+
 /* forms ----------------------------------------------- */
-form {
-    overflow:hidden;  
-    margin-bottom:10px;
-}
+
+form { 
+       overflow:hidden;  
+       margin-bottom:10px;
+       }
 fieldset {
-    border:1px solid #bbb;
-    padding:10px;
-    position:relative;
-    background:#e9e9e9;
-    margin-bottom:10px;
-}
+           border:1px solid #bbb;
+           padding:10px;
+           position:relative;
+           background:#e9e9e9;
+           margin-bottom:10px;
+           }
 legend {
-    font-size:1.1em;
-    padding:.4em .8em;
-    background:#fff;
-    border:1px solid #bbb;
-}
+         font-size:1.1em;
+         padding:.4em .8em;
+         background:#fff;
+         border:1px solid #bbb;
+         }
 fieldset.login {
-    margin-bottom:1em;
-    margin-top:0pt;
-}
+                 margin-bottom:1em;
+                 margin-top:0pt;
+                 }
 fieldset label {
-    width:98%;
-}
+                 width:98%;
+                 }
 fieldset input {
-    width:98%;
+                 width:98%;
 }
 fieldset textarea {
-    width:98%;
+                    width:98%;
 }
 fieldset select {
-    width:99%;
-}
+                  width:99%;
+                  }
 fieldset.login label {
-    float:left;
-    line-height:2em;
-    margin-right:3%;
-    text-align:right;
-    width:32%;
-}
+                       float:left;
+                       line-height:2em;
+                       margin-right:3%;
+                       text-align:right;
+                       width:32%;
+                       }
 fieldset.login input {
-    width:60%;
-}
+                       width:60%;
+                       }
 fieldset.login input.button {
-    margin-left:35%;
+                              margin-left:35%;
 }
 form div.error-message {
-    font-weight:bold;
-    color:#e12;
-}
+                         font-weight:bold;
+                         color:#e12;
+                         }
 input.search.text {
-    width:66%;
-}
+                    width:66%;
+                    }
 input.search.button {
-    width:28%;
-    margin-left:2%;
-}
+                      width:28%;
+                      margin-left:2%;
+                      }

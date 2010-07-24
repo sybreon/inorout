@@ -21,8 +21,19 @@
 class Post extends AppModel {
 
 	var $name = 'Post';
-	var $validate = array(
-			      'url'=>array(
+	/*
+	var $hasMany = array('Comment' => array('className' => 'Comment',
+						//'conditions' => array('Comment.inout' => '0'),
+						'order' => 'Comment.inout',
+						),			     
+			     'CommentOut' => array('className' => 'Comment',
+						   'conditions' => array('Comment.inout' => '1'),
+						   'order' => 'Comment.created DESC',
+						   ),			    
+			     );
+	*/	
+	var $hasMany = 'Comment';
+	var $validate = array('url'=>array(
 					   'rule'=>'url',
 					   'required'=>false,
 					   'allowEmpty'=>true,
@@ -34,10 +45,10 @@ class Post extends AppModel {
 					      'message'=>'Teaser must be longer than 32 characters.'
 					      ),
 			      'title'=>array(
-					     'rule'=>array('maxLength',128),
+					     'rule'=>array('minLength',16),
 					     'required'=>true,
-					     'message'=>'Title must be shorter than 128 characters.'
+					     'message'=>'Title must be longer than 16 characters.'
 					     ),
-			      );
+			      );       
 }
 ?>

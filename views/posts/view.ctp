@@ -19,24 +19,67 @@
   */
 ?>
 <?php echo $javascript->link('prototype'); ?> 
-<div class="grid_12">
-<h3><?php echo
- $html->link($post['Post']['title'], array('action' => 'view',
- $post['Post']['id'])); ?></h3> <hr/>
-
+<h3><?php 
+    echo $html->link($post['Post']['title'], array('action' => 'view',
+						   $post['Post']['id'])); 
+?></h3><hr/>
+<div id="vote" class="grid_1 alpha">
+<?php
+    echo $html->image('emoticon_smile.png') . $post['Post']['ins']; 
+echo $html->image('eye.png') . $post['Post']['views']; 
+echo $html->image('emoticon_unhappy.png') . $post['Post']['outs']; 
+?>
+</div>
+<div id="post" class="grid_7 omega">
 <!-- embed preview -->
 <small>Created: <?php echo $post['Post']['created']?></small>
 <?php echo $html->link('Link',$post['Post']['url']); ?>
-<?php $strike = $post['Post']['flags'] & 0x01;
+<?php 
+$strike = $post['Post']['flags'] & 0x01;
 if ($strike == 1) { echo '<strike>'; }
 ?>
 <?php echo $html->para('teaser', Sanitize::html($post['Post']['teaser'])); ?>
 </strike>
+</div>
 
 <div class="clear">&nbsp;</div>
-<ul id="acts">
-	<li><?php echo $html->link('Edit', array('action' => 'edit', $post['Post']['id'])); ?></li>	
-	<li id='actflg'><?php echo $ajax->link('Flag', array('controller' => 'posts', 'action' => 'flag', $post['Post']['id']), array('update' => 'actflg'), sprintf(__('Are you sure you want to flag In/Out #%s?', true), $post['Post']['id']));?></li>
-	<li id='actdel'><?php echo $ajax->link('Delete', array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']), array('update' => 'actdel'), sprintf(__('Are you sure you want to delete In/Out #%s?', true), $post['Post']['id']));?></li>
+<ul id="acts" class="grid_8 alpha omega">
+  <li><?php echo $html->link('Edit', array('action' => 'edit', $post['Post']['id'])); ?></li>	
+  <li id='actflg'><?php echo $ajax->link('Flag', array('controller' => 'posts', 'action' => 'flag', $post['Post']['id']), array('update' => 'actflg'), sprintf(__('Flag post #%s?', true), $post['Post']['id']));?></li>
+  <li id='actdel'><?php echo $ajax->link('Delete', array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']), array('update' => 'actdel'), sprintf(__('Delete post #%s?', true), $post['Post']['id']));?></li>
 </ul>
-</div>
+  <div class="clear">&nbsp;</div>
+<dl id="c-in" class="grid_4 alpha">
+<?php
+  foreach ($post['Comment'] as $comm) 
+  if ($comm['inout'] == 0) {
+    echo '<dt>'. $comm['created'] .'</dt>';
+    echo '<dd>'. $comm['comment'] .'</dd>';
+  }
+?>
+</dl>
+<dl id="c-out" class="grid_4 omega">
+<?php
+  foreach ($post['Comment'] as $comm) 
+  if ($comm['inout'] == 1) {
+    echo '<dt>'. $comm['created'] .'</dt>';
+    echo '<dd>'. $comm['comment'] .'</dd>';
+  }
+?>
+</dl>
+<?php
+for ($i=0; $i<1; $i++) {
+  echo '<div id="f.comment" class="grid_8 alpha omega">';
+  echo $form->create('Comment', array('controller' => 'comments', 'action' => 'add'));
+  echo '<fieldset>';
+  echo '<legend>Add Comment</legend>';
+  echo $form->input('comment',array('rows'=>'9'));
+  echo $form->radio('inout',array('1' => 'In', '0' => 'Out'), array('separator' => '', 'legend' => false));
+  echo '</fieldset>';
+  echo $form->end('Save');
+  echo '</div>';
+ }
+?>
+<pre class="grid_8 alpha omega">
+<?php print($post); ?>
+</pre>

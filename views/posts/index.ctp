@@ -18,8 +18,8 @@
    <http://www.gnu.org/licenses/>.
   */
 ?>
-<div class="grid_6" id="ins">
-<dl>
+
+<dl class="grid_6 alpha" id="c-in">
 <?php foreach ($posts_in as $post) { ?>
 	<dt>
 	<?php
@@ -39,9 +39,8 @@
 	</dd>
 <?php	} ?>
 </dl>
-</div>
-<div class="grid_6" id="outs">
-<dl>
+
+<dl class="grid_6 omega" id="c-out">
 <?php foreach ($posts_out as $post) { ?>
 	<dt>
 	<?php
@@ -60,9 +59,8 @@
 	</dd>
 <?php	} ?>
 </dl>
-</div>
-
-<ul id="acts" class="grid_12">
-    <li><?php echo $html->link('Add In/Out', array('action' => 'edit'));?></li>
+<div class="clear">&nbsp;</div>
+<ul id="acts" class="grid_12 alpha omega">
+    <li><?php echo $html->link('Add Post', array('action' => 'add'));?></li>
 </ul>
 
