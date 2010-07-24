@@ -1,8 +1,10 @@
 <?php
+App::import('Core', 'HttpSocket');
+App::import('Sanitize');
 class PostsController extends AppController {
 
 	var $name = 'Posts';
-
+	var $helpers = array ('Form','Html','Text');
 	/**
 	 Default - lists all posts
 	 */
@@ -39,6 +41,7 @@ class PostsController extends AppController {
 
 	  // Extract the post
 	  $this->set('post',$this->Post->read(null,$id));
+	  
 	}
 
 	/**
@@ -58,10 +61,21 @@ class PostsController extends AppController {
 	  if (empty($this->data)) {
 	    $this->pageTitle = ($id > 0) ? 'Edit In/Out #'.$id : 'Add In/Out';
 	    $this->data = $this->Post->read(null, $id);
+	    // Shorten the URL using bitly
+	    if (!empty($this->data['Post']['url'])) {	      
+	      $HttpSocket = new HttpSocket();
+	      $bitly = $HttpSocket->get('http://api.bit.ly/v3/expand', 
+					array('format' => 'txt',
+					      'login' => 'inorout',
+					      'apiKey' => 'R_11acbfd4019e1d133a8dd8ebb339da03',
+					      'shortUrl' => $this->data['Post']['url']
+					      )
+					); 	    
+	      $this->data['Post']['url'] = trim($bitly); // strip whitespace
+	    }
 	  } else {
 	    // Shorten the URL using bitly
 	    if (!empty($this->data['Post']['url'])) {	      
-	      App::import('Core', 'HttpSocket');
 	      $HttpSocket = new HttpSocket();
 	      $bitly = $HttpSocket->get('http://api.bit.ly/v3/shorten', 
 					array('format' => 'txt',

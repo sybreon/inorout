@@ -11,9 +11,10 @@
 	</dt>
 	<dd>
 	<?php 
-	      print($post['Post']['ins']); 
-	      print($post['Post']['views']); 
-	      print($post['Post']['outs']); 
+	      echo $text->truncate($text->stripLinks($post['Post']['teaser']), 48);
+	      echo $html->image('emoticon_smile.png') . $post['Post']['ins']; 
+	      echo $html->image('eye.png') . $post['Post']['views']; 
+	      echo $html->image('emoticon_unhappy.png') . $post['Post']['outs']; 
 	?>
 	</dd>
 <?php	} ?>
@@ -31,17 +32,17 @@
 	</dt>
 	<dd>
 	<?php 
-	      print($post['Post']['ins']); 
-	      print($post['Post']['views']); 
-	      print($post['Post']['outs']); 
+	      echo $text->truncate($text->stripLinks($post['Post']['teaser']), 48);
+	      echo $html->image('emoticon_smile.png') . $post['Post']['ins']; 
+	      echo $html->image('eye.png') . $post['Post']['views']; 
+	      echo $html->image('emoticon_unhappy.png') . $post['Post']['outs']; 
 	?>
 	</dd>
 <?php	} ?>
 </dl>
 </div>
 
-<div id="actions" class="grid_12">
-	<ul>
-		<li><?php echo $html->link('Add In/Out', array('action' => 'edit'));?></li>
-	</ul>
-</div>
+<ul id="acts" class="grid_12">
+    <li><?php echo $html->link('Add In/Out', array('action' => 'edit'));?></li>
+</ul>
+

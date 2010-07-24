@@ -26,9 +26,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php echo $html->charset(); ?>
-	<title>
-		<?php echo $title_for_layout; ?>
-	</title>
+	<title><?php echo $title_for_layout; ?></title>
 	<?php
 		echo $html->meta('icon');
 		echo $html->css('reset');
@@ -41,9 +39,12 @@
 <body>
 	<div class="container_12" id="container">
 		<div id="header">
-		<ul id="primary">
+		<ul id="pages">
+		<li><?php echo $html->link('Home', array('controller' => 'posts', 'action' => 'index')); ?> </li>
 		<li><?php echo $html->link('About Us', array('controller' => 'pages', 'action' => 'about')); ?> </li>
-		<li><?php echo $html->link('Posts', array('controller' => 'posts', 'action' => 'index')); ?> </li>
+		<li><?php echo $html->link('Events', array('controller' => 'pages', 'action' => 'events')); ?> </li>
+		<li><?php echo $html->link('Vote!', array('controller' => 'pages', 'action' => 'vote')); ?> </li>
+		<li><?php echo $html->link('Friends', array('controller' => 'pages', 'action' => 'friends')); ?> </li>
 		</ul>
 		</div>
 		<div class="clear">&nbsp;</div>
