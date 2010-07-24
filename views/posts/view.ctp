@@ -32,7 +32,6 @@ echo $html->image('emoticon_unhappy.png') . $post['Post']['outs'];
 </div>
 <div id="post" class="grid_7 omega">
 <!-- embed preview -->
-<small>Created: <?php echo $post['Post']['created']?></small>
 <?php echo $html->link('Link',$post['Post']['url']); ?>
 <?php 
 $strike = $post['Post']['flags'] & 0x01;
@@ -49,7 +48,18 @@ if ($strike == 1) { echo '<strike>'; }
   <li id='actdel'><?php echo $ajax->link('Delete', array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']), array('update' => 'actdel'), sprintf(__('Delete post #%s?', true), $post['Post']['id']));?></li>
 </ul>
 <div class="grid_6 omega">
-  User details
+<?php
+  echo $html->image('http://www.gravatar.com/avatar/'. md5(strtolower(trim($post['User']['mail']))) .'?d=wavatar&r=g&s=16',
+		    array('alt' => $post['User']['username'],
+			  'url' => array('controller' => 'users',
+					 'action' => 'view',
+					 $post['User']['id']
+					 )
+			  )
+		    );
+  echo 'created: '. $post['Post']['created'] .' by ';
+  echo $html->link($post['User']['username'], array('controller' => 'users', 'action' => 'view', $post['User']['id']));
+?>
 </div>
 <div class="clear">&nbsp;</div>
 <dl class="grid_8 alpha omega">
@@ -79,3 +89,6 @@ if ($strike == 1) { echo '<strike>'; }
   echo $form->end('Save');
   echo '</div>';
 ?>
+<pre>
+<?php print_r($post); ?>
+</pre>

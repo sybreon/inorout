@@ -18,18 +18,14 @@
    <http://www.gnu.org/licenses/>.
   */
 
-echo '<div id="f-post" class="grid_8 alpha_omega">';
-echo $form->create('Post',array('action' => 'add'));
-echo '<fieldset><legend>Add Post</legend>'; 
-echo $form->hidden('user_id');
-echo $form->input('title');
-echo $form->input('url', array('maxLength' => '2048')); // IE practical limit
-echo $form->input('teaser',array('rows'=>'9'));
-echo '</fieldset>';
-echo $form->end('Save');
-echo '</div>';
-// echo $ajax->observeField( 'PostUrl', array('url' => array('action' => 'bitly')));
+class User extends AppModel {
 
+	var $name = 'User';
+	var $hasMany = array('Post','Comment');
+	var $validate = array('comment' => array ('rule' => array('minLength', 16),
+						  'required' => true,
+						  'message' => 'must be longer than 16 characters.'
+						  ),
+			      );
+}
 ?>
-
-<pre><?php  ?></pre>

@@ -33,6 +33,7 @@ class Post extends AppModel {
 			     );
 	*/	
 	var $hasMany = 'Comment';
+	var $belongsTo = 'User';
 	var $validate = array('url'=>array(
 					   'rule'=>'url',
 					   'required'=>false,

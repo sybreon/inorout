@@ -60,7 +60,13 @@
 <?php	} ?>
 </dl>
 <div class="clear">&nbsp;</div>
-<ul id="acts" class="grid_12 alpha omega">
+<ul id="acts" class="grid_3 alpha">
     <li><?php echo $html->link('Add Post', array('action' => 'add'));?></li>
 </ul>
-
+<div class="grid_9 omega">
+<?php
+    echo $test;
+    print_r($session);
+    //    echo $session->read('email');
+?>
+</div>

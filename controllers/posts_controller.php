@@ -72,6 +72,7 @@ class PostsController extends AppController {
 						)
 		     );	  
 	  $this->layout = 'landscape';
+	  $this->set('test',$this->Session->read('User.email'));
 	}
 
 	/**
@@ -121,8 +122,8 @@ class PostsController extends AppController {
 	 Add a new post.
 	 */
 
-	function add() {
-	  $this->pageTitle = 'Add Post';
+	function add() {	
+	  $this->pageTitle = 'Add Post';	 
 	  if (!empty($this->data)) {
 	    // Shorten the URL using bitly
 	    if (!empty($this->data['Post']['url'])) {	      
