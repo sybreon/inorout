@@ -20,8 +20,8 @@
 
 class User extends AppModel {
 
-	var $name = 'User';
-	var $hasMany = array('Post','Comment');
+  var $name = 'User';
+  var $hasMany = array('Post','Comment');
      
 }
 ?>
