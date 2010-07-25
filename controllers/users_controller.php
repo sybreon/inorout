@@ -26,7 +26,7 @@ App::import('Vendor','openid');
 class UsersController extends AppController {
 
 	var $name = 'Users';
-	var $components = array('Openid', 'RequestHandler');
+	var $components = array('RequestHandler');
 	var $uses = array();
 
 
