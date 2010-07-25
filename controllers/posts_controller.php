@@ -162,22 +162,26 @@ class PostsController extends AppController {
 	 Flag a post as DELETED (AJAX)
 	 */
 	function delete($id = null) {
-	  Configure::write('debug', 0); // dont want debug in ajax returned html
-	  // TODO: Check for ACL
-	  $this->Post->updateAll(array('Post.flags' => '-1'), array('Post.id' => $id));
-	  $this->set('result', 'Deleted');
-	  $this->layout = 'ajax';
+	  if ($this->RequestHandler->isAjax()) {
+	    Configure::write('debug', 0); // dont want debug in ajax returned html
+	    // TODO: Check for ACL
+	    $this->Post->updateAll(array('Post.flags' => '-1'), array('Post.id' => $id));
+	    $this->set('result', 'Deleted');
+	    $this->layout = 'ajax';
+	  }
 	}
 
 	/**
 	 Flag a post as FLAGGED (AJAX)
 	 */
 	function flag($id = null) {
-	  Configure::write('debug', 0); // dont want debug in ajax returned html
-	  // TODO: Check for ACL
-	  $this->Post->updateAll(array('Post.flags' => 'Post.flags+1'), array('Post.id' => $id));
-	  $this->set('result', 'Flagged');
-	  $this->layout = 'ajax';
+	  if ($this->RequestHandler->isAjax()) {
+	    Configure::write('debug', 0); // dont want debug in ajax returned html
+	    // TODO: Check for ACL
+	    $this->Post->updateAll(array('Post.flags' => 'Post.flags+1'), array('Post.id' => $id));
+	    $this->set('result', 'Flagged');
+	    $this->layout = 'ajax';
+	  }
 	}
 
 }

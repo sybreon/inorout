@@ -18,15 +18,20 @@
    <http://www.gnu.org/licenses/>.
   */
 
-App::import('Core', 'HttpSocket');
-App::import('Sanitize');
+  //App::import('Sanitize');
 
 class CommentsController extends AppController {
 
 	var $name = 'Comments';
-	var $helpers = array ('Form','Html','Text','Ajax','Javascript');
+	//var $helpers = array ('Form','Html','Text','Ajax','Javascript');
 	var $components = array('RequestHandler');
 
+	function add() {
+	  if (!empty($this->data)) {
+	    $this->redirect(array('controller' => 'users', 'action' => 'login', $param));
+	    //$this->redirect();
+	  }
+	}
 
 }
 ?>

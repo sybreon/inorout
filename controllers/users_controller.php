@@ -51,13 +51,13 @@ class UsersController extends AppController {
 	    $openid = new LightOpenID;
 	    if ($openid->validate()) {
 	      // valid OpenID reply
-	      $attr = $openid->getAttributes();
-	      $oid = md5($openid->identity); // hash the id returned
+	      $attr = $openid->getAttributes(); // extract attributes
 	      $mail = (isset($attr['contact/email'])) ? md5(strtolower(trim($attr['contact/email']))) : '';
 	      $nama = (isset($attr['namePerson/friendly'])) ? $attr['namePerson/friendly'] : 'Anonymous';
 	      
+	      $oid = md5(trim($openid->identity)); // hash the id returned
 
-	      if ($this->User->findByOid($oid) === false) {
+	      if ($tmp = $this->User->findByOid($oid) == false) {
 		// create user	  
 		$this->data['User']['oid'] = $oid;
 		$this->data['User']['mail'] = $mail;
@@ -70,7 +70,7 @@ class UsersController extends AppController {
 
 	      $this->Session->write('User.mail', $mail);      
 	      $this->Session->write('User.nama', $nama);
-	      $this->Session->write('User.id', $id);
+	      $this->Session->write('User.id', serialize($tmp));
 	      
 	      // find the user based on claimed_id
 	      $this->Session->setFlash('Authentication success!');
