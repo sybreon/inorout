@@ -27,26 +27,58 @@ class UsersController extends AppController {
 
 	var $name = 'Users';
 	var $components = array('RequestHandler');
-	var $uses = array();
+	var $helpers = array ('Form','Html','Ajax','Javascript');
+	//var $uses = array();
 
+	public function auth($param = null) {	  
+	  
+	  if (isset($this->data['User']['url'])) {
+	    // openid form login
+	    $openid = new LightOpenID;
+	    $openid->identity = $this->data['User']['url'];
+	    $openid->required = array('contact/email','namePerson/friendly');
+	    $openid->returnUrl = 
+	    //$openid->optional = array('namePerson/friendly');
+	    $this->redirect($openid->authUrl());
 
-	public function login() {
-	  $openid = new LightOpenID;
-	  if ($this->RequestHandler->isPost()) {
+	  } elseif ($this->params['url']['openid_mode'] == 'cancel') {	    
+	    // openid cancel
+	    $this->Session->setFlash('Authentication canceled!');
+	    $this->redirect(array('controller' => 'users', 'action' => 'login', $param));
+
+	  } else { //($this->params['url']['openid_mode'] == 'id_res') {
+	    // openid callback
+	    $openid = new LightOpenID;
 	    if ($openid->validate()) {
+	      // valid OpenID reply
 	      $attr = $openid->getAttributes();
-	      $this->Session->write('User.email',$attr['contact/email']);
-	      $this->Session->write('User.nickname',$attr['namePerson/friendly']);
-	      // find the user based on email
+	      $oid = md5($openid->identity); // hash the id returned
+	      $mail = (isset($attr['contact/email'])) ? md5(strtolower(trim($attr['contact/email']))) : '';
+	      $nama = (isset($attr['namePerson/friendly'])) ? $attr['namePerson/friendly'] : 'Anonymous';
+	      
+
+	      if ($this->User->findByOid($oid) === false) {
+		// create user	  
+		$this->data['User']['oid'] = $oid;
+		$this->data['User']['mail'] = $mail;
+		$this->data['User']['nama'] = $nama;
+		
+		$this->User->create();
+		$id = $this->User->save($this->data);
+	      }
+
+
+	      $this->Session->write('User.mail', $mail);      
+	      $this->Session->write('User.nama', $nama);
+	      $this->Session->write('User.id', $id);
+	      
+	      // find the user based on claimed_id
+	      $this->Session->setFlash('Authentication success!');
 	      $this->redirect(array('controller' => 'posts', 'action' => 'index'));
 	    } else {
 	      $this->Session->setFlash('Authentication failed!');
+	      $this->redirect(array('controller' => 'users', 'action' => 'login', $param));
 	    }
-	  } else {
-	    $openid->identity = 'http://me.yahoo.com';
-	    $openid->required = array('contact/email');//, 'namePerson/friendly');
-	    //$openid->optional = array('namePerson/friendly');
-	    $this->redirect($openid->authUrl());
 	  }
 	}
 
@@ -55,53 +87,14 @@ class UsersController extends AppController {
 	  $this->Session->delete('User');
 	}
 
-	public function auth() {
-	  // extract the FC stuff
-	  
+	/**
+	 param is the return URL in Base64 encoding
+	 */
+
+	public function login($param = null) {
+	  $this->set('params',$this->params);
+	  $this->set('param',$param);
 	}
 	
-	/*
-	public function login() {
-	  $realm = 'http://'.$_SERVER['SERVER_NAME'];
-	  $returnTo = $realm . '/~sybreon/users/login';
-
-	  if ($this->RequestHandler->isPost()) {
-            $this->makeOpenIDRequest($this->data['OpenidUrl']['openid'], $returnTo, $realm);
-	  } elseif ($this->Openid->isOpenIDResponse()) {
-	    $this->handleOpenIDResponse($returnTo);
-	    $this->set('user',$this->Openid->getResponse($returnTo));
-	  }
-	}
-	*/
-
-	private function makeOpenIDRequest($openid, $returnTo, $realm) {
-	  $required = array('email');
-	  $optional = array('nickname');
-	  $this->Openid->authenticate($openid, $returnTo, $realm, array('sreg_required' => $required, 'sreg_optional' => $optional));
-	}
-	
-	private function handleOpenIDResponse($returnTo) {
-	  $response = $this->Openid->getResponse($returnTo);
-	  
-	  if ($response->status == Auth_OpenID_SUCCESS) {
-	    $sregResponse = Auth_OpenID_SRegResponse::fromSuccessResponse($response);
-	    $sregContents = $sregResponse->contents();
-	    
-	    if ($sregContents) {
-	      if (array_key_exists('email', $sregContents)) {
-		debug($sregContents['email']);
-	      }
-	      if (array_key_exists('nickname', $sregContents)) {
-		debug($sregContents['nickname']);
-	      }
-	    }
-	  }
-	}
-	
-	//var $helpers = array ('Form','Html','Text','Ajax','Javascript');
-	//var $components = array('RequestHandler');
-	// https://www.google.com/accounts/o8/id
-	// http://yahoo.com
-
 }
 ?>

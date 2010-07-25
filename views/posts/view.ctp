@@ -49,8 +49,8 @@ if ($strike == 1) { echo '<strike>'; }
 </ul>
 <div class="grid_6 omega">
 <?php
-  echo $html->image('http://www.gravatar.com/avatar/'. md5(strtolower(trim($post['User']['mail']))) .'?d=wavatar&r=g&s=16',
-		    array('alt' => $post['User']['username'],
+  echo $html->image('http://www.gravatar.com/avatar/'. $post['User']['mail'] .'?d=mm&r=pg&s=16',
+		    array('alt' => $post['User']['nama'],
 			  'url' => array('controller' => 'users',
 					 'action' => 'view',
 					 $post['User']['id']
@@ -58,7 +58,7 @@ if ($strike == 1) { echo '<strike>'; }
 			  )
 		    );
   echo 'created: '. $post['Post']['created'] .' by ';
-  echo $html->link($post['User']['username'], array('controller' => 'users', 'action' => 'view', $post['User']['id']));
+  echo $html->link($post['User']['nama'], array('controller' => 'users', 'action' => 'view', $post['User']['id']));
 ?>
 </div>
 <div class="clear">&nbsp;</div>

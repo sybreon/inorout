@@ -67,6 +67,8 @@
 <?php
     echo $test;
     print_r($session);
-    //    echo $session->read('email');
+    echo $session->read('User.mail');
+    echo $session->read('User.nama');
+    echo $session->read('User.id');
 ?>
 </div>

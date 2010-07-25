@@ -1,18 +1,17 @@
+<?php echo $javascript->link('prototype');?>
+<h3>Login</h3><hr/>
+<p>No authentication information is stored on this site. You will need to sign in with one of the following OpenID providers.</p>
 <?php
-  // app/views/users/login.ctp
-if (isset($message)) {
-  echo '<p class="error">'.$message.'</p>';
- }
-echo $form->create('User', array('type' => 'post', 'action' => 'login'));
-echo $form->input('OpenidUrl.openid', array('label' => false));
-echo $form->end('Login');
+echo $form->create('User', array('type' => 'post', 'action' => 'auth/'. $param . '?oid'));
+//echo $form->submit('login-google.png');
+echo $html->div('oidbut','<input type="image" src="'. $this->webroot .'img/login-google.png" name="data[User][url]" value="https://www.google.com/accounts/o8/id">');
+echo $html->div('oidbut','<input type="image" src="'. $this->webroot .'img/login-yahoo.png" name="data[User][url]" value="http://me.yahoo.com">');
+echo $html->div('oidbut','<input type="image" src="'. $this->webroot .'img/login-myopenid.png" name="data[User][url]" value="http://myopenid.com">');
+//echo $form->input('openid');
+echo $form->end();
 ?>
-<form action="" method="post">
-   OpenID: <input type="text" name="openid_identifier" /> <button>Submit</button>
-</form>
-
 <pre>
 <?php
-print_r($user);
+ //print_r($params);
 ?>
 </pre>
