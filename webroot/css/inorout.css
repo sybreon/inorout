@@ -27,9 +27,9 @@ ul#pages a {padding:6px 15px;color:#fff;font-weight:bold;font-size:large;text-tr
 ul#pages a:active {background-color:#e12;}
 ul#pages a:link, ul#pages a:visited {background-color:#07c;}
 
-ul#acts2 {margin:0;padding:0;white-space:nowrap;}
-ul#acts2 li {margin:0;display:inline;list-style-type:none;}
-ul#acts2 a {padding:4px 12px;color:#333;font-weight:bold;background:#ccc;border:1px solid #888;}
+ul#dashboard {white-space:nowrap;}
+ul#dashboard li {margin:0;padding:0;display:inline;list-style-type:none;}
+ul#dashboard a {padding:2px 6px;color:#333;font-weight:bold;background:#ccc;text-transform:lowercase;}
 
 ul#acts {white-space:nowrap;}
 ul#acts li {padding:0;margin:0;display:inline;list-style-type:none;}
@@ -45,7 +45,7 @@ ul#acts a.disable {background:none;border:none;color:#ccc;}
 
 input#CommentInout0, input#CommentInout1 { max-width:20px; }
 
-div.oidbut { margin:4px;padding:8px;background:#fff;border:1px solid #ccc;max-width:100px;height:32px;float:left; }
+div.oidbut { margin:3px;padding:8px;background:#fff;border:1px solid #ccc;max-width:100px;float:left; }
 div.oidbut input { max-width:100px; }
 
 /* forms ----------------------------------------------- */

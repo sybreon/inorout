@@ -64,12 +64,16 @@ class UsersController extends AppController {
 	// valid OpenID reply
 	$attr = $openid->getAttributes(); // extract attributes
 	$mail = (isset($attr['contact/email'])) ? md5(strtolower(trim($attr['contact/email']))) : '';
-	$nama = (isset($attr['namePerson/friendly'])) ? $attr['namePerson/friendly'] : 'Anonymous';
-	
+	$nama = (isset($attr['namePerson/friendly'])) ? $attr['namePerson/friendly'] : 'Anonymous';	
 	$oid = md5(trim($openid->identity)); // hash the id returned
-	
+
+	/*
+	$tmp['User']['oid'] = $oid;
+	$tmp['User']['mail'] = $mail;
+	$tmp['User']['nama'] = $nama;
+	*/
 	// find the user based on claimed_id
-	if ($this->User->findByOid($oid) == false) {
+	if (($this->data = $this->User->findByOid($oid)) == false) {
 	  // create user	  
 	  $this->data['User']['oid'] = $oid;
 	  $this->data['User']['mail'] = $mail;
@@ -77,13 +81,18 @@ class UsersController extends AppController {
 	  
 	  $this->User->create();
 	  $this->User->save($this->data);
+
+	  $this->Session->setFlash('Welcome to In/Out user #'. $this->User->id .'!');
 	} else {
 	  // update user	  
 	  $this->data['User']['oid'] = $oid;
 	  $this->data['User']['mail'] = $mail;
 	  $this->data['User']['nama'] = $nama;
 
+	  $this->User->id = $this->data['User']['id'];
 	  $this->User->save($this->data);
+
+	  $this->Session->setFlash('Welcome back user #'. $this->User->id .'!');
 	}
 
 	// save to session
@@ -92,7 +101,6 @@ class UsersController extends AppController {
 	$this->Session->write('User.oid', $oid);
 	$this->Session->write('User.id', $this->User->id);
 	
-	$this->Session->setFlash('Authentication success!');
 	$this->redirect(array('controller' => 'posts', 'action' => 'index'));
       } else {
 	$this->Session->setFlash('Authentication failed!');
@@ -116,6 +124,7 @@ class UsersController extends AppController {
   */
   
   public function login($param = null) {
+    $this->pageTitle = 'OpenID Login';
     //$this->set('params',$this->params);
     $this->set('param',$param);
   }  

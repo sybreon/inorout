@@ -27,6 +27,11 @@ echo $scripts_for_layout;
   <li><?php echo $html->link('Vote!', array('controller' => 'pages', 'action' => 'vote')); ?> </li>
   <li><?php echo $html->link('Friends', array('controller' => 'pages', 'action' => 'friends')); ?> </li>
   </ul>
+  <div class="clear">&nbsp;</div>
+  <div class="grid_12">
+  <?php echo $this->element('dashboard'); ?>
+  </div>
+  <div class="clear">&nbsp;</div>
   <div class="grid_12">
   <?php echo $content_for_layout; ?>
   </div>
