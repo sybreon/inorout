@@ -32,22 +32,33 @@ echo $html->image('emoticon_unhappy.png') . $post['Post']['outs'];
 </div>
 <div id="post" class="grid_7 omega">
 <!-- embed preview -->
-<?php echo $html->link('Link',$post['Post']['url']); ?>
 <?php 
-$strike = $post['Post']['flags'] & 0x01;
-if ($strike == 1) { echo '<strike>'; }
+  //  echo $html->link('Link',$post['Post']['url']); 
+  $strike = ($post['Post']['flags'] == -1) ? 'strike' : 'p';
+echo $html->tag($strike, Sanitize::html($post['Post']['teaser'])); 
 ?>
-<?php echo $html->para('teaser', Sanitize::html($post['Post']['teaser'])); ?>
-</strike>
 </div>
-
 <div class="clear">&nbsp;</div>
-<ul id="acts" class="grid_2 alpha">
-  <li><?php echo $html->link('Edit', array('action' => 'edit', $post['Post']['id'])); ?></li>	
-  <li id='actflg'><?php echo $ajax->link('Flag', array('controller' => 'posts', 'action' => 'flag', $post['Post']['id']), array('update' => 'actflg'), sprintf(__('Flag post #%s?', true), $post['Post']['id']));?></li>
-  <li id='actdel'><?php echo $ajax->link('Delete', array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']), array('update' => 'actdel'), sprintf(__('Delete post #%s?', true), $post['Post']['id']));?></li>
+<ul id="acts" class="grid_3 alpha">
+  <li><?php echo $html->link('Edit', array('action' => 'edit', $post['Post']['id'])); ?></li>	  
+  <li id="actflg">
+  <?php 
+  if ($post['Post']['flags'] > 0) {
+    echo $ajax->link('Flag ('. $post['Post']['flags'] .')', array('controller' => 'posts', 'action' => 'flag', $post['Post']['id']), array('update' => 'actflg'), sprintf(__('Flag post #%s?', true), $post['Post']['id']));
+  } else {
+    echo $ajax->link('Flag', array('controller' => 'posts', 'action' => 'flag', $post['Post']['id']), array('update' => 'actflg'), sprintf(__('Flag post #%s?', true), $post['Post']['id']));
+  }
+?></li>
+<li id="actdel">
+  <?php 
+  if ($post['Post']['flags'] == -1) {
+    echo '<a href="#" class="disable">Deleted</a>';
+  } else {
+    echo $ajax->link('Delete', array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']), array('update' => 'actdel'), sprintf(__('Delete post #%s?', true), $post['Post']['id']));
+  }
+?></li>
 </ul>
-<div class="grid_6 omega">
+<div class="grid_5 omega">
 <?php
   echo $html->image('http://www.gravatar.com/avatar/'. $post['User']['mail'] .'?d=mm&r=pg&s=16',
 		    array('alt' => $post['User']['nama'],
