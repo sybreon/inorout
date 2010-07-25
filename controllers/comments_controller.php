@@ -17,19 +17,16 @@
    License along with this program.  If not, see
    <http://www.gnu.org/licenses/>.
   */
-?>
-<div id="f.post" class="grid_8 alpha_omega">
-<?php print($form->create('Post',array('action' => 'edit')));?>
-<fieldset>
-<legend><?php echo $this->pageTitle; ?></legend>
-<?php 
-echo $form->input('title');
-echo $form->input('url', array('maxLength' => '2048')); // IE practical limit
-echo $form->input('teaser',array('rows'=>'9'));
-?>
-</fieldset>
-<?php print($form->end('Save'));?>
-</div>
-<?php
-// echo $ajax->observeField( 'PostUrl', array('url' => array('action' => 'bitly')));
+
+App::import('Core', 'HttpSocket');
+App::import('Sanitize');
+
+class CommentsController extends AppController {
+
+	var $name = 'Comments';
+	var $helpers = array ('Form','Html','Text','Ajax','Javascript');
+	var $components = array('RequestHandler');
+
+
+}
 ?>

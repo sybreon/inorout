@@ -18,8 +18,8 @@
    <http://www.gnu.org/licenses/>.
   */
 ?>
-<div class="grid_6" id="ins">
-<dl>
+
+<dl class="grid_5 alpha" id="c-in">
 <?php foreach ($posts_in as $post) { ?>
 	<dt>
 	<?php
@@ -31,7 +31,7 @@
 	</dt>
 	<dd>
 	<?php 
-	      echo $text->truncate($text->stripLinks($post['Post']['teaser']), 48);
+	      echo $text->truncate($text->stripLinks($post['Post']['teaser']), 32);
 	      echo $html->image('emoticon_smile.png') . $post['Post']['ins']; 
 	      echo $html->image('eye.png') . $post['Post']['views']; 
 	      echo $html->image('emoticon_unhappy.png') . $post['Post']['outs']; 
@@ -39,9 +39,8 @@
 	</dd>
 <?php	} ?>
 </dl>
-</div>
-<div class="grid_6" id="outs">
-<dl>
+
+<dl class="grid_5 push_2 omega" id="c-out">
 <?php foreach ($posts_out as $post) { ?>
 	<dt>
 	<?php
@@ -60,9 +59,16 @@
 	</dd>
 <?php	} ?>
 </dl>
-</div>
-
-<ul id="acts" class="grid_12">
-    <li><?php echo $html->link('Add In/Out', array('action' => 'edit'));?></li>
+<div class="clear">&nbsp;</div>
+<ul id="acts" class="grid_3 alpha">
+    <li><?php echo $html->link('Add Post', array('action' => 'add'));?></li>
 </ul>
-
+<div class="grid_9 omega">
+<?php
+    echo $test;
+    print_r($session);
+    echo $session->read('User.mail');
+    echo $session->read('User.nama');
+    echo $session->read('User.id');
+?>
+</div>
