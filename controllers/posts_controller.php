@@ -71,6 +71,8 @@ class PostsController extends AppController {
 						      )
 						)
 		     );	  
+	  $this->layout = 'landscape';
+	  $this->set('test',$this->Session->read('User.email'));
 	}
 
 	/**
@@ -87,16 +89,15 @@ class PostsController extends AppController {
 	  }
 
 	  // Extract the post
-	  $this->set('post',$this->Post->read(null,$id));
-	  
+	  $this->set('post',$this->Post->read(null,$id));	  
 	}
 
 	/**
-	 Edit an existing post or create a new one.
+	 Edit an existing post.
 	 */
 
 	function edit($id = null) {
-	  $this->pageTitle = ($id != null) ? 'Edit In/Out #'.$id : 'Add In/Out';
+	  $this->pageTitle = 'Edit Post #'.$id;
 	  if (empty($this->data)) {
 	    $this->data = $this->Post->read(null, $id);
 	    // Expand the URL using bitly
@@ -112,6 +113,26 @@ class PostsController extends AppController {
 	    if ($this->Post->save($this->data)) {	      	      
 	      $id = $this->Post->id; // get new ID
 	      $this->Session->setFlash('Post #'. $id .' updated successfully.');
+	      $this->redirect(array('action' => 'view', $id));
+	    }
+	  }
+	}
+
+	/**
+	 Add a new post.
+	 */
+
+	function add() {	
+	  $this->pageTitle = 'Add Post';	 
+	  if (!empty($this->data)) {
+	    // Shorten the URL using bitly
+	    if (!empty($this->data['Post']['url'])) {	      
+	      $this->data['Post']['url'] = $this->bitly_shorten($this->data['Post']['url']);
+	    }	    
+	    // save the form
+	    if ($this->Post->save($this->data)) {	      	      
+	      $id = $this->Post->id; // get new ID
+	      $this->Session->setFlash('Post #'. $id .' added successfully.');
 	      $this->redirect(array('action' => 'view', $id));
 	    }
 	  }
@@ -141,22 +162,26 @@ class PostsController extends AppController {
 	 Flag a post as DELETED (AJAX)
 	 */
 	function delete($id = null) {
-	  Configure::write('debug', 0); // dont want debug in ajax returned html
-	  // TODO: Check for ACL
-	  $this->Post->updateAll(array('Post.flags' => '-1'), array('Post.id' => $id));
-	  $this->set('result', 'Deleted');
-	  $this->layout = 'ajax';
+	  if ($this->RequestHandler->isAjax()) {
+	    Configure::write('debug', 0); // dont want debug in ajax returned html
+	    // TODO: Check for ACL
+	    $this->Post->updateAll(array('Post.flags' => '-1'), array('Post.id' => $id));
+	    $this->set('result', 'Deleted');
+	    $this->layout = 'ajax';
+	  }
 	}
 
 	/**
 	 Flag a post as FLAGGED (AJAX)
 	 */
 	function flag($id = null) {
-	  Configure::write('debug', 0); // dont want debug in ajax returned html
-	  // TODO: Check for ACL
-	  $this->Post->updateAll(array('Post.flags' => 'Post.flags+1'), array('Post.id' => $id));
-	  $this->set('result', 'Flagged');
-	  $this->layout = 'ajax';
+	  if ($this->RequestHandler->isAjax()) {
+	    Configure::write('debug', 0); // dont want debug in ajax returned html
+	    // TODO: Check for ACL
+	    $this->Post->updateAll(array('Post.flags' => 'Post.flags+1'), array('Post.id' => $id));
+	    $this->set('result', 'Flagged');
+	    $this->layout = 'ajax';
+	  }
 	}
 
 }

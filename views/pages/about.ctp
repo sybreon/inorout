@@ -1,5 +1,3 @@
-<div class="grid_8">
 <h2>About Us</h2>
 <hr/>
 <?php echo $html->para(null,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula dolor ut sapien rutrum convallis. Sed augue metus, hendrerit in ultrices ac, aliquet sit amet est. Ut feugiat arcu at dolor cursus condimentum. Cras non nulla id est sollicitudin adipiscing. Proin laoreet dignissim turpis, nec dictum augue molestie sed. Ut tincidunt lacinia neque, in interdum leo porta non. Nunc feugiat tortor id tortor imperdiet tempor. Donec aliquam congue odio. Morbi tempor rutrum est. In accumsan mollis lorem in rhoncus. In id nunc ut libero dictum auctor. Curabitur a posuere massa. Morbi nec leo ultricies turpis malesuada varius nec suscipit leo. Duis commodo odio eget nisi sodales convallis. Vestibulum luctus lobortis turpis, molestie blandit massa pulvinar eget. Nunc egestas ullamcorper ligula, quis condimentum lectus convallis viverra. Nulla semper convallis commodo. Proin luctus turpis quam, et sollicitudin quam. Cras sodales condimentum dignissim.'); ?>
-</div>

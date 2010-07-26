@@ -18,18 +18,6 @@
    <http://www.gnu.org/licenses/>.
   */
 ?>
-<div id="f.post" class="grid_8 alpha_omega">
-<?php print($form->create('Post',array('action' => 'edit')));?>
-<fieldset>
-<legend><?php echo $this->pageTitle; ?></legend>
-<?php 
-echo $form->input('title');
-echo $form->input('url', array('maxLength' => '2048')); // IE practical limit
-echo $form->input('teaser',array('rows'=>'9'));
-?>
-</fieldset>
-<?php print($form->end('Save'));?>
-</div>
-<?php
-// echo $ajax->observeField( 'PostUrl', array('url' => array('action' => 'bitly')));
-?>
+<h2>SABM Calendar</h2>
+<hr/>
+<iframe src="https://www.google.com/calendar/hosted/inorout.org/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;height=530&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=inorout.org_fsb8ib1s83mntpe58vqh3tdtqo%40group.calendar.google.com&amp;color=%232F6309&amp;ctz=Asia%2FKuala_Lumpur" style=" border-width:0 " width="940" height="530" frameborder="0" scrolling="no"></iframe>

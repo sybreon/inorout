@@ -19,24 +19,87 @@
   */
 ?>
 <?php echo $javascript->link('prototype'); ?> 
-<div class="grid_12">
-<h3><?php echo
- $html->link($post['Post']['title'], array('action' => 'view',
- $post['Post']['id'])); ?></h3> <hr/>
-
-<!-- embed preview -->
-<small>Created: <?php echo $post['Post']['created']?></small>
-<?php echo $html->link('Link',$post['Post']['url']); ?>
-<?php $strike = $post['Post']['flags'] & 0x01;
-if ($strike == 1) { echo '<strike>'; }
+<h3><?php 
+    echo $html->link($post['Post']['title'], array('action' => 'view',
+						   $post['Post']['id'])); 
+?></h3><hr/>
+<div id="vote" class="grid_1 alpha">
+<?php
+echo $html->image('emoticon_smile.png') . $post['Post']['ins']; 
+echo $html->image('eye.png') . $post['Post']['views']; 
+echo $html->image('emoticon_unhappy.png') . $post['Post']['outs']; 
 ?>
-<?php echo $html->para('teaser', Sanitize::html($post['Post']['teaser'])); ?>
-</strike>
-
-<div class="clear">&nbsp;</div>
-<ul id="acts">
-	<li><?php echo $html->link('Edit', array('action' => 'edit', $post['Post']['id'])); ?></li>	
-	<li id='actflg'><?php echo $ajax->link('Flag', array('controller' => 'posts', 'action' => 'flag', $post['Post']['id']), array('update' => 'actflg'), sprintf(__('Are you sure you want to flag In/Out #%s?', true), $post['Post']['id']));?></li>
-	<li id='actdel'><?php echo $ajax->link('Delete', array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']), array('update' => 'actdel'), sprintf(__('Are you sure you want to delete In/Out #%s?', true), $post['Post']['id']));?></li>
-</ul>
 </div>
+<div id="post" class="grid_7 omega">
+<!-- embed preview -->
+<?php 
+  //  echo $html->link('Link',$post['Post']['url']); 
+  $strike = ($post['Post']['flags'] == -1) ? 'strike' : 'p';
+echo $html->tag($strike, Sanitize::html($post['Post']['teaser'])); 
+?>
+</div>
+<div class="clear">&nbsp;</div>
+<ul id="acts" class="grid_3 alpha">
+  <li><?php echo $html->link('Edit', array('action' => 'edit', $post['Post']['id'])); ?></li>	  
+  <li id="actflg">
+  <?php 
+  if ($post['Post']['flags'] > 0) {
+    echo $ajax->link('Flag ('. $post['Post']['flags'] .')', array('controller' => 'posts', 'action' => 'flag', $post['Post']['id']), array('update' => 'actflg'), sprintf(__('Flag post #%s?', true), $post['Post']['id']));
+  } else {
+    echo $ajax->link('Flag', array('controller' => 'posts', 'action' => 'flag', $post['Post']['id']), array('update' => 'actflg'), sprintf(__('Flag post #%s?', true), $post['Post']['id']));
+  }
+?></li>
+<li id="actdel">
+  <?php 
+  if ($post['Post']['flags'] == -1) {
+    echo '<a href="#" class="disable">Deleted</a>';
+  } else {
+    echo $ajax->link('Delete', array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']), array('update' => 'actdel'), sprintf(__('Delete post #%s?', true), $post['Post']['id']));
+  }
+?></li>
+</ul>
+<div class="grid_5 omega">
+<?php
+  echo $html->image('http://www.gravatar.com/avatar/'. $post['User']['mail'] .'?d=mm&r=pg&s=16',
+		    array('alt' => $post['User']['nama'],
+			  'url' => array('controller' => 'users',
+					 'action' => 'view',
+					 $post['User']['id']
+					 )
+			  )
+		    );
+  echo 'created: '. $post['Post']['created'] .' by ';
+  echo $html->link($post['User']['nama'], array('controller' => 'users', 'action' => 'view', $post['User']['id']));
+?>
+</div>
+<div class="clear">&nbsp;</div>
+<dl class="grid_8 alpha omega">
+<?php
+  foreach ($post['Comment'] as $comm) {
+  
+  if ($comm['inout'] == 0) {
+    echo '<dl id="c-out" class="grid_6 push_2 alpha omega">';
+  } else {
+    echo '<dl id="c-in" class="grid_6 alpha omega">';
+  }
+  
+    echo '<dt>'. $comm['created'] .'</dt>';
+    echo '<dd>'. $comm['comment'] .'</dd>';
+  echo '</dl>';
+}
+?>
+</dl>
+<?php
+  echo '<div id="f.comment" class="grid_6 push_1 alpha omega">';
+  echo $form->create('Comment', array('controller' => 'comments', 'action' => 'add'));
+  echo '<fieldset>';
+  echo '<legend>Add Comment</legend>';
+  echo $form->input('comment',array('rows'=>'9'));
+  echo $form->radio('inout',array('1' => 'In', '0' => 'Out'), array('separator' => '', 'legend' => false));
+  echo '</fieldset>';
+  echo $form->end('Save');
+  echo '</div>';
+?>
+<pre>
+<?php print_r($post); ?>
+</pre>
