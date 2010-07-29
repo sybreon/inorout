@@ -72,7 +72,7 @@ class PostsController extends AppController {
 						)
 		     );	  
 	  $this->layout = 'landscape';
-	  $this->set('test',$this->Session->read('User.email'));
+	  $this->set('dump',$this->data);
 	}
 
 	/**
@@ -80,7 +80,7 @@ class PostsController extends AppController {
 	 */
 
 	function view($id = null) {
-	  $this->pageTitle = 'In/Out #'. $id;
+	  $this->pageTitle = 'Post #'. $id;
 
 	  // Increment counter once in a session
 	  if (!$this->Session->check('Post.'.$id)) {

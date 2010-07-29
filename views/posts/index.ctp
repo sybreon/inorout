@@ -64,11 +64,7 @@
     <li><?php echo $html->link('Add Post', array('action' => 'add'));?></li>
 </ul>
 <div class="grid_9 omega">
-<?php
-    echo $test;
-    print_r($session);
-    echo $session->read('User.mail');
-    echo $session->read('User.nama');
-    echo $session->read('User.id');
-?>
+<pre>
+    <?php print_r($posts_in);?>
+</pre>
 </div>
