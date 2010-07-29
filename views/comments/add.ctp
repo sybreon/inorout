@@ -1,3 +1,4 @@
+<?php print_r($comm); ?>
 <div class="comments form">
 <?php echo $form->create('Comment');?>
 	<fieldset>

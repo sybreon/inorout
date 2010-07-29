@@ -97,6 +97,7 @@ echo $html->tag($strike, Sanitize::html($post['Post']['teaser']));
   echo $form->input('comment',array('rows'=>'9'));
   echo $form->radio('inout',array('1' => 'In', '0' => 'Out'), array('separator' => '', 'legend' => false));
   echo '</fieldset>';
+echo $form->hidden('id', array('value' => $post['Post']['id']));
   echo $form->end('Save');
   echo '</div>';
 ?>
