@@ -23,7 +23,7 @@
     echo $html->link($post['Post']['title'], array('action' => 'view',
 						   $post['Post']['id'])); 
 ?></h3><hr/>
-<div id="vote" class="grid_1 alpha">
+<div id="vote" class="grid_2 alpha">
 <?php
 echo $html->image('emoticon_smile.png') . $post['Post']['ins']; 
 echo $html->image('eye.png') . $post['Post']['views']; 
@@ -73,14 +73,14 @@ echo $html->tag($strike, Sanitize::html($post['Post']['teaser']));
 ?>
 </div>
 <div class="clear">&nbsp;</div>
-<dl class="grid_8 alpha omega">
+<dl class="grid_12 alpha omega">
 <?php
   foreach ($post['Comment'] as $comm) {
   
   if ($comm['inout'] == 0) {
-    echo '<dl id="c-out" class="grid_6 push_2 alpha omega">';
+    echo '<dl id="c-out" class="grid_10 push_2 alpha omega">';
   } else {
-    echo '<dl id="c-in" class="grid_6 alpha omega">';
+    echo '<dl id="c-in" class="grid_10 alpha omega">';
   }
   
     echo '<dt>'. $comm['created'] .'</dt>';
@@ -90,16 +90,23 @@ echo $html->tag($strike, Sanitize::html($post['Post']['teaser']));
 ?>
 </dl>
 <?php
-  echo '<div id="f.comment" class="grid_6 push_1 alpha omega">';
+for ($i=0;$i<2;$i++) {
+  $pad = ($i == 0) ? 'alpha' : 'omega';
+  $inout = ($i == 0) ? 1 : 0;
+  echo '<div id="f.comment" class="grid_6 '. $pad .'">';
   echo $form->create('Comment', array('controller' => 'comments', 'action' => 'add'));
   echo '<fieldset>';
   echo '<legend>Add Comment</legend>';
   echo $form->input('comment',array('rows'=>'9'));
-  echo $form->radio('inout',array('1' => 'In', '0' => 'Out'), array('separator' => '', 'legend' => false));
+  //echo $form->radio('inout',array('1' => 'In', '0' => 'Out'), array('separator' => '', 'legend' => false));
   echo '</fieldset>';
+  echo $form->hidden('id', array('value' => $post['Post']['id']));
+  echo $form->hidden('inout', array('value' => $inout));
   echo $form->end('Save');
   echo '</div>';
+ }
 ?>
+  <div class="clear">&nbsp;</div>
 <pre>
 <?php print_r($post); ?>
 </pre>

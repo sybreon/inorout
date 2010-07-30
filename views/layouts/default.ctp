@@ -47,10 +47,9 @@ echo $scripts_for_layout;
   <li><?php echo $html->link('Friends', array('controller' => 'pages', 'action' => 'friends')); ?> </li>
   </ul>
   <div class="clear">&nbsp;</div>
-  <div class="grid_8">
+  <div class="grid_12">
   <?php echo $content_for_layout; ?>
   </div>
-  <div class="grid_4">&nbsp;</div>
   <div class="clear">&nbsp;</div>
   </div>
   <pre>

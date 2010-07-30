@@ -28,8 +28,19 @@ class CommentsController extends AppController {
 
 	function add() {
 	  if (!empty($this->data)) {
-	    $this->redirect(array('controller' => 'users', 'action' => 'login', $param));
-	    //$this->redirect();
+	    // add comment
+	    //$uid = $this->Session->read('User.id');
+	    $this->data['Comment']['user_id'] = $this->Session->read('User.id');
+	    $this->data['Comment']['post_id'] = $this->data['Comment']['id'];
+	    unset($this->data['Comment']['id']);
+	    $this->set('comm',$this->data);
+	    $this->Comment->save($this->data);
+	    $this->redirect(array('controller' => 'posts',
+				  'action' => 'view',
+				  $this->data['Comment']['post_id']
+				  )
+			    );
+	    
 	  }
 	}
 
