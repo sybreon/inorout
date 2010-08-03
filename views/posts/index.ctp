@@ -31,7 +31,7 @@
 	</dt>
 	<dd>
 	<?php 
-	      echo $text->truncate($text->stripLinks($post['Post']['teaser']), 32);
+	      echo $text->truncate($text->stripLinks($post['Post']['teaser']), 128);
 	      echo $html->image('emoticon_smile.png') . $post['Post']['ins']; 
 	      echo $html->image('eye.png') . $post['Post']['views']; 
 	      echo $html->image('emoticon_unhappy.png') . $post['Post']['outs']; 

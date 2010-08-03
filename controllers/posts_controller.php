@@ -71,7 +71,7 @@ class PostsController extends AppController {
 						      )
 						)
 		     );	  
-	  $this->layout = 'landscape';
+	  //$this->layout = 'landscape';
 	  $this->set('dump',$this->data);
 	}
 
@@ -90,6 +90,13 @@ class PostsController extends AppController {
 
 	  // Extract the post
 	  $this->set('post',$this->Post->read(null,$id));	  
+
+	  // Extract comments
+	  $this->loadModel('Comment');
+	  $this->set('post_comments', 
+		     $this->Comment->find('threaded', 
+					  array('conditions' => array('Comment.post_id' => $id))));	  
+
 	}
 
 	/**
