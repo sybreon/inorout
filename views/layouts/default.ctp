@@ -48,6 +48,10 @@ echo $scripts_for_layout;
   </ul>
   <div class="clear">&nbsp;</div>
   <div class="grid_12">
+  <?php echo $this->element('dashboard'); ?>
+  </div>
+  <div class="clear">&nbsp;</div>
+   <div class="grid_12">
   <?php echo $content_for_layout; ?>
   </div>
   <div class="clear">&nbsp;</div>

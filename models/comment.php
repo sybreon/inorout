@@ -21,8 +21,8 @@
 class Comment extends AppModel {
 
   var $name = 'Comment';
-  var $belongsTo = array('Post', 'User');
-  var $hasMany = 'Reply';
+  var $belongsTo = array('User');
+  //var $hasMany = 'Reply';
   var $validate = array('comment' => array ('rule' => array('minLength', 16),
 					    'required' => true,
 					    'message' => 'must be longer than 16 characters.'

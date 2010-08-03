@@ -21,7 +21,7 @@
 class Reply extends AppModel {
 
   var $name = 'Reply';
-  var $belongsTo = array('Comment');
-     
+  var $belongsTo = array('Comment','User');
+
 }
 ?>

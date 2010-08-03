@@ -75,18 +75,27 @@ echo $html->tag($strike, Sanitize::html($post['Post']['teaser']));
 <div class="clear">&nbsp;</div>
 <dl class="grid_12 alpha omega">
 <?php
-  foreach ($post['Comment'] as $comm) {
+    foreach ($post_comments as $comment) {
+    
+    if ($comment['Comment']['inout'] == 0) {
+      echo '<dl id="c-out" class="grid_10 push_2 alpha omega">';
+    } else {
+      echo '<dl id="c-in" class="grid_10 alpha omega">';
+    }
   
-  if ($comm['inout'] == 0) {
-    echo '<dl id="c-out" class="grid_10 push_2 alpha omega">';
-  } else {
-    echo '<dl id="c-in" class="grid_10 alpha omega">';
+    echo '<dt>'. $comment['User']['nama'] .'</dt>';
+    echo '<dd>'. $comment['Comment']['comment'] .'</dd>';
+
+    // replies
+    echo '<ul class="grid_9 push_1 alpha omega">';
+    foreach ($comment['children'] as $reply) {
+      //echo '<li>'. $reply['Comment']['created'] .'</li>';
+      echo '<li>'. $reply['Comment']['comment'] .'</li>';
+    }
+    echo '</ul>';     
+    
+    echo '</dl>';
   }
-  
-    echo '<dt>'. $comm['created'] .'</dt>';
-    echo '<dd>'. $comm['comment'] .'</dd>';
-  echo '</dl>';
-}
 ?>
 </dl>
 <?php
@@ -108,5 +117,5 @@ for ($i=0;$i<2;$i++) {
 ?>
   <div class="clear">&nbsp;</div>
 <pre>
-<?php print_r($post); ?>
+<?php print_r($post_comments); ?>
 </pre>

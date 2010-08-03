@@ -22,27 +22,41 @@
 
 class CommentsController extends AppController {
 
-	var $name = 'Comments';
-	//var $helpers = array ('Form','Html','Text','Ajax','Javascript');
-	var $components = array('RequestHandler');
-
-	function add() {
-	  if (!empty($this->data)) {
-	    // add comment
-	    //$uid = $this->Session->read('User.id');
-	    $this->data['Comment']['user_id'] = $this->Session->read('User.id');
-	    $this->data['Comment']['post_id'] = $this->data['Comment']['id'];
-	    unset($this->data['Comment']['id']);
-	    $this->set('comm',$this->data);
-	    $this->Comment->save($this->data);
-	    $this->redirect(array('controller' => 'posts',
-				  'action' => 'view',
-				  $this->data['Comment']['post_id']
-				  )
-			    );
-	    
-	  }
-	}
-
+  var $name = 'Comments';
+  //var $helpers = array ('Form','Html','Text','Ajax','Javascript');
+  var $components = array('RequestHandler');
+  
+  /**
+   Add a single comment either to IN/OUT side.
+  */
+  
+  function add() {
+    if (!empty($this->data)) {
+      // add comment
+      //$uid = $this->Session->read('User.id');
+      $this->data['Comment']['user_id'] = $this->Session->read('User.id');
+      $this->data['Comment']['post_id'] = $this->data['Comment']['id'];
+      unset($this->data['Comment']['id']);
+      $this->set('comm',$this->data);
+      $this->Comment->save($this->data);
+      $this->redirect(array('controller' => 'posts',
+			    'action' => 'view',
+			    $this->data['Comment']['post_id']
+			    )
+		      );
+      
+    }
+  }
+  
+  /**
+   List all the comments relevant to a post
+  */
+  
+  function post($id = null) {
+    $this->set('post_comments', 
+	       $this->Comment->find('threaded', 
+				    array('conditions' => array('Comment.post_id' => $id))));	  
+  }
+  
 }
 ?>
