@@ -48,6 +48,9 @@ input#CommentInout0, input#CommentInout1 { max-width:20px; }
 div.oidbut { margin:3px;padding:8px;background:#fff;border:1px solid #ccc;max-width:100px;float:left; }
 div.oidbut input { max-width:100px; }
 
+dl#faq dt { font-weight:bold;background:#e12;color:#fff;padding:4px 8px; }
+dl#faq dd { background:none;color:#333;padding:4px 8px; }
+
 /* forms ----------------------------------------------- */
 
 form { 
