@@ -20,24 +20,20 @@
 ?>
 
 <dl class="grid_6 alpha" id="p-in">
-<?php foreach ($posts_in as $post) { ?>
-	<dt>
-	<?php
-		$strike = $post['Post']['flags'] & 0x01;
-		if ($strike == 1) { echo '<strike>'; }
-		print($html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id'])));
-	?>
-	</strike>
-	</dt>
-	<dd>
-	<?php 
-	      echo $text->truncate($text->stripLinks($post['Post']['teaser']), 128);
-	      echo $html->image('emoticon_smile.png') . $post['Post']['ins']; 
-	      echo $html->image('eye.png') . $post['Post']['views']; 
-	      echo $html->image('emoticon_unhappy.png') . $post['Post']['outs']; 
-	?>
-	</dd>
-<?php	} ?>
+    <?php foreach ($posts_in as $post) { ?>
+    <dt>
+    <div class="meta">
+ <div class="in"><p><?php echo $post['Post']['ins'];?></p></div>
+ <div class="out"><p><?php echo $post['Post']['outs'];?></p></div>
+ <div class="view"><p><?php echo $post['Post']['views'];?></p></div>
+
+    </div>
+    <div class="teaser">
+					 <h3><?php echo $post['Post']['title'];?></h3>
+					 <?php echo $text->truncate($text->stripLinks($post['Post']['teaser']),128); ?>
+				       </div>
+    </dt>
+<?php } ?>
 </dl>
 
 <dl class="grid_6 omega" id="p-out">

@@ -50,15 +50,24 @@ ul#acts li.first {border-left:none;}
 ul#acts a {padding:3px 8px;font-size:xx-small;color:#333;text-transform:uppercase;background:#eee;border:1px solid #ccc;}
 ul#acts a.disable {background:none;border:none;color:#ccc;}
 
+/** POST PAGE **/
+
 #p-in { background:url("../img/IN_bgtemplate.jpg") }
 #p-out { background:url("../img/OUT_bgtemplate.jpg") }
-#p-in dt, #p-out dt {margin:10px;background:#fff;color:#666;min-height:135px;max-width:120px;border:1px solid #000;}
-#p-in dd, #p-out dd {margin:10px;background:#fff;color:#666;min-height:135px;}
+#p-in dt, #p-out dt {margin:14px;background:#fff;color:#666;min-height:140px;}
+div.teaser { color:#666;padding:5px; }
+div.teaser h3 { font-size:large;font-weight:bold;color:#333; }
+div.meta { float:right;max-width:120px; }
+div.meta div { width:100px;height:35px;margin:8px 8px;}
+div.meta div p { text-align:right;padding:4px 8px;vertical-align:middle;font-weight:bold;font-size:large; }
+div.meta div.in { background:url("../img/icon_IN.png");color:#8cf;margin-top:9px;}
+div.meta div.out { background:url("../img/icon_OUT.png");color:#fbc;}
+div.meta div.view { background:url("../img/icon_view.png");color:#ddd;}
+div.meta div.user { font-size:small; }
 
 #c-in { background:url("../img/IN_bgtemplate.jpg");color:#fff; }
 #c-out { background:url("../img/OUT_bgtemplate.jpg");color:#fff; }
-#c-in dd, #c-out dd { margin:8px;padding:8px;background:#fff; color:#666; }
-#c-in dt, #c-out dt { margin:16px 9px;background:#fff;color:#666;min-height:135px; }
+#c-in dt, #c-out dt { margin:16px 9px;background:#fff;color:#666;min-height:160px; }
 
 input#CommentInout0, input#CommentInout1 { max-width:20px; }
 
