@@ -21,6 +21,8 @@ a {text-decoration:none;}
 
 div#flashMessage {color:#fff;background:#e12;padding:12px;}
 
+/** NAVI BAR **/
+
 ul#pages {white-space:nowrap;}
 ul#pages li {margin:0;padding:0;display:inline;list-style-type:none;}
 ul#pages a {width:150px;height:45px;display:inline-block;}
@@ -54,8 +56,11 @@ ul#acts a.disable {background:none;border:none;color:#ccc;}
 
 #p-in { background:url("../img/IN_bgtemplate.jpg") }
 #p-out { background:url("../img/OUT_bgtemplate.jpg") }
-#p-in dt, #p-out dt {margin:14px;background:#fff;color:#666;min-height:140px;}
-div.teaser { color:#666;padding:5px; }
+#p-in dt, #p-out dt {margin:14px 14px 0 14px;background:#fff;color:#666;min-height:140px;}
+#p-in dd, #p-out dd {margin:0px 14px 14px 14px;background:#fff;color:#666;padding:8px; }
+#p-in dt a { color:#17d; }
+#p-out dt a { color:#e22; }
+div.teaser { color:#666;padding:8px; }
 div.teaser h3 { font-size:large;font-weight:bold;color:#333; }
 div.meta { float:right;max-width:120px; }
 div.meta div { width:100px;height:35px;margin:8px 8px;}
@@ -63,7 +68,7 @@ div.meta div p { text-align:right;padding:4px 8px;vertical-align:middle;font-wei
 div.meta div.in { background:url("../img/icon_IN.png");color:#8cf;margin-top:9px;}
 div.meta div.out { background:url("../img/icon_OUT.png");color:#fbc;}
 div.meta div.view { background:url("../img/icon_view.png");color:#ddd;}
-div.meta div.user { font-size:small; }
+
 
 #c-in { background:url("../img/IN_bgtemplate.jpg");color:#fff; }
 #c-out { background:url("../img/OUT_bgtemplate.jpg");color:#fff; }

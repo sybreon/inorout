@@ -18,7 +18,6 @@
    <http://www.gnu.org/licenses/>.
   */
 ?>
-
 <dl class="grid_6 alpha" id="p-in">
     <?php foreach ($posts_in as $post) { ?>
     <dt>
@@ -29,38 +28,40 @@
 
     </div>
     <div class="teaser">
-					 <h3><?php echo $post['Post']['title'];?></h3>
-					 <?php echo $text->truncate($text->stripLinks($post['Post']['teaser']),128); ?>
-				       </div>
+    <h3><?php echo $html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?></h3>
+ <p><?php echo $text->truncate($text->stripLinks($post['Post']['teaser']),128); ?></p>
+      </div>
     </dt>
+    <dd>
+					 <?php echo $post['Post']['created'];?> - <?php echo $html->link($post['User']['nama'],array('controller' => 'users','action' => 'view', $post['User']['id']));?>
+</dd>
 <?php } ?>
 </dl>
 
 <dl class="grid_6 omega" id="p-out">
-<?php foreach ($posts_out as $post) { ?>
-	<dt>
-	<?php
-		$strike = $post['Post']['flags'] & 0x01;
-		if ($strike == 1) { echo '<strike>'; }
-		print($html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id'])));
-	?></strike>
-	</dt>
-	<dd>
-	<?php 
-	      echo $text->truncate($text->stripLinks($post['Post']['teaser']), 48);
-	      echo $html->image('emoticon_smile.png') . $post['Post']['ins']; 
-	      echo $html->image('eye.png') . $post['Post']['views']; 
-	      echo $html->image('emoticon_unhappy.png') . $post['Post']['outs']; 
-	?>
-	</dd>
-<?php	} ?>
+    <?php foreach ($posts_out as $post) { ?>
+    <dt>
+    <div class="meta">
+ <div class="in"><p><?php echo $post['Post']['ins'];?></p></div>
+ <div class="out"><p><?php echo $post['Post']['outs'];?></p></div>
+ <div class="view"><p><?php echo $post['Post']['views'];?></p></div>
+
+    </div>
+    <div class="teaser">
+    <h3><?php echo $html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?></h3>
+<p> <?php echo $text->truncate($text->stripLinks($post['Post']['teaser']),128); ?></p>
+      </div>
+    </dt>
+    <dd>
+					 <?php echo $post['Post']['created'];?> - <?php echo $post['User']['nama'];?>
+</dd>
+<?php } ?>
 </dl>
+
 <div class="clear">&nbsp;</div>
 <ul id="acts" class="grid_3 alpha">
     <li><?php echo $html->link('Add Post', array('action' => 'add'));?></li>
 </ul>
 <div class="grid_9 omega">
-<pre>
-    <?php print_r($posts_in);?>
-</pre>
+    <pre><?php print_r($posts_in);?></pre>
 </div>
