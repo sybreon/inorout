@@ -56,23 +56,35 @@ ul#acts a.disable {background:none;border:none;color:#ccc;}
 
 #p-in { background:url("../img/IN_bgtemplate.jpg") }
 #p-out { background:url("../img/OUT_bgtemplate.jpg") }
-#p-in dt, #p-out dt {margin:14px 14px 0 14px;background:#fff;color:#666;min-height:140px;}
-#p-in dd, #p-out dd {margin:0px 14px 14px 14px;background:#fff;color:#666;padding:8px; }
 #p-in dt a { color:#17d; }
 #p-out dt a { color:#e22; }
-div.teaser { color:#666;padding:8px; }
-div.teaser h3 { font-size:large;font-weight:bold;color:#333; }
+
+dl.post dt {margin:14px 14px 0 14px;background:#fff;color:#666;min-height:140px;}
+dl.post dd {margin:0px 14px 14px 14px;background:#fff;color:#888;padding:8px;}
+dl.post dd a { color:#ccc; }
+
+div.teaser { color:#666;padding:8px;}
+div.teaser p.title { font-size:medium;font-weight:bolder;color:#333;text-transform:uppercase; }
 div.meta { float:right;max-width:120px; }
 div.meta div { width:100px;height:35px;margin:8px 8px;}
-div.meta div p { text-align:right;padding:4px 8px;vertical-align:middle;font-weight:bold;font-size:large; }
+div.meta div p { text-align:right;padding:4px 8px;vertical-align:middle;font-weight:bold;font-size:18px;font-family:serif; }
 div.meta div.in { background:url("../img/icon_IN.png");color:#8cf;margin-top:9px;}
 div.meta div.out { background:url("../img/icon_OUT.png");color:#fbc;}
 div.meta div.view { background:url("../img/icon_view.png");color:#ddd;}
 
+/** COMMENT LIST **/
 
-#c-in { background:url("../img/IN_bgtemplate.jpg");color:#fff; }
-#c-out { background:url("../img/OUT_bgtemplate.jpg");color:#fff; }
-#c-in dt, #c-out dt { margin:16px 9px;background:#fff;color:#666;min-height:160px; }
+#fcomm1 { background:url("../img/IN_bgtemplate.jpg") }
+#fcomm0 { background:url("../img/OUT_bgtemplate.jpg") }
+#c-in { background:url("../img/IN_bgtemplate.jpg");}
+#c-out { background:url("../img/OUT_bgtemplate.jpg");}
+
+div.form fieldset { background:none;border:none;} 
+dl.comment dt { margin:14px;background:#fff;color:#666;padding:8px;}
+dl.comment dd { margin:14px;background:#fff;color:#666;padding:8px;}
+ul.reply { list-style:none;}
+ul.reply li { margin:2px 14px;background:#eee;padding:4px 8px;color:#666; }
+ul.reply a, dl.comment a { color:#ccc; }
 
 input#CommentInout0, input#CommentInout1 { max-width:20px; }
 

@@ -24,7 +24,7 @@ App::import('Sanitize');
 class PostsController extends AppController {
 
 	var $name = 'Posts';
-	var $helpers = array ('Form','Html','Text','Ajax','Javascript');
+	var $helpers = array ('Form','Html','Text','Ajax','Javascript','Time');
 	var $components = array('RequestHandler');
 
 

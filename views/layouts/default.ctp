@@ -44,7 +44,7 @@ echo $scripts_for_layout;
   <li><?php echo $html->link('',array('controller' => 'pages', 'action' => 'about'), array('class' => 'btninfo')); ?></li>
   <li><?php echo $html->link('',array('controller' => 'pages', 'action' => 'news'), array('class' => 'btnnews')); ?></li>
   <li><?php echo $html->link('',array('controller' => 'pages', 'action' => 'vote'), array('class' => 'btnvote')); ?></li>
-  <li><?php echo $html->link('',array('controller' => 'pages', 'action' => 'friend'), array('class' => 'btnfren')); ?></li>
+  <li><?php echo $html->link('',array('controller' => 'pages', 'action' => 'friends'), array('class' => 'btnfren')); ?></li>
   </ul>
   <div class="clear">&nbsp;</div>
   <div class="grid_12">
