@@ -25,8 +25,13 @@
     <?=$this->element('votepad');?>
 </div>
 <div id="post" class="grid_9">
+    <?=$this->element('userpad',array('uid'=>$post['User']['id'],
+				      'nama'=>$post['User']['nama'],
+				      'mail'=>$post['User']['mail'],
+				      'stamp'=>$post['Post']['created'],
+				      ));?>
 <!-- embed preview -->
-    <?=$html->tag('p', Sanitize::html($post['Post']['teaser']));?>
+<?=$html->tag('p', Sanitize::html($post['Post']['teaser']));?>
 </div>
 <div class="grid_2 omega">
     <?=$this->element('scorepad',array('ins'=>$post['Post']['ins'],'outs'=>$post['Post']['outs'],'views'=>$post['Post']['views']));?>
@@ -38,15 +43,6 @@
     <li id="actdel"><?=($post['Post']['flags'] == -1) ? '<a href="#" class="disable">Deleted</a>' : $ajax->link('Delete', array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']), array('update' => 'actdel'), sprintf(__('Delete post #%s?', true), $post['Post']['id']));?></li>
     </ul>
     <div class="grid_5 omega">
-    <?=$html->image('http://www.gravatar.com/avatar/'. $post['User']['mail'] .'?d=mm&r=pg&s=16',
-		    array('alt' => $post['User']['nama'],
-			  'url' => array('controller' => 'users',
-					 'action' => 'view',
-					 $post['User']['id']
-					 )
-			  )
-		    );?>
-    created: <?=$time->niceShort($post['Post']['created'])?> by <?=$html->link($post['User']['nama'], array('controller' => 'users', 'action' => 'view', $post['User']['id']));?>
     </div>
     <div class="clear">&nbsp;</div>
     <dl class="grid_12 alpha omega">
@@ -57,19 +53,13 @@
 				    <dl id="c-in" class="grid_10 alpha omega comment">
 				       <?php endif;?>
     
-    <dt>
-    <?=$html->image('http://www.gravatar.com/avatar/'. $comment['User']['mail'] .'?d=mm&r=pg&s=36',
-		    array('alt' => $comment['User']['nama'],
-			  'style' => 'float:left;margin-right:8px;',
-			  //'style' => 'vertical-align:top;',
-			  'url' => array('controller' => 'users',
-					 'action' => 'view',
-					 $comment['User']['id']
-					 )
-			  )
-		    );?>
-    <?=$time->niceShort($comment['Comment']['created'])?><br/><?=$comment['User']['nama']?></dt>
-    <dd><?=$comment['Comment']['comment']?></dd>    
+    <dd>
+    <?=$this->element('userpad',array('uid'=>$comment['User']['id'],
+				      'nama'=>$comment['User']['nama'],
+				      'mail'=>$comment['User']['mail'],
+				      'stamp'=>$comment['Comment']['created'],
+				      ));?>
+    <?=$comment['Comment']['comment']?></dd>    
     <ul class="grid_9 push_1 alpha omega reply">
     <?php foreach ($comment['children'] as $reply): ?>
     <li><?=$reply['Comment']['comment']?> &ndash; <?=$html->link($reply['User']['nama'],array('controller'=>'users','action'=>'view',$reply['User']['id']))?></li>
@@ -97,5 +87,5 @@ for ($i=0;$i<2;$i++) {
 ?>
   <div class="clear">&nbsp;</div>
 <pre>
-<?php print_r($post_comments); ?>
+  <?php // print_r($post_comments); ?>
 </pre>
