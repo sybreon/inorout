@@ -57,6 +57,11 @@ echo $scripts_for_layout;
   </div>
   <div class="clear">&nbsp;</div>
   </div>
+  <div style="background:#eee;">
+  <div class="container_12"><div>
+  Copyright &copy; 2010 to INOROUT.ORG
+  </div></div>
+  </div>
   <pre>
   <?php echo $cakeDebug; ?>
   </pre>
