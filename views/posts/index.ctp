@@ -19,7 +19,7 @@
   */
 ?>
 
-<dl class="grid_6 alpha" id="c-in">
+<dl class="grid_6 alpha" id="p-in">
 <?php foreach ($posts_in as $post) { ?>
 	<dt>
 	<?php
@@ -40,7 +40,7 @@
 <?php	} ?>
 </dl>
 
-<dl class="grid_6 omega" id="c-out">
+<dl class="grid_6 omega" id="p-out">
 <?php foreach ($posts_out as $post) { ?>
 	<dt>
 	<?php

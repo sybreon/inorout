@@ -36,15 +36,15 @@ echo $html->css('inorout');
 echo $scripts_for_layout;
 ?>
 </head>
-<body>
+<body id="<?php echo Router::url(''); ?>">
 <?php $session->flash(); ?>
 <div class="container_12" id="container">
   <ul id="pages" class="grid_12">
-  <li><?php echo $html->link('Home', array('controller' => 'posts', 'action' => 'index')); ?> </li>
-  <li><?php echo $html->link('About Us', array('controller' => 'pages', 'action' => 'about')); ?> </li>
-  <li><?php echo $html->link('Events', array('controller' => 'pages', 'action' => 'events')); ?> </li>
-  <li><?php echo $html->link('Vote!', array('controller' => 'pages', 'action' => 'vote')); ?> </li>
-  <li><?php echo $html->link('Friends', array('controller' => 'pages', 'action' => 'friends')); ?> </li>
+  <li><?php echo $html->link('',array('controller' => 'posts', 'action' => 'index'), array('class' => 'btnspeak')); ?></li>
+  <li><?php echo $html->link('',array('controller' => 'pages', 'action' => 'about'), array('class' => 'btninfo')); ?></li>
+  <li><?php echo $html->link('',array('controller' => 'pages', 'action' => 'news'), array('class' => 'btnnews')); ?></li>
+  <li><?php echo $html->link('',array('controller' => 'pages', 'action' => 'vote'), array('class' => 'btnvote')); ?></li>
+  <li><?php echo $html->link('',array('controller' => 'pages', 'action' => 'friend'), array('class' => 'btnfren')); ?></li>
   </ul>
   <div class="clear">&nbsp;</div>
   <div class="grid_12">
