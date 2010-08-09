@@ -34,18 +34,14 @@ echo '</dl>'
 <dl class="grid_6 alpha post" id="p-in">
   <?php foreach ($posts_in as $post): ?>
   <dt>
-  <div class="meta">
-  <div class="in"><p><?=$post['Post']['ins'];?></p></div>
-  <div class="out"><p><?=$post['Post']['outs'];?></p></div>
-  <div class="view"><p><?=$post['Post']['views'];?></p></div>  
-  </div>
+    <?php echo $this->element('scorepad',array('ins'=>$post['Post']['ins'],'outs'=>$post['Post']['outs'],'views'=>$post['Post']['views']));?>
   <div class="teaser">
   <p class="title"><?=$html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?></p>
   <p><?=$text->truncate($text->stripLinks($post['Post']['teaser']),128); ?></p>
   </div>
+  <?=$time->niceShort($post['Post']['created']);?> &ndash; <?=$html->link($post['User']['nama'],array('controller'=>'users','action'=>'view',$post['User']['id']));?>
   </dt>
   <dd>
-  <?=$time->niceShort($post['Post']['created']);?> &ndash; <?=$html->link($post['User']['nama'],array('controller'=>'users','action'=>'view',$post['User']['id']));?>
   </dd>
   <?php endforeach; ?>
   </dl>
@@ -53,18 +49,12 @@ echo '</dl>'
 <dl class="grid_6 omega post" id="p-out">
   <?php foreach ($posts_out as $post): ?>
   <dt>
-  <div class="meta">
-  <div class="in"><p><?=$post['Post']['ins'];?></p></div>
-  <div class="out"><p><?=$post['Post']['outs'];?></p></div>
-  <div class="view"><p><?=$post['Post']['views'];?></p></div>  
-  </div>
-  <div class="teaser">
+    <?php echo $this->element('scorepad',array('ins'=>$post['Post']['ins'],'outs'=>$post['Post']['outs'],'views'=>$post['Post']['views']));?>
   <p class="title"><?=$html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?></p>
-  <p><?=$text->truncate($text->stripLinks($post['Post']['teaser']),128); ?></p>
-  </div>
+  <p class="teaser"><?=$text->truncate($text->stripLinks($post['Post']['teaser']),128); ?></p>
+  <?=$time->niceShort($post['Post']['created']);?> &ndash; <?=$html->link($post['User']['nama'],array('controller'=>'users','action'=>'view',$post['User']['id']));?>
   </dt>
   <dd>
-  <?=$time->niceShort($post['Post']['created']);?> &ndash; <?=$html->link($post['User']['nama'],array('controller'=>'users','action'=>'view',$post['User']['id']));?>
   </dd>
   <?php endforeach; ?>
   </dl>

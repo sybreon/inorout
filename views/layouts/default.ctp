@@ -37,8 +37,13 @@ echo $scripts_for_layout;
 ?>
 </head>
 <body id="<?php echo Router::url(''); ?>">
-<?php $session->flash(); ?>
-<div class="container_12" id="container">
+  <?php $session->flash(); ?>
+  <div style="background:#eee;">
+  <div class="container_12"><div>
+  <?php echo $this->element('dashboard'); ?>
+  </div></div>
+  </div>
+  <div class="container_12" id="container">
   <ul id="pages" class="grid_12">
   <li><?php echo $html->link('',array('controller' => 'posts', 'action' => 'index'), array('class' => 'btnspeak')); ?></li>
   <li><?php echo $html->link('',array('controller' => 'pages', 'action' => 'about'), array('class' => 'btninfo')); ?></li>
@@ -48,10 +53,6 @@ echo $scripts_for_layout;
   </ul>
   <div class="clear">&nbsp;</div>
   <div class="grid_12">
-  <?php echo $this->element('dashboard'); ?>
-  </div>
-  <div class="clear">&nbsp;</div>
-   <div class="grid_12">
   <?php echo $content_for_layout; ?>
   </div>
   <div class="clear">&nbsp;</div>
