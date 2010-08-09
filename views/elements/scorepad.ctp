@@ -18,5 +18,5 @@
  <http://www.gnu.org/licenses/>.
 */
 ?>
-<div class="score"><div class="in"><p><?=$ins;?></p></div><div class="out"><p><?=$outs;?></p></div><div class="view"><p><?=$views;?></p></div></div>
+<div class="score"><div class="in"><p><?=($ins>0)?$ins:'';?></p></div><div class="out"><p><?=($outs>0)?$outs:'';?></p></div><div class="view"><p><?=($views>0)?$views:'';?></p></div></div>
     
