@@ -22,10 +22,12 @@ $id = ($session->check('User.id')) ? $session->check('User.id') : 0;
 ?>
 <ul id="dashboard">
     <?php if ($session->check('User.id')): ?>
-   <!--   <li><img src="http://www.gravatar.com/avatar/<?=$session->read('User.mail');?>?s=16&r=pg&d=mm" /></li> -->
-	     <li><?=$html->link($session->read('User.nama'),array('controller' => 'users', 'action' => 'view', $id))?></li>
-	     <li><?=$html->link('sign out',array('controller' => 'users', 'action' => 'logout', $id))?></li>
-	     <?php else: ?>
-	     <li><?=$html->link('sign in',array('controller' => 'users', 'action' => 'login'))?></li>
-		<?php endif; ?>
+   <li><?=$html->link($session->read('User.nama'),array('controller' => 'users', 'action' => 'view', $id))?></li>
+      <li><?=$html->link('logout',array('controller' => 'users', 'action' => 'logout', $id))?></li>
+      <?php else: ?>
+      <li><?=$html->link('login',array('controller' => 'users', 'action' => 'login'))?></li>
+	 <?php endif; ?>
+<li><?=$html->link('about',array('controller' => 'pages', 'action' => 'about'))?></li>
+<li><?=$html->link('faq',array('controller' => 'pages', 'action' => 'faq'))?></li>
+<li><input type="text" value="search" style="margin:6px;border:1px solid #333;"></li>
 </ul>

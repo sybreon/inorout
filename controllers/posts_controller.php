@@ -191,5 +191,27 @@ class PostsController extends AppController {
 	  }
 	}
 
+	/**
+	 Vote IN/OUT
+	 */
+	function vin($id = null) {
+	  if ($this->RequestHandler->isAjax()) {
+	    Configure::write('debug', 0); // dont want debug in ajax returned html
+	    // TODO: Check for ACL
+	    $this->Post->updateAll(array('Post.ins' => 'Post.ins+1'), array('Post.id' => $id));
+	    //$this->set('result', 'Flagged');
+	    $this->layout = 'ajax';
+	  }	  
+	}
+
+	function vout($id = null) {
+	  if ($this->RequestHandler->isAjax()) {
+	    Configure::write('debug', 0); // dont want debug in ajax returned html
+	    // TODO: Check for ACL
+	    $this->Post->updateAll(array('Post.outs' => 'Post.outs+1'), array('Post.id' => $id));
+	    //$this->set('result', 'Flagged');
+	    $this->layout = 'ajax';
+	  }	  
+	}
 }
 ?>

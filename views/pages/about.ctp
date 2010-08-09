@@ -1,5 +1,6 @@
 <h2>In/Out</h2>
-<h3>What is In/Out?</h3>
+<hr/>
+
 <p>
 What if you could speak up? Without fear of prosecution, but with courage and
 concern?

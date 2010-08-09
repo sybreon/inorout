@@ -51,7 +51,7 @@ echo '</dl>'
   <dt>
     <?php echo $this->element('scorepad',array('ins'=>$post['Post']['ins'],'outs'=>$post['Post']['outs'],'views'=>$post['Post']['views']));?>
   <p class="title"><?=$html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?></p>
-  <p class="teaser"><?=$text->truncate($text->stripLinks($post['Post']['teaser']),128); ?></p>
+  <p class="teaser"><?=Sanitize::html($text->truncate($post['Post']['teaser'],128));?></p>
   <?=$time->niceShort($post['Post']['created']);?> &ndash; <?=$html->link($post['User']['nama'],array('controller'=>'users','action'=>'view',$post['User']['id']));?>
   </dt>
   <dd>

@@ -1,5 +1,5 @@
 <h2>FAQ</h2>
-
+<hr/>
 <dl id="faq">
 <dt>What is IN/OUT?</dt>
 <dd>
