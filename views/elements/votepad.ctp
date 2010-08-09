@@ -20,7 +20,6 @@
 ?>
 <div class="vote">
     <?php $rnd = rand(); ?>
-<div id="vin<?=$rnd?>" class="in"><?=$ajax->link('', $vin, array('update'=>'vin'.$rnd));?></div>
-<div id="vout<?=$rnd?>" class="out"><?=$ajax->link('', $vout, array('update'=>'vout'.$rnd));?></div>
+<div id="vin<?=$rnd?>" class="in"><?=$ajax->link('', $vin, array('update'=>'vin'.$rnd),'Do you want to vote IN?');?></div>
+<div id="vout<?=$rnd?>" class="out"><?=$ajax->link('', $vout, array('update'=>'vout'.$rnd),'Do you want to vote OUT?');?></div>
 </div>
-    
