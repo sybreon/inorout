@@ -26,68 +26,49 @@
 <?=$html->image('voteOUT.png') . $post['Post']['outs'];?>
 <?=$html->image('view.png') . $post['Post']['views'];?>
 </div>
-<div id="post" class="grid_7 omega">
+<div id="post" class="grid_8">
 <!-- embed preview -->
-<?php 
-  //  echo $html->link('Link',$post['Post']['url']); 
-  $strike = ($post['Post']['flags'] == -1) ? 'strike' : 'p';
-echo $html->tag($strike, Sanitize::html($post['Post']['teaser'])); 
-?>
+    <?=$html->tag('p', Sanitize::html($post['Post']['teaser']));?>
+</div>
+<div class="grid_2 omega">
+    <?=$this->element('scorepad',array('ins'=>$post['Post']['ins'],'outs'=>$post['Post']['outs'],'views'=>$post['Post']['views']));?>
 </div>
 <div class="clear">&nbsp;</div>
 <ul id="acts" class="grid_3 alpha">
-  <li><?php echo $html->link('Edit', array('action' => 'edit', $post['Post']['id'])); ?></li>	  
-  <li id="actflg">
-  <?php 
-  if ($post['Post']['flags'] > 0) {
-    echo $ajax->link('Flag ('. $post['Post']['flags'] .')', array('controller' => 'posts', 'action' => 'flag', $post['Post']['id']), array('update' => 'actflg'), sprintf(__('Flag post #%s?', true), $post['Post']['id']));
-  } else {
-    echo $ajax->link('Flag', array('controller' => 'posts', 'action' => 'flag', $post['Post']['id']), array('update' => 'actflg'), sprintf(__('Flag post #%s?', true), $post['Post']['id']));
-  }
-?></li>
-<li id="actdel">
-  <?php 
-  if ($post['Post']['flags'] == -1) {
-    echo '<a href="#" class="disable">Deleted</a>';
-  } else {
-    echo $ajax->link('Delete', array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']), array('update' => 'actdel'), sprintf(__('Delete post #%s?', true), $post['Post']['id']));
-  }
-?></li>
-</ul>
-<div class="grid_5 omega">
-<?php
-  echo $html->image('http://www.gravatar.com/avatar/'. $post['User']['mail'] .'?d=mm&r=pg&s=16',
+    <li><?=$html->link('Edit', array('action' => 'edit', $post['Post']['id']));?></li>	  
+    <li id="actflg"><?=($post['Post']['flags'] > 0) ? $ajax->link('Flag ('. $post['Post']['flags'] .')', array('controller' => 'posts', 'action' => 'flag', $post['Post']['id']), array('update' => 'actflg'), sprintf(__('Flag post #%s?', true), $post['Post']['id'])) : $ajax->link('Flag', array('controller' => 'posts', 'action' => 'flag', $post['Post']['id']), array('update' => 'actflg'), sprintf(__('Flag post #%s?', true), $post['Post']['id']));?></li>
+    <li id="actdel"><?=($post['Post']['flags'] == -1) ? '<a href="#" class="disable">Deleted</a>' : $ajax->link('Delete', array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']), array('update' => 'actdel'), sprintf(__('Delete post #%s?', true), $post['Post']['id']));?></li>
+    </ul>
+    <div class="grid_5 omega">
+    <?=$html->image('http://www.gravatar.com/avatar/'. $post['User']['mail'] .'?d=mm&r=pg&s=16',
 		    array('alt' => $post['User']['nama'],
 			  'url' => array('controller' => 'users',
 					 'action' => 'view',
 					 $post['User']['id']
 					 )
 			  )
-		    );
-echo 'created: '. $time->niceShort($post['Post']['created']) .' by ';
-  echo $html->link($post['User']['nama'], array('controller' => 'users', 'action' => 'view', $post['User']['id']));
-?>
-</div>
-<div class="clear">&nbsp;</div>
-<dl class="grid_12 alpha omega">
+		    );?>
+    created: <?=$time->niceShort($post['Post']['created'])?> by <?=$html->link($post['User']['nama'], array('controller' => 'users', 'action' => 'view', $post['User']['id']));?>
+    </div>
+    <div class="clear">&nbsp;</div>
+    <dl class="grid_12 alpha omega">
     <?php foreach ($post_comments as $comment): ?>
     <?php if ($comment['Comment']['inout'] == 0): ?>
-     <dl id="c-out" class="grid_10 push_2 alpha omega comment">
-	<?php else: ?>
-	<dl id="c-in" class="grid_10 alpha omega comment">
-	   <?php endif;?>
-
-<dt><?=$comment['Comment']['comment']?></dt>
+				 <dl id="c-out" class="grid_10 push_2 alpha omega comment">
+				    <?php else: ?>
+				    <dl id="c-in" class="grid_10 alpha omega comment">
+				       <?php endif;?>
+    
+    <dt><?=$comment['Comment']['comment']?></dt>
     <dd><?=$time->niceShort($comment['Comment']['created'])?> &ndash; <?=$comment['User']['nama']?></dd>
-
-    // replies
+    
     <ul class="grid_9 push_1 alpha omega reply">
     <?php foreach ($comment['children'] as $reply): ?>
-     <li><?=$reply['Comment']['comment']?> &ndash; <?=$html->link($reply['User']['nama'],array('controller'=>'users','action'=>'view',$reply['User']['id']))?></li>
-<?php endforeach; ?>
-</ul>   
-</dl>
-<?php endforeach; ?>
+    <li><?=$reply['Comment']['comment']?> &ndash; <?=$html->link($reply['User']['nama'],array('controller'=>'users','action'=>'view',$reply['User']['id']))?></li>
+    <?php endforeach; ?>
+    </ul>   
+    </dl>
+    <?php endforeach; ?>
 </dl>
 <?php
 for ($i=0;$i<2;$i++) {

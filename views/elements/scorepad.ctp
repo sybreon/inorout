@@ -17,15 +17,6 @@
  License along with this program.  If not, see
  <http://www.gnu.org/licenses/>.
 */
-
-$id = ($session->check('User.id')) ? $session->check('User.id') : 0;
 ?>
-<ul id="dashboard">
-    <?php if ($session->check('User.id')): ?>
-   <!--   <li><img src="http://www.gravatar.com/avatar/<?=$session->read('User.mail');?>?s=16&r=pg&d=mm" /></li> -->
-	     <li><?=$html->link($session->read('User.nama'),array('controller' => 'users', 'action' => 'view', $id))?></li>
-	     <li><?=$html->link('sign out',array('controller' => 'users', 'action' => 'logout', $id))?></li>
-	     <?php else: ?>
-	     <li><?=$html->link('sign in',array('controller' => 'users', 'action' => 'login'))?></li>
-		<?php endif; ?>
-</ul>
+<div class="score"><div class="in"><p><?=$ins;?></p></div><div class="out"><p><?=$outs;?></p></div><div class="view"><p><?=$views;?></p></div></div>
+    

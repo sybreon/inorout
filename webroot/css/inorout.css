@@ -65,12 +65,15 @@ dl.post dd a { color:#ccc; }
 
 div.teaser { color:#666;padding:8px;}
 div.teaser p.title { font-size:medium;font-weight:bolder;color:#333;text-transform:uppercase; }
-div.meta { float:right;max-width:120px; }
-div.meta div { width:100px;height:35px;margin:8px 8px;}
-div.meta div p { text-align:right;padding:4px 8px;vertical-align:middle;font-weight:bold;font-size:18px;font-family:serif; }
-div.meta div.in { background:url("../img/icon_IN.png");color:#8cf;margin-top:9px;}
-div.meta div.out { background:url("../img/icon_OUT.png");color:#fbc;}
-div.meta div.view { background:url("../img/icon_view.png");color:#ddd;}
+
+/** scorepad **/
+
+div.score { float:right;max-width:120px; }
+div.score div { width:100px;height:35px;margin:8px 8px;}
+div.score div p { text-align:right;padding:4px 8px;vertical-align:middle;font-weight:bold;font-size:18px;font-family:serif; }
+div.score div.in { background:url("../img/icon_IN.png");color:#8cf;margin-top:9px;}
+div.score div.out { background:url("../img/icon_OUT.png");color:#fbc;}
+div.score div.view { background:url("../img/icon_view.png");color:#ddd;}
 
 /** COMMENT LIST **/
 
