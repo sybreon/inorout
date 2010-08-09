@@ -57,9 +57,19 @@
 				    <dl id="c-in" class="grid_10 alpha omega comment">
 				       <?php endif;?>
     
-    <dt><?=$comment['Comment']['comment']?></dt>
-    <dd><?=$time->niceShort($comment['Comment']['created'])?> &ndash; <?=$comment['User']['nama']?></dd>
-    
+    <dt>
+    <?=$html->image('http://www.gravatar.com/avatar/'. $comment['User']['mail'] .'?d=mm&r=pg&s=36',
+		    array('alt' => $comment['User']['nama'],
+			  'style' => 'float:left;margin-right:8px;',
+			  //'style' => 'vertical-align:top;',
+			  'url' => array('controller' => 'users',
+					 'action' => 'view',
+					 $comment['User']['id']
+					 )
+			  )
+		    );?>
+    <?=$time->niceShort($comment['Comment']['created'])?><br/><?=$comment['User']['nama']?></dt>
+    <dd><?=$comment['Comment']['comment']?></dd>    
     <ul class="grid_9 push_1 alpha omega reply">
     <?php foreach ($comment['children'] as $reply): ?>
     <li><?=$reply['Comment']['comment']?> &ndash; <?=$html->link($reply['User']['nama'],array('controller'=>'users','action'=>'view',$reply['User']['id']))?></li>

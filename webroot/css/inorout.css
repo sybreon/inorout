@@ -94,8 +94,8 @@ div.vote div.out:hover, div.vote div.inro { background:url("../img/voteOUT_RO.pn
 #c-out { background:url("../img/OUT_bgtemplate.jpg");}
 
 div.form fieldset { background:none;border:none;} 
-dl.comment dt { margin:14px;background:#fff;color:#666;padding:8px;}
-dl.comment dd { margin:14px;background:#fff;color:#666;padding:8px;}
+dl.comment dt { margin:14px;color:#666;background:#fff;width:160px;padding:8px;float:right;}
+dl.comment dd { margin:14px;background:#fff;color:#666;padding:8px;min-height:40px;}
 ul.reply { list-style:none;}
 ul.reply li { margin:2px 14px;background:#eee;padding:4px 8px;color:#666; }
 ul.reply a, dl.comment a { color:#ccc; }
