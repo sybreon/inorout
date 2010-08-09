@@ -22,11 +22,9 @@
 <h4><?=$html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?></h4>
 <hr/>
 <div id="vote" class="grid_2 alpha">
-<?php
-echo $html->image('emoticon_smile.png') . $post['Post']['ins']; 
-echo $html->image('eye.png') . $post['Post']['views']; 
-echo $html->image('emoticon_unhappy.png') . $post['Post']['outs']; 
-?>
+    <?=$html->image('voteIN.png') . $post['Post']['ins'];?>
+<?=$html->image('voteOUT.png') . $post['Post']['outs'];?>
+<?=$html->image('view.png') . $post['Post']['views'];?>
 </div>
 <div id="post" class="grid_7 omega">
 <!-- embed preview -->
@@ -66,7 +64,7 @@ echo $html->tag($strike, Sanitize::html($post['Post']['teaser']));
 					 )
 			  )
 		    );
-  echo 'created: '. $post['Post']['created'] .' by ';
+echo 'created: '. $time->niceShort($post['Post']['created']) .' by ';
   echo $html->link($post['User']['nama'], array('controller' => 'users', 'action' => 'view', $post['User']['id']));
 ?>
 </div>
