@@ -22,7 +22,10 @@
 <h4><?=$html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?></h4>
 <hr/>
 <div id="vote" class="grid_1 alpha">
-    <?=$this->element('votepad');?>
+    <?=$this->element('votepad',
+		      array('vout'=>array('controller'=>'posts','action'=>'vout',$post['Post']['id']),
+			    'vin'=>array('controller'=>'posts','action'=>'vin',$post['Post']['id']),
+			    ));?>
 </div>
 <div id="post" class="grid_9">
     <?=$this->element('userpad',array('uid'=>$post['User']['id'],

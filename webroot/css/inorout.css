@@ -80,13 +80,13 @@ div.score div.out { background:url("../img/icon_OUT.png");color:#fbc;}
 div.score div.view { background:url("../img/icon_view.png");color:#ddd;}
 
 /** votepad **/
-div.vote { }
-div.vote div { width:60px;height:27px;margin:8px; }
+
+div.vote div a { width:60px;height:27px;margin:8px;display:block; }
 div.vote div.in { background:url("../img/voteIN.png") }
 div.vote div.out { background:url("../img/voteOUT.png") }
 div.vote div.view { background:url("../img/view.png") }
 div.vote div.in:hover, div.vote div.inro { background:url("../img/voteIN_RO.png") }
-div.vote div.out:hover, div.vote div.inro { background:url("../img/voteOUT_RO.png") }
+div.vote div.out:hover, div.vote div.outro { background:url("../img/voteOUT_RO.png") }
 
 /** userpad **/
 

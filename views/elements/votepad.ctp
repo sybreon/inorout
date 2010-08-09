@@ -19,7 +19,8 @@
 */
 ?>
 <div class="vote">
-    <div class="in"><p>&nbsp;</p></div>
-    <div class="out"><p>&nbsp;</p></div>
+    <?php $rnd = rand(); ?>
+<div id="vin<?=$rnd?>" class="in"><?=$ajax->link('', $vin, array('update'=>'vin'.$rnd));?></div>
+<div id="vout<?=$rnd?>" class="out"><?=$ajax->link('', $vout, array('update'=>'vout'.$rnd));?></div>
 </div>
     
