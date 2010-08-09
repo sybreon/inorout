@@ -17,54 +17,61 @@
    License along with this program.  If not, see
    <http://www.gnu.org/licenses/>.
   */
+
+  /*echo '<dl class="grid_6 alpha" id="p-in">';
+foreach ($posts_in as $post) { 
+
+  echo '<dt><div class="meta"><div class="in"><p>'. $post['Post']['ins'] .'</p></div><div class="out"><p>'. $post['Post']['outs'] .'</p></div><div class="view"><p>'. $post['Post']['views'] .'</p></div></div>';
+  echo '<div class="teaser"><h3>'. $html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id'])) .'</h3><p>'. $text->truncate($text->stripLinks($post['Post']['teaser']),128) .'</p></div></dt>';  
+  echo '<dd>'. $post['Post']['created'] .' - '. $html->link($post['User']['nama'],array('controller' => 'users','action' => 'view', $post['User']['id'])) .'</dd>';
+
+}
+echo '</dl>'
+  */
 ?>
 
-<dl class="grid_6 alpha" id="c-in">
-<?php foreach ($posts_in as $post) { ?>
-	<dt>
-	<?php
-		$strike = $post['Post']['flags'] & 0x01;
-		if ($strike == 1) { echo '<strike>'; }
-		print($html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id'])));
-	?>
-	</strike>
-	</dt>
-	<dd>
-	<?php 
-	      echo $text->truncate($text->stripLinks($post['Post']['teaser']), 128);
-	      echo $html->image('emoticon_smile.png') . $post['Post']['ins']; 
-	      echo $html->image('eye.png') . $post['Post']['views']; 
-	      echo $html->image('emoticon_unhappy.png') . $post['Post']['outs']; 
-	?>
-	</dd>
-<?php	} ?>
-</dl>
 
-<dl class="grid_6 omega" id="c-out">
-<?php foreach ($posts_out as $post) { ?>
-	<dt>
-	<?php
-		$strike = $post['Post']['flags'] & 0x01;
-		if ($strike == 1) { echo '<strike>'; }
-		print($html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id'])));
-	?></strike>
-	</dt>
-	<dd>
-	<?php 
-	      echo $text->truncate($text->stripLinks($post['Post']['teaser']), 48);
-	      echo $html->image('emoticon_smile.png') . $post['Post']['ins']; 
-	      echo $html->image('eye.png') . $post['Post']['views']; 
-	      echo $html->image('emoticon_unhappy.png') . $post['Post']['outs']; 
-	?>
-	</dd>
-<?php	} ?>
-</dl>
+<dl class="grid_6 alpha post" id="p-in">
+  <?php foreach ($posts_in as $post): ?>
+  <dt>
+  <div class="meta">
+  <div class="in"><p><?=$post['Post']['ins'];?></p></div>
+  <div class="out"><p><?=$post['Post']['outs'];?></p></div>
+  <div class="view"><p><?=$post['Post']['views'];?></p></div>  
+  </div>
+  <div class="teaser">
+  <p class="title"><?=$html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?></p>
+  <p><?=$text->truncate($text->stripLinks($post['Post']['teaser']),128); ?></p>
+  </div>
+  </dt>
+  <dd>
+  <?=$time->niceShort($post['Post']['created']);?> &ndash; <?=$html->link($post['User']['nama'],array('controller'=>'users','action'=>'view',$post['User']['id']));?>
+  </dd>
+  <?php endforeach; ?>
+  </dl>
+
+<dl class="grid_6 omega post" id="p-out">
+  <?php foreach ($posts_out as $post): ?>
+  <dt>
+  <div class="meta">
+  <div class="in"><p><?=$post['Post']['ins'];?></p></div>
+  <div class="out"><p><?=$post['Post']['outs'];?></p></div>
+  <div class="view"><p><?=$post['Post']['views'];?></p></div>  
+  </div>
+  <div class="teaser">
+  <p class="title"><?=$html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?></p>
+  <p><?=$text->truncate($text->stripLinks($post['Post']['teaser']),128); ?></p>
+  </div>
+  </dt>
+  <dd>
+  <?=$time->niceShort($post['Post']['created']);?> &ndash; <?=$html->link($post['User']['nama'],array('controller'=>'users','action'=>'view',$post['User']['id']));?>
+  </dd>
+  <?php endforeach; ?>
+  </dl>
+
 <div class="clear">&nbsp;</div>
 <ul id="acts" class="grid_3 alpha">
     <li><?php echo $html->link('Add Post', array('action' => 'add'));?></li>
 </ul>
 <div class="grid_9 omega">
-<pre>
-    <?php print_r($posts_in);?>
-</pre>
 </div>

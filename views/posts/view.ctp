@@ -19,10 +19,8 @@
   */
 ?>
 <?php echo $javascript->link('prototype'); ?> 
-<h3><?php 
-    echo $html->link($post['Post']['title'], array('action' => 'view',
-						   $post['Post']['id'])); 
-?></h3><hr/>
+<h4><?=$html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?></h4>
+<hr/>
 <div id="vote" class="grid_2 alpha">
 <?php
 echo $html->image('emoticon_smile.png') . $post['Post']['ins']; 
@@ -74,35 +72,30 @@ echo $html->tag($strike, Sanitize::html($post['Post']['teaser']));
 </div>
 <div class="clear">&nbsp;</div>
 <dl class="grid_12 alpha omega">
-<?php
-    foreach ($post_comments as $comment) {
-    
-    if ($comment['Comment']['inout'] == 0) {
-      echo '<dl id="c-out" class="grid_10 push_2 alpha omega">';
-    } else {
-      echo '<dl id="c-in" class="grid_10 alpha omega">';
-    }
-  
-    echo '<dt>'. $comment['User']['nama'] .'</dt>';
-    echo '<dd>'. $comment['Comment']['comment'] .'</dd>';
+    <?php foreach ($post_comments as $comment): ?>
+    <?php if ($comment['Comment']['inout'] == 0): ?>
+     <dl id="c-out" class="grid_10 push_2 alpha omega comment">
+	<?php else: ?>
+	<dl id="c-in" class="grid_10 alpha omega comment">
+	   <?php endif;?>
+
+<dt><?=$comment['Comment']['comment']?></dt>
+    <dd><?=$time->niceShort($comment['Comment']['created'])?> &ndash; <?=$comment['User']['nama']?></dd>
 
     // replies
-    echo '<ul class="grid_9 push_1 alpha omega">';
-    foreach ($comment['children'] as $reply) {
-      //echo '<li>'. $reply['Comment']['created'] .'</li>';
-      echo '<li>'. $reply['Comment']['comment'] .'</li>';
-    }
-    echo '</ul>';     
-    
-    echo '</dl>';
-  }
-?>
+    <ul class="grid_9 push_1 alpha omega reply">
+    <?php foreach ($comment['children'] as $reply): ?>
+     <li><?=$reply['Comment']['comment']?> &ndash; <?=$html->link($reply['User']['nama'],array('controller'=>'users','action'=>'view',$reply['User']['id']))?></li>
+<?php endforeach; ?>
+</ul>   
+</dl>
+<?php endforeach; ?>
 </dl>
 <?php
 for ($i=0;$i<2;$i++) {
   $pad = ($i == 0) ? 'alpha' : 'omega';
   $inout = ($i == 0) ? 1 : 0;
-  echo '<div id="f.comment" class="grid_6 '. $pad .'">';
+  echo '<div id="fcomm'. $inout .'" class="grid_6 form '. $pad .'">';
   echo $form->create('Comment', array('controller' => 'comments', 'action' => 'add'));
   echo '<fieldset>';
   echo '<legend>Add Comment</legend>';
