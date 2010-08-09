@@ -21,12 +21,10 @@
 <?php echo $javascript->link('prototype'); ?> 
 <h4><?=$html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?></h4>
 <hr/>
-<div id="vote" class="grid_2 alpha">
-    <?=$html->image('voteIN.png') . $post['Post']['ins'];?>
-<?=$html->image('voteOUT.png') . $post['Post']['outs'];?>
-<?=$html->image('view.png') . $post['Post']['views'];?>
+<div id="vote" class="grid_1 alpha">
+    <?=$this->element('votepad');?>
 </div>
-<div id="post" class="grid_8">
+<div id="post" class="grid_9">
 <!-- embed preview -->
     <?=$html->tag('p', Sanitize::html($post['Post']['teaser']));?>
 </div>

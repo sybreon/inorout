@@ -37,12 +37,12 @@ echo $scripts_for_layout;
 ?>
 </head>
 <body id="<?php echo Router::url(''); ?>">
+  <?php $session->flash(); ?>
   <div style="background:#eee;">
   <div class="container_12"><div>
   <?php echo $this->element('dashboard'); ?>
   </div></div>
   </div>
-  <?php $session->flash(); ?>
   <div class="container_12" id="container">
   <ul id="pages" class="grid_12">
   <li><?php echo $html->link('',array('controller' => 'posts', 'action' => 'index'), array('class' => 'btnspeak')); ?></li>
