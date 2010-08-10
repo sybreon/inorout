@@ -125,5 +125,13 @@ class UsersController extends AppController {
     //$this->set('params',$this->params);
     $this->set('param',$param);
   }  
+
+
+  public function view($id = null) {
+    $this->PageTitle = 'User #'. $id;
+    
+    $this->set('user',$this->User->read(null,$id));    
+
+  }
 }
 ?>
