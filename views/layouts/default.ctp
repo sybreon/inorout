@@ -39,17 +39,34 @@ echo $scripts_for_layout;
 <body id="<?php echo Router::url(''); ?>">
   <?php $session->flash(); ?>
   <div style="background:#eee;">
-  <div class="container_12"><div>
-  <?php echo $this->element('dashboard'); ?>
-  </div></div>
+  <div class="container_12">
+  <?=$this->element('dashboard');?>
+  </div>
   </div>
   <div class="container_12" id="container">
+  <div class="grid_3">
+  LOGO
+  </div>
+  <div class="grid_6 prefix_3">
+  BANNER
+  </div>
+  <div class="clear">&nbsp;</div>
   <ul id="pages" class="grid_12">
-  <li><?php echo $html->link('',array('controller' => 'posts', 'action' => 'index'), array('class' => 'btnspeak')); ?></li>
-  <li><?php echo $html->link('',array('controller' => 'pages', 'action' => 'about'), array('class' => 'btninfo')); ?></li>
-  <li><?php echo $html->link('',array('controller' => 'pages', 'action' => 'news'), array('class' => 'btnnews')); ?></li>
-  <li><?php echo $html->link('',array('controller' => 'pages', 'action' => 'vote'), array('class' => 'btnvote')); ?></li>
-  <li><?php echo $html->link('',array('controller' => 'pages', 'action' => 'friends'), array('class' => 'btnfren')); ?></li>
+  <li><?=(Router::url('') != Router::url(array('controller'=>'posts','action'=>'index'))) ? 
+  $html->link('',array('controller' => 'posts', 'action' => 'index'), array('class' => 'btnspeak')): 
+  $html->image('button_speak_clicked.png');?></li>
+  <li><?=(Router::url('') != Router::url(array('controller'=>'pages','action'=>'about'))) ? 
+  $html->link('',array('controller' => 'pages', 'action' => 'about'), array('class' => 'btninfo')):
+  $html->image('button_info_clicked.png');?></li>
+  <li><?=(Router::url('') != Router::url(array('controller'=>'pages','action'=>'news'))) ? 
+  $html->link('',array('controller' => 'pages', 'action' => 'news'), array('class' => 'btnnews')):
+  $html->image('button_news_clicked.png');?></li>
+  <li><?=(Router::url('') != Router::url(array('controller'=>'pages','action'=>'vote'))) ? 
+  $html->link('',array('controller' => 'pages', 'action' => 'vote'), array('class' => 'btnvote')):
+  $html->image('button_vote_clicked.png');?></li>
+  <li><?=(Router::url('') != Router::url(array('controller'=>'pages','action'=>'friends'))) ? 
+  $html->link('',array('controller' => 'pages', 'action' => 'friends'), array('class' => 'btnfren')):
+  $html->image('button_friends_clicked.gif');?></li>
   </ul>
   <div class="clear">&nbsp;</div>
   <div class="grid_12">

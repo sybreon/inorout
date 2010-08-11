@@ -44,6 +44,8 @@
     <li><?=$html->link('Edit', array('action' => 'edit', $post['Post']['id']));?></li>	  
     <li id="actflg"><?=($post['Post']['flags'] > 0) ? $ajax->link('Flag ('. $post['Post']['flags'] .')', array('controller' => 'posts', 'action' => 'flag', $post['Post']['id']), array('update' => 'actflg'), sprintf(__('Flag post #%s?', true), $post['Post']['id'])) : $ajax->link('Flag', array('controller' => 'posts', 'action' => 'flag', $post['Post']['id']), array('update' => 'actflg'), sprintf(__('Flag post #%s?', true), $post['Post']['id']));?></li>
     <li id="actdel"><?=($post['Post']['flags'] == -1) ? '<a href="#" class="disable">Deleted</a>' : $ajax->link('Delete', array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']), array('update' => 'actdel'), sprintf(__('Delete post #%s?', true), $post['Post']['id']));?></li>
+    <li><a href="http://twitter.com/home?status=<?=rawurlencode('#In/Out for '.Router::url('',true).' '.$post['Post']['title']);?>" title="Click to share this post on Twitter">Twitter</a></li>
+    <li><a href="http://www.facebook.com/sharer.php?t=<?=urlencode('#In/Out for '.$post['Post']['title']);?>&u=<?=rawurlencode(Router::url('',true));?>" title="Click to share this post on Facebook">Facebook</a></li>
     </ul>
     <div class="grid_5 omega">
     </div>
