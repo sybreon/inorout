@@ -41,7 +41,7 @@ echo $scripts_for_layout;
   <div style="background:#eee;">
   <div class="container_12">
   <div class="grid_9"><?=$this->element('dashboard');?></div>
-  <div class="grid_3" style="text-align:right;font-size:x-small;">by <?=$html->link('Saya Anak Bangsa Malaysia','http://www.sayaanakbangsamalaysia.net')?></div>
+  <div class="grid_3" id="sabm">by <?=$html->link('Saya Anak Bangsa Malaysia','http://www.sayaanakbangsamalaysia.net')?>&nbsp;&raquo;</div>
   <div class="clear">&nbsp;</div>
   </div>
   </div>
