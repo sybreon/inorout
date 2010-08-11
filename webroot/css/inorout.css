@@ -63,12 +63,13 @@ ul#acts a.disable {background:none;border:none;color:#ccc;}
 #p-in dt a { color:#17d; }
 #p-out dt a { color:#e22; }
 
-dl.post dt {margin:14px;background:#fff;color:#666;min-height:140px;padding:8px;}
+dl.post dt {margin:14px 14px 0 14px;background:#fff;color:#666;min-height:110px;padding:8px;}
+dl.post dd {margin:0 14px 14px 14px;background:#fff;color:#666;padding:8px;}
 dl.post { padding:24px 0; }
 dl.post dt a { color:#ccc; }
 
-p.title { font-size:medium;font-weight:bolder;color:#333;text-transform:capitalize; }
-p.teaser { color:#666; }
+p.title { font-size:medium;font-weight:bolder;color:#333;text-transform:capitalize;margin-bottom:0; }
+p.teaser { color:#666;margin-top:8px;padding-top:8px;border-top:1px dotted #ccc; }
 
 /** scorepad **/
 
