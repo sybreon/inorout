@@ -17,20 +17,13 @@
    License along with this program.  If not, see
    <http://www.gnu.org/licenses/>.
   */
-
-  /*echo '<dl class="grid_6 alpha" id="p-in">';
-foreach ($posts_in as $post) { 
-
-  echo '<dt><div class="meta"><div class="in"><p>'. $post['Post']['ins'] .'</p></div><div class="out"><p>'. $post['Post']['outs'] .'</p></div><div class="view"><p>'. $post['Post']['views'] .'</p></div></div>';
-  echo '<div class="teaser"><h3>'. $html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id'])) .'</h3><p>'. $text->truncate($text->stripLinks($post['Post']['teaser']),128) .'</p></div></dt>';  
-  echo '<dd>'. $post['Post']['created'] .' - '. $html->link($post['User']['nama'],array('controller' => 'users','action' => 'view', $post['User']['id'])) .'</dd>';
-
-}
-echo '</dl>'
-  */
 ?>
-
-
+<div class="grid_6 alpha">
+Click here for instructions
+</div>
+<div class="grid_6 omega">
+Sort by
+</div>
 <dl class="grid_6 alpha post" id="p-in">
   <?php foreach ($posts_in as $post): ?>
   <dt>
@@ -40,7 +33,7 @@ echo '</dl>'
   </dt>
   <dd>
   <?=$time->niceShort($post['Post']['created']);?> &ndash; <?=$html->link($post['User']['nama'],array('controller'=>'users','action'=>'view',$post['User']['id']));?>
-  <span class="comments"><?=$post['Post']['comments']?> comment(s)</span>
+  <span class="comments"><?=$post['Post']['comments']?>&nbsp;comment(s)</span>
   </dd>
   <?php endforeach; ?>
   </dl>
@@ -54,7 +47,7 @@ echo '</dl>'
   </dt>
   <dd>
   <?=$time->niceShort($post['Post']['created']);?> &ndash; <?=$html->link($post['User']['nama'],array('controller'=>'users','action'=>'view',$post['User']['id']));?>
-  <span class="comments"><?=$post['Post']['comments']?> comment(s)</span>
+  <span class="comments"><?=$post['Post']['comments']?>&nbsp;comment(s)</span>
   </dd>
   <?php endforeach; ?>
   </dl>
