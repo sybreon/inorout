@@ -40,6 +40,7 @@ echo '</dl>'
   </dt>
   <dd>
   <?=$time->niceShort($post['Post']['created']);?> &ndash; <?=$html->link($post['User']['nama'],array('controller'=>'users','action'=>'view',$post['User']['id']));?>
+  <span class="comments"><?=$post['Post']['comments']?> comment(s)</span>
   </dd>
   <?php endforeach; ?>
   </dl>
@@ -53,6 +54,7 @@ echo '</dl>'
   </dt>
   <dd>
   <?=$time->niceShort($post['Post']['created']);?> &ndash; <?=$html->link($post['User']['nama'],array('controller'=>'users','action'=>'view',$post['User']['id']));?>
+  <span class="comments"><?=$post['Post']['comments']?> comment(s)</span>
   </dd>
   <?php endforeach; ?>
   </dl>
@@ -63,4 +65,3 @@ echo '</dl>'
 </ul>
 <div class="grid_9 omega">
 </div>
-    <pre><?php print_r($posts_in)?></pre>

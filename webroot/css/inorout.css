@@ -60,20 +60,20 @@ ul#acts a.disable {background:none;border:none;color:#ccc;}
 
 #p-in { background:url("../img/IN_bgtemplate.jpg") }
 #p-out { background:url("../img/OUT_bgtemplate.jpg") }
-#p-in dt a { color:#17d; }
-#p-out dt a { color:#e22; }
+#p-in a { color:#17d; }
+#p-out a { color:#e22; }
 
-dl.post dt {margin:14px 14px 0 14px;background:#fff;color:#666;min-height:110px;padding:8px;}
+dl.post dt {margin:14px 14px 0 14px;background:#fff;color:#666;min-height:115px;padding:8px;}
 dl.post dd {margin:0 14px 14px 14px;background:#fff;color:#666;padding:8px;}
 dl.post { padding:24px 0; }
-dl.post dt a { color:#ccc; }
+dl.post span.comments { font-size:smaller;color:#ccc;float:right; }
 
 p.title { font-size:medium;font-weight:bolder;color:#333;text-transform:capitalize;margin-bottom:0; }
 p.teaser { color:#666;margin-top:8px;padding-top:8px;border-top:1px dotted #ccc; }
 
 /** scorepad **/
 
-div.score { float:right;max-width:120px; }
+div.score { float:right;max-width:120px;padding-left:8px;background:#fff; }
 div.score div { width:100px;height:35px;margin:8px 0;}
 div.score div p { text-align:right;padding:4px 8px;vertical-align:middle;font-weight:bold;font-size:18px;font-family:serif; }
 div.score div.in { background:url("../img/icon_IN.png");color:#8cf;margin-top:1px;}
