@@ -19,10 +19,10 @@
   */
 ?>
 <div class="grid_6 alpha">
-Click here for instructions
+click here for instructions
 </div>
-<div class="grid_6 omega">
-Sort by
+<div class="grid_6 omega" style="text-align:right;">
+sort by
 </div>
 <dl class="grid_6 alpha post" id="p-in">
   <?php foreach ($posts_in as $post): ?>

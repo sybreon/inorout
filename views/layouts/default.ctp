@@ -27,6 +27,8 @@
 <head><?php echo $html->charset(); ?>
 <title><?php echo $title_for_layout; ?></title>
 <?php
+					 //echo $html->css('http://fonts.googleapis.com/css?family=Molengo');
+echo $html->css('http://fonts.googleapis.com/css?family=Cantarell:regular,bold');
 echo $html->meta('icon');
 echo $html->css('reset');
 echo $html->css('text');
