@@ -28,7 +28,7 @@
 <title><?php echo $title_for_layout; ?></title>
 <?php
 echo $html->meta('icon');
-echo $html->css('http://fonts.googleapis.com/css?family=Cantarell:regular,bold');
+echo $html->css('http://fonts.googleapis.com/css?family=Cantarell:regular,bold|Cardo');
 echo $html->css(array('reset','text','960','inorout'));
 echo $scripts_for_layout;
 ?>
