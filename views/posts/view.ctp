@@ -34,7 +34,7 @@
 				      'stamp'=>$post['Post']['created'],
 				      ));?>
 <!-- embed preview -->
-<?=$html->tag('p', Sanitize::html($post['Post']['teaser']));?>
+<?=$html->tag('p', Sanitize::html($post['Post']['teaser'],true));?>
 </div>
 <div class="grid_2 omega">
     <?=$this->element('scorepad',array('ins'=>$post['Post']['ins'],'outs'=>$post['Post']['outs'],'views'=>$post['Post']['views']));?>

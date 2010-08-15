@@ -89,7 +89,7 @@ class PostsController extends AppController {
     }
     
     // Extract the post
-    $this->set('post',$this->Post->read(null,$id));	  
+    $this->set('post',$this->Post->find(array('Post.id' => $id))); //read(null,$id));	  
     
     // Extract comments
     $this->loadModel('Comment');
@@ -98,24 +98,32 @@ class PostsController extends AppController {
 				    array('conditions' => array('Comment.post_id' => $id))));	  
     
   }
-  
-	/**
-	 Edit an existing post.
-	*/
+
+  /**
+   Edit an existing post.
+  */
   
   function edit($id = null) {
+    assert('is_numeric($id)'); // check input
     $this->pageTitle = 'Edit Post #'.$id;
-    if (empty($this->data)) {
-      $this->data = $this->Post->read(null, $id);
+
+    if (empty($this->data)) { // load the post
+      $this->data = $this->Post->find(array('Post.id' => $id)); //read(null, $id);
       // Expand the URL using bitly
       if (!empty($this->data['Post']['url'])) {	      
 	$this->data['Post']['url'] = $this->bitly_expand($this->data['Post']['url']);
       }
-    } else {
+
+    } else { // save the post
+      assert("is_string($this->data['Post']['teaser'])");
+      assert("is_string($this->data['Post']['title'])");
+      assert("is_string($this->data['Post']['url'])");
+
       // Shorten the URL using bitly
       if (!empty($this->data['Post']['url'])) {	      
 	$this->data['Post']['url'] = $this->bitly_shorten($this->data['Post']['url']);
       }	    
+
       // save the form
       if ($this->Post->save($this->data)) {	      	      
 	$id = $this->Post->id; // get new ID
@@ -132,10 +140,15 @@ class PostsController extends AppController {
   function add() {	
     $this->pageTitle = 'Add Post';	 
     if (!empty($this->data)) {
+      assert("is_string($this->data['Post']['teaser'])");
+      assert("is_string($this->data['Post']['title'])");
+      assert("is_string($this->data['Post']['url'])");
+
       // Shorten the URL using bitly
       if (!empty($this->data['Post']['url'])) {	      
 	$this->data['Post']['url'] = $this->bitly_shorten($this->data['Post']['url']);
       }	    
+
       // save the form
       if ($this->Post->save($this->data)) {	      	      
 	$id = $this->Post->id; // get new ID
@@ -163,13 +176,14 @@ class PostsController extends AppController {
     }	    	  
     $this->layout = 'ajax';
   }
-  
-  
+    
   /**
    Flag a post as DELETED (AJAX)
   */
+
   function delete($id = null) {
     if ($this->RequestHandler->isAjax()) {
+      assert('is_numeric($id)'); // check input
       Configure::write('debug', 0); // dont want debug in ajax returned html
       // TODO: Check for ACL
       $this->Post->updateAll(array('Post.flags' => '-1'), array('Post.id' => $id));
@@ -181,8 +195,10 @@ class PostsController extends AppController {
   /**
    Flag a post as FLAGGED (AJAX)
   */
+
   function flag($id = null) {
     if ($this->RequestHandler->isAjax()) {
+      assert('is_numeric($id)'); // check input
       Configure::write('debug', 0); // dont want debug in ajax returned html
       // TODO: Check for ACL
       $this->Post->updateAll(array('Post.flags' => 'Post.flags+1'), array('Post.id' => $id));
@@ -194,8 +210,10 @@ class PostsController extends AppController {
   /**
    Vote IN/OUT
   */
+
   function vin($id = null) {
     if ($this->RequestHandler->isAjax()) {
+      assert('is_numeric($id)'); // check input
       Configure::write('debug', 0); // dont want debug in ajax returned html
       // TODO: Check for ACL
       $this->Post->updateAll(array('Post.ins' => 'Post.ins+1'), array('Post.id' => $id));
@@ -206,6 +224,7 @@ class PostsController extends AppController {
   
   function vout($id = null) {
     if ($this->RequestHandler->isAjax()) {
+      assert('is_numeric($id)'); // check input
       Configure::write('debug', 0); // dont want debug in ajax returned html
       // TODO: Check for ACL
       $this->Post->updateAll(array('Post.outs' => 'Post.outs+1'), array('Post.id' => $id));
@@ -213,5 +232,6 @@ class PostsController extends AppController {
       $this->layout = 'ajax';
     }	  
   }
+
 }
 ?>
