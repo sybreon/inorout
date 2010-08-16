@@ -97,7 +97,9 @@ class UsersController extends AppController {
 	$this->Session->write('User.oid', $oid);
 	$this->Session->write('User.id', $this->User->id);
 	
-	$this->redirect(array('controller' => 'posts', 'action' => 'index'));
+	// redirect to source/default
+	$url = ($this->Session->check('Session.referer')) ? $this->Session->read('Session.referer') : array('controller' => 'posts', 'action' => 'index');	
+	$this->redirect($url);
 
       } else {
 	$this->Session->setFlash('Authentication failed!');
