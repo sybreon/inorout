@@ -20,7 +20,7 @@
 </div>
 <div class="clear">&nbsp;</div>
 
-<ul class="grid_6 alpha">
+<ul class="grid_6 alpha"><h3>Posts (<?=count($user['Post'])?>)</h3>
    <?php foreach($user['Post'] as $post): ?>
    <li><?=$html->link($text->truncate($post['title'],64),
 		      array('controller'=>'posts',
@@ -29,7 +29,7 @@
    <?php endforeach;?>
 </ul>
 
-<ul class="grid_6 omega">
+<ul class="grid_6 omega"><h3>Comments (<?=count($user['Comment'])?>)</h3>
    <?php foreach($user['Comment'] as $comm): ?>
    <li><?=$html->link($text->truncate($comm['comment'],64),
 		      array('controller'=>'posts',
