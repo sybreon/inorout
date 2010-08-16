@@ -50,7 +50,6 @@ echo $scripts_for_layout;
   BANNER
   </div>
   <div class="clear">&nbsp;</div>
-  <a name="inout">
   <ul id="pages" class="grid_12">
   <li><?=(Router::url('') != Router::url(array('controller'=>'posts','action'=>'index'))) ? 
   $html->link('',array('controller' => 'posts', 'action' => 'index'), array('class' => 'btnspeak')): 
@@ -68,6 +67,7 @@ echo $scripts_for_layout;
   $html->link('',array('controller' => 'pages', 'action' => 'friends'), array('class' => 'btnfren')):
   $html->image('button_friends_clicked.gif');?></li>
   </ul>
+  <a name="inout">
   <div class="grid_12">
   <?php echo $content_for_layout; ?>
   </div>
