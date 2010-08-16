@@ -27,7 +27,7 @@ class UsersController extends AppController {
   
   var $name = 'Users';
   var $components = array('RequestHandler');
-  var $helpers = array ('Form','Html','Ajax','Javascript');
+  var $helpers = array ('Form','Html','Ajax','Javascript','Time','Text');
   
   /**
    Launch OpenID request.
