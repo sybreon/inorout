@@ -50,6 +50,7 @@ echo $scripts_for_layout;
   BANNER
   </div>
   <div class="clear">&nbsp;</div>
+  <a name="inout">
   <ul id="pages" class="grid_12">
   <li><?=(Router::url('') != Router::url(array('controller'=>'posts','action'=>'index'))) ? 
   $html->link('',array('controller' => 'posts', 'action' => 'index'), array('class' => 'btnspeak')): 
@@ -74,7 +75,7 @@ echo $scripts_for_layout;
   </div><!--container-->
   <div style="background:#eee;">
   <div class="container_12">
-  Copyright &copy; 2010 to INOROUT.ORG
+  Copyright &copy; 2010 to INOROUT.ORG <a href="#inout">top</a>
   <div class="clear">&nbsp;</div>
   </div>
   </div>

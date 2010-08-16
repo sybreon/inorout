@@ -38,6 +38,7 @@
    <?php endforeach;?>
 </ul>
 
+<div class="clear">&nbsp;</div>
 <pre><?php print_r($user);?></pre>
 
 <?php
