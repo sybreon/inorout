@@ -67,6 +67,7 @@ echo $scripts_for_layout;
   $html->link('',array('controller' => 'pages', 'action' => 'friends'), array('class' => 'btnfren')):
   $html->image('button_friends_clicked.gif');?></li>
   </ul>
+  <a name="inout">
   <div class="grid_12">
   <?php echo $content_for_layout; ?>
   </div>
@@ -74,7 +75,7 @@ echo $scripts_for_layout;
   </div><!--container-->
   <div style="background:#eee;">
   <div class="container_12">
-  Copyright &copy; 2010 to INOROUT.ORG
+  Copyright &copy; 2010 to INOROUT.ORG <a href="#inout">top</a>
   <div class="clear">&nbsp;</div>
   </div>
   </div>
