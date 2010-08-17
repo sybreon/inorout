@@ -107,13 +107,18 @@ class PostsController extends AppController {
     assert('is_numeric($id)'); // check input
     $this->pageTitle = 'Edit Post #'.$id;
 
-    if (empty($this->data)) { // load the post
-      $this->data = $this->Post->find(array('Post.id' => $id)); //read(null, $id);
+    if (!$this->Session->check('User.id')) {
+      $this->Session->write('Session.referer', array('controller' => 'posts','action' => 'add'));
+      $this->redirect(array('controller' => 'users', 'action' => 'login'));      
+    } elseif (empty($this->data)) { // load the post
+      $this->data = $this->Post->find(array('Post.id' => $id, 'Post.user_id' => $this->Session->read('User.id'))); //read(null, $id);
       // Expand the URL using bitly
       if (!empty($this->data['Post']['url'])) {	      
 	$this->data['Post']['url'] = $this->bitly_expand($this->data['Post']['url']);
       }
-
+    } elseif ($this->data['Post']['user_id'] != $this->Session->read('User.id')) { // check save attempt
+      $this->Session->write('Session.referer', array('controller' => 'posts','action' => 'edit', $id));
+      $this->redirect(array('controller' => 'users', 'action' => 'login'));            
     } else { // save the post
       assert("is_string($this->data['Post']['teaser'])");
       assert("is_string($this->data['Post']['title'])");
