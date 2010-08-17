@@ -116,9 +116,11 @@ class PostsController extends AppController {
       if (!empty($this->data['Post']['url'])) {	      
 	$this->data['Post']['url'] = $this->bitly_expand($this->data['Post']['url']);
       }
+      /*    
     } elseif ($this->data['Post']['user_id'] != $this->Session->read('User.id')) { // check save attempt
       $this->Session->write('Session.referer', array('controller' => 'posts','action' => 'edit', $id));
       $this->redirect(array('controller' => 'users', 'action' => 'login'));            
+      */
     } else { // save the post
       assert("is_string($this->data['Post']['teaser'])");
       assert("is_string($this->data['Post']['title'])");
