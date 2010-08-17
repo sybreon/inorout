@@ -115,7 +115,8 @@ class UsersController extends AppController {
   public function logout() {
     // destroy user session
     $this->Session->delete('User');
-    $this->redirect(array('controller' => 'users', 'action' => 'login'));    
+    //$this->redirect(array('controller' => 'users', 'action' => 'login'));    
+    $this->redirect($this->referer());
   }
   
   /**

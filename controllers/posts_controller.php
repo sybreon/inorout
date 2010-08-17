@@ -138,8 +138,11 @@ class PostsController extends AppController {
   */
   
   function add() {	
-    $this->pageTitle = 'Add Post';	 
-    if (!empty($this->data)) {
+    $this->pageTitle = 'Add Post';
+    if (!$this->Session->check('User.id')) {
+      $this->Session->write('Session.referer', array('controller' => 'posts','action' => 'add'));
+      $this->redirect(array('controller' => 'users', 'action' => 'login'));
+    } elseif (!empty($this->data)) {
       assert("is_string($this->data['Post']['teaser'])");
       assert("is_string($this->data['Post']['title'])");
       assert("is_string($this->data['Post']['url'])");
