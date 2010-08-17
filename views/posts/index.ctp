@@ -54,7 +54,7 @@ sort by
 
 <div class="clear">&nbsp;</div>
 <ul id="acts" class="grid_3 alpha">
-    <li><?php echo $html->link('Add Post', array('action' => 'add'));?></li>
+<li><?=$html->link('Add Post', array('action' => 'add'));?></li>
 </ul>
 <div class="grid_9 omega">
 </div>
