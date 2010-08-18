@@ -79,9 +79,7 @@ class PostsController extends AppController {
    Retrieves and displays a single post.
   */
   
-  function view($id = null) {
-    $this->pageTitle = 'Post #'. $id;
-    
+  function view($id = null) {    
     // Increment counter once in a session
     if (!$this->Session->check('Post.'.$id)) {
       $this->Post->updateAll(array('Post.views' => 'Post.views+1'), array('Post.id' => $id));
@@ -89,7 +87,9 @@ class PostsController extends AppController {
     }
     
     // Extract the post
-    $this->set('post',$this->Post->find(array('Post.id' => $id))); //read(null,$id));	  
+    $post = $this->Post->find(array('Post.id' => $id));
+    $this->set('post',$post);
+    $this->pageTitle = $post['Post']['title'];
     
     // Extract comments
     $this->loadModel('Comment');
