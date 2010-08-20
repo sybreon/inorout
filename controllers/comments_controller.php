@@ -36,7 +36,7 @@ class CommentsController extends AppController {
       $this->Session->write('Session.referer', $this->referer());
       $this->redirect(array('controller' => 'users', 'action' => 'login'));
     } elseif (!empty($this->data)) {
-      assert("is_string($this->data['Comment']['comment'])");
+      assert('is_string($this->data[\'Comment\'][\'comment\'])');
       // add Comment
       //$uid = $this->Session->read('User.id');
       $this->data['Comment']['user_id'] = $this->Session->read('User.id');
