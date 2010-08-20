@@ -156,14 +156,16 @@ class PostsController extends AppController {
       $this->Session->write('Session.referer', array('controller' => 'posts','action' => 'add'));
       $this->redirect(array('controller' => 'users', 'action' => 'login'));
     } elseif (!empty($this->data)) {
-      assert("is_string($this->data['Post']['teaser'])");
-      assert("is_string($this->data['Post']['title'])");
-      assert("is_string($this->data['Post']['url'])");
+      assert('is_string($this->data[\'Post\'][\'teaser\'])');
+      assert('is_string($this->data[\'Post\'][\'title\'])');
+      assert('is_string($this->data[\'Post\'][\'url\'])');
 
       // Shorten the URL using bitly
       if (!empty($this->data['Post']['url'])) {	      
 	$this->data['Post']['url'] = $this->bitly_shorten($this->data['Post']['url']);
       }	    
+
+      $this->data['Post']['user_id'] = $this->Session->read('User.id');
 
       // save the form
       if ($this->Post->save($this->data)) {	      	      
