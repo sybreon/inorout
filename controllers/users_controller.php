@@ -69,7 +69,7 @@ class UsersController extends AppController {
 	// valid OpenID reply
 	$attr = $openid->getAttributes(); // extract attributes
 	$mail = (isset($attr['contact/email'])) ? md5(strtolower(trim($attr['contact/email']))) : '';
-	$nama = (isset($attr['namePerson/friendly'])) ? $attr['namePerson/friendly'] : 'Anonymous '.rand();	
+	$nama = (isset($attr['namePerson/friendly'])) ? $attr['namePerson/friendly'] : preg_replace('/^([^@]+)(@.*)$/', '$1', $attr['contact/email']);	
 	$oid = md5(trim($openid->identity)); // hash the id returned
 
 	// find the user based on claimed_id
