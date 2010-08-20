@@ -20,6 +20,7 @@
 
 App::import('Core', 'HttpSocket');
 App::import('Sanitize');
+App::import('Vendor','bitly'); // Import LightOpenID library
 
 class PostsController extends AppController {
 
@@ -29,27 +30,13 @@ class PostsController extends AppController {
 
   
   private function bitly_shorten($url = null) {
-    $HttpSocket = new HttpSocket();
-    $bitly = $HttpSocket->get('http://api.bit.ly/v3/shorten', 
-			      array('format' => 'txt',
-				    'login' => 'inorout',
-				    'apiKey' => 'R_11acbfd4019e1d133a8dd8ebb339da03',
-					  'longUrl' => $url
-				    )
-			      ); 	    
-    return trim($bitly);
+    $bitly = new Bitly('inorout','R_11acbfd4019e1d133a8dd8ebb339da03');
+    return $bitly->shortenSingle($url);
   }
   
   private function bitly_expand($url = null) {
-    $HttpSocket = new HttpSocket();
-    $bitly = $HttpSocket->get('http://api.bit.ly/v3/expand', 
-			      array('format' => 'txt',
-				    'login' => 'inorout',
-				    'apiKey' => 'R_11acbfd4019e1d133a8dd8ebb339da03',
-				    'shortUrl' => $url
-				    )
-			      ); 	    
-	  return trim($bitly);
+    $bitly = new Bitly('inorout','R_11acbfd4019e1d133a8dd8ebb339da03');
+    return $bitly->expandSingle($url);
   }
   
   /**
