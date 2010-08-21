@@ -1,5 +1,5 @@
 <div class="grid_2 alpha">
-<?=$html->image('http://www.gravatar.com/avatar/'. $user['User']['mail'] .'?d=mm&r=pg&s=128',
+<?=$html->image('http://www.gravatar.com/avatar/'. $user['User']['mail'] .'?d=identicon&r=pg&s=128',
 		array('alt' => $user['User']['nama'],
 		      'style' => 'float:left;margin-right:8px;',
 		      'url' => array('controller' => 'users',
