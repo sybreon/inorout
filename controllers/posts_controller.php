@@ -46,14 +46,14 @@ class PostsController extends AppController {
   function index() {
     $this->set('posts_in', $this->Post->find('all', 
 					     array('limit' => 10,
-						   'conditions' => array('Post.ins >= Post.outs'),
+						   'conditions' => array('Post.ins >= Post.outs', 'Post.flags >= 0'),
 						   'order' => 'Post.id DESC',
 						   )
 					     )
 	       );	  
     $this->set('posts_out', $this->Post->find('all',
 					      array('limit' => 10,
-						    'conditions' => array('Post.outs >= Post.ins'),
+						    'conditions' => array('Post.outs >= Post.ins', 'Post.flags >= 0'),
 						    'order' => 'Post.id DESC',
 						    )
 					      )
