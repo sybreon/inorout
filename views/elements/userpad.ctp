@@ -19,7 +19,7 @@
 */
 ?>
 <div class="user">
-    <?=$html->image('http://www.gravatar.com/avatar/'. $mail .'?d=mm&r=pg&s=36',
+    <?=$html->image('http://www.gravatar.com/avatar/'. $mail .'?d=identicon&r=pg&s=36',
 		    array('alt' => $nama,
 			  'style' => 'float:left;margin-right:8px;',
 			  'url' => array('controller' => 'users',
