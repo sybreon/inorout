@@ -53,7 +53,9 @@
     <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     </div>
     <div class="clear">&nbsp;</div>
-    <div class="grid_12 alpha omega"><?=$html->image('vote_bar.png');?>&nbsp;</div>
+    <div class="grid_12 alpha omega"><?=$html->image('vote_bar.png');?><br/>
+    <p>are you IN or OUT? you can only vote once.<br/>
+    </p></div>
     <div class="grid_12 alpha omega"><?=$html->image('comment_bar.png');?>&nbsp;</div>
     <dl class="grid_12 alpha omega">
     <?php foreach ($post_comments as $comment): ?>
@@ -83,16 +85,19 @@
 for ($i=0;$i<2;$i++) {
   $pad = ($i == 0) ? 'alpha' : 'omega';
   $inout = ($i == 0) ? 1 : 0;
-  echo '<div id="fcomm'. $inout .'" class="grid_6 form '. $pad .'">';
+  echo '<div id="fcomm'. $inout .'" class="grid_6 form fcomm '. $pad .'">';
   echo $form->create('Comment', array('controller' => 'comments', 'action' => 'add'));
   echo '<fieldset>';
-  echo '<legend>Add Comment</legend>';
-  echo $form->input('comment',array('rows'=>'9'));
+  //echo '<legend>Add Comment</legend>';
+  //echo $form->input('comment',array('rows'=>'9'));
+  echo '<label>Have your say:&nbsp;</label>';
+  echo $form->textarea('comment',array('rows'=>'4'));
   //echo $form->radio('inout',array('1' => 'In', '0' => 'Out'), array('separator' => '', 'legend' => false));
   echo '</fieldset>';
   echo $form->hidden('id', array('value' => $post['Post']['id']));
   echo $form->hidden('inout', array('value' => $inout));
-  echo $form->end('Save');
+  echo $form->submit('add-comment.png',array('class' => 'fcomm'));
+  echo $form->end();
   echo '</div>';
  }
 ?>

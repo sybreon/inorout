@@ -104,6 +104,8 @@ div.user a { color:#ccc; }
 
 #fcomm1, #c-in { background:url("../img/IN_bgtemplate.jpg") }
 #fcomm0, #c-out { background:url("../img/OUT_bgtemplate.jpg") }
+div.fcomm label { color:#fff;font-weight:bold;font-size:large; }
+div.fcomm input.fcomm { float:right;margin:0 16px 8px 0; }
 
 div.form fieldset { background:none;border:none;} 
 dl.comment dt { margin:14px;color:#666;background:#fff;width:160px;}
