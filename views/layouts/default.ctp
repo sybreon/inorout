@@ -42,9 +42,10 @@ echo $scripts_for_layout;
   <div class="clear">&nbsp;</div>
   </div>
   </div>
+  <?php if (Router::url('') == Router::url('/')): ?>
   <div class="container_12" id="container">
   <div class="grid_3">
-      <?=$html->image('LOGO.png');?>
+  <?=$html->image('LOGO.png');?>
   </div>
   <div class="grid_2 prefix_3">
   <?=$html->image('button_group-reg.png',array('style'=>'float:right;'));?>
@@ -53,6 +54,9 @@ echo $scripts_for_layout;
   <?=$html->image('countdown.png');?>
   </div>								       
   <div class="clear">&nbsp;</div>
+  </div>
+  <?php endif; ?>
+  <div class="container_12" id="container">
   <ul id="pages" class="grid_12">
   <li><?=(Router::url('') != Router::url(array('controller'=>'posts','action'=>'index'))) ? 
   $html->link('',array('controller' => 'posts', 'action' => 'index'), array('class' => 'btnspeak')): 
@@ -78,9 +82,10 @@ echo $scripts_for_layout;
   </div><!--container-->
   <div style="background:#eee;">
   <div class="container_12">
-  Copyright &copy; 2010 to INOROUT.ORG <a href="#inout">top</a>
+  <div class="grid_6" id="copy">Copyright &copy; 2010 to INOROUT.ORG</div>
+  <div class="grid_6" id="fmenu"><a href="#inout">Top</a></div>
   <div class="clear">&nbsp;</div>
-  </div>
+  </div><!--container-->
   </div>
   <pre>
   <?php echo $cakeDebug; ?>
