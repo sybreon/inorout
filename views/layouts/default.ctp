@@ -44,10 +44,9 @@ echo $scripts_for_layout;
   </div>
   <div class="container_12" id="container">
   <div class="grid_3">
-  LOGO
+      <?=$html->image('LOGO.png');?>
   </div>
   <div class="grid_6 prefix_3">
-  BANNER
   </div>
   <div class="clear">&nbsp;</div>
   <ul id="pages" class="grid_12">
@@ -56,7 +55,7 @@ echo $scripts_for_layout;
   $html->image('button_speak_clicked.png');?></li>
   <li><?=(Router::url('') != Router::url(array('controller'=>'pages','action'=>'about'))) ? 
   $html->link('',array('controller' => 'pages', 'action' => 'about'), array('class' => 'btninfo')):
-  $html->image('button_info_clicked.png');?></li>
+  $html->image('button_about_clicked.png');?></li>
   <li><?=(Router::url('') != Router::url(array('controller'=>'pages','action'=>'news'))) ? 
   $html->link('',array('controller' => 'pages', 'action' => 'news'), array('class' => 'btnnews')):
   $html->image('button_news_clicked.png');?></li>
@@ -65,7 +64,7 @@ echo $scripts_for_layout;
   $html->image('button_vote_clicked.png');?></li>
   <li><?=(Router::url('') != Router::url(array('controller'=>'pages','action'=>'friends'))) ? 
   $html->link('',array('controller' => 'pages', 'action' => 'friends'), array('class' => 'btnfren')):
-  $html->image('button_friends_clicked.gif');?></li>
+  $html->image('button_friends_clicked.png');?></li>
   </ul>
   <a name="inout">
   <div class="grid_12">

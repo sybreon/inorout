@@ -30,18 +30,18 @@ ul#pages a {width:150px;height:45px;display:inline-block;}
 ul#pages a.btnspeak { background:url("../img/button_speak.png");width:162px; }
 ul#pages a.btnspeak:hover { background:url("../img/button_speak_RO.gif") }
 ul#pages a.btnspeak:active { background:url("../img/button_speak_clicked.png") }
-ul#pages a.btninfo { background:url("../img/button_info.png"); }
-ul#pages a.btninfo:hover { background:url("../img/button_info_RO.gif") }
-ul#pages a.btninfo:active { background:url("../img/button_info_clicked.png") }
+ul#pages a.btninfo { background:url("../img/button_about.png");width:160px; }
+ul#pages a.btninfo:hover { background:url("../img/button_about_RO.gif") }
+ul#pages a.btninfo:active { background:url("../img/button_about_clicked.png") }
 ul#pages a.btnvote { background:url("../img/button_vote.png"); }
 ul#pages a.btnvote:hover { background:url("../img/button_vote_RO.gif") }
 ul#pages a.btnvote:active { background:url("../img/button_vote_clicked.png") }
 ul#pages a.btnnews { background:url("../img/button_news.png"); }
 ul#pages a.btnnews:hover { background:url("../img/button_news_RO.gif") }
 ul#pages a.btnnews:active { background:url("../img/button_news_clicked.png") }
-ul#pages a.btnfren { background:url("../img/button_friends.gif");width:172px; }
+ul#pages a.btnfren { background:url("../img/button_friends.png");width:172px; }
 ul#pages a.btnfren:hover { background:url("../img/button_friends_RO.gif") }
-ul#pages a.btnfren:active { background:url("../img/button_friends_clicked.gif") }
+ul#pages a.btnfren:active { background:url("../img/button_friends_clicked.png") }
 
 /** dashboard **/
 
