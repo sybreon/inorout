@@ -53,8 +53,12 @@
     <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     </div>
     <div class="clear">&nbsp;</div>
-    <div class="grid_12 alpha omega"><?=$html->image('vote_bar.png');?><br/>
+    <div class="grid_12 alpha omega"><?=$html->image('vote_bar.png');?>
     <p>are you IN or OUT? you can only vote once.<br/>
+    <div class="grid_1 alpha"><?=$html->image('voteIN.png');?></div>
+    <div class="grid_1"><?=$html->image('voting.png');?></div>
+    <div class="grid_1"><?=$html->image('voteOUT.png');?></div>
+    <div class="grid_9 omega"><?=$html->image('voting.png');?></div>
     </p></div>
     <div class="grid_12 alpha omega"><?=$html->image('comment_bar.png');?>&nbsp;</div>
     <dl class="grid_12 alpha omega">
