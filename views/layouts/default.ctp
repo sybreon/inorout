@@ -46,8 +46,12 @@ echo $scripts_for_layout;
   <div class="grid_3">
       <?=$html->image('LOGO.png');?>
   </div>
-  <div class="grid_6 prefix_3">
+  <div class="grid_2 prefix_3">
+  <?=$html->image('button_group-reg.png',array('style'=>'float:right;'));?>
   </div>
+  <div class="grid_4" style="padding-top:10px;">
+  <?=$html->image('countdown.png');?>
+  </div>								       
   <div class="clear">&nbsp;</div>
   <ul id="pages" class="grid_12">
   <li><?=(Router::url('') != Router::url(array('controller'=>'posts','action'=>'index'))) ? 

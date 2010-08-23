@@ -27,7 +27,6 @@ $id = ($session->check('User.id')) ? $session->check('User.id') : 0;
       <?php else: ?>
       <li><?=$html->link('login',array('controller' => 'users', 'action' => 'login'))?></li>
 	 <?php endif; ?>
-<li><?=$html->link('about',array('controller' => 'pages', 'action' => 'about'))?></li>
 <li><?=$html->link('faq',array('controller' => 'pages', 'action' => 'faq'))?></li>
 <li><input type="text" value="search" style="margin:6px;border:1px solid #333;"></li>
 </ul>
