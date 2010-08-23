@@ -53,6 +53,8 @@
     <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     </div>
     <div class="clear">&nbsp;</div>
+    <div class="grid_12 alpha omega"><?=$html->image('vote_bar.png');?>&nbsp;</div>
+    <div class="grid_12 alpha omega"><?=$html->image('comment_bar.png');?>&nbsp;</div>
     <dl class="grid_12 alpha omega">
     <?php foreach ($post_comments as $comment): ?>
     <a name="c<?=$comment['Comment']['id']?>">

@@ -61,6 +61,6 @@ sort by
 		      'url' => array('controller' => 'posts',
 				     'action' => 'add')
 		      )
-		);?>
+		);?>&nbsp;
 </div>
 <div class="clear">&nbsp;</div>
