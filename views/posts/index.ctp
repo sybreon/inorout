@@ -25,6 +25,7 @@ click here for instructions
 sort by
 </div>
 <dl class="grid_6 alpha post" id="p-in">
+  <?=$html->image('IN.png');?>
   <?php foreach ($posts_in as $post): ?>
   <dt>
     <?php echo $this->element('scorepad',array('ins'=>$post['Post']['ins'],'outs'=>$post['Post']['outs'],'views'=>$post['Post']['views']));?>
@@ -39,6 +40,7 @@ sort by
   </dl>
 
 <dl class="grid_6 omega post" id="p-out">
+  <?=$html->image('OUT.png');?>
   <?php foreach ($posts_out as $post): ?>
   <dt>
     <?php echo $this->element('scorepad',array('ins'=>$post['Post']['ins'],'outs'=>$post['Post']['outs'],'views'=>$post['Post']['views']));?>
@@ -53,8 +55,12 @@ sort by
   </dl>
 
 <div class="clear">&nbsp;</div>
-<ul id="acts" class="grid_3 alpha">
-<li><?=$html->link('Add Post', array('action' => 'add'));?></li>
-</ul>
-<div class="grid_9 omega">
+<div class="grid_12 alpha omega">
+<?=$html->image('add-post.png',
+		array('alt' => 'Add a Post',
+		      'url' => array('controller' => 'posts',
+				     'action' => 'add')
+		      )
+		);?>&nbsp;
 </div>
+<div class="clear">&nbsp;</div>

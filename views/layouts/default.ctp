@@ -42,21 +42,28 @@ echo $scripts_for_layout;
   <div class="clear">&nbsp;</div>
   </div>
   </div>
+  <?php if (Router::url('') == Router::url('/')): ?>
   <div class="container_12" id="container">
   <div class="grid_3">
-  LOGO
+  <?=$html->image('LOGO.png');?>
   </div>
-  <div class="grid_6 prefix_3">
-  BANNER
+  <div class="grid_2 prefix_3">
+  <?=$html->image('button_group-reg.png',array('style'=>'float:right;'));?>
   </div>
+  <div class="grid_4" style="padding-top:10px;">
+  <?=$html->image('countdown.png');?>
+  </div>								       
   <div class="clear">&nbsp;</div>
+  </div>
+  <?php endif; ?>
+  <div class="container_12" id="container">
   <ul id="pages" class="grid_12">
   <li><?=(Router::url('') != Router::url(array('controller'=>'posts','action'=>'index'))) ? 
   $html->link('',array('controller' => 'posts', 'action' => 'index'), array('class' => 'btnspeak')): 
   $html->image('button_speak_clicked.png');?></li>
   <li><?=(Router::url('') != Router::url(array('controller'=>'pages','action'=>'about'))) ? 
   $html->link('',array('controller' => 'pages', 'action' => 'about'), array('class' => 'btninfo')):
-  $html->image('button_info_clicked.png');?></li>
+  $html->image('button_about_clicked.png');?></li>
   <li><?=(Router::url('') != Router::url(array('controller'=>'pages','action'=>'news'))) ? 
   $html->link('',array('controller' => 'pages', 'action' => 'news'), array('class' => 'btnnews')):
   $html->image('button_news_clicked.png');?></li>
@@ -65,7 +72,7 @@ echo $scripts_for_layout;
   $html->image('button_vote_clicked.png');?></li>
   <li><?=(Router::url('') != Router::url(array('controller'=>'pages','action'=>'friends'))) ? 
   $html->link('',array('controller' => 'pages', 'action' => 'friends'), array('class' => 'btnfren')):
-  $html->image('button_friends_clicked.gif');?></li>
+  $html->image('button_friends_clicked.png');?></li>
   </ul>
   <a name="inout">
   <div class="grid_12">
@@ -75,9 +82,10 @@ echo $scripts_for_layout;
   </div><!--container-->
   <div style="background:#eee;">
   <div class="container_12">
-  Copyright &copy; 2010 to INOROUT.ORG <a href="#inout">top</a>
+  <div class="grid_6" id="copy">Copyright &copy; 2010 to INOROUT.ORG</div>
+  <div class="grid_6" id="fmenu"><a href="#inout">Top</a></div>
   <div class="clear">&nbsp;</div>
-  </div>
+  </div><!--container-->
   </div>
   <pre>
   <?php echo $cakeDebug; ?>
