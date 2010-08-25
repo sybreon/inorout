@@ -113,8 +113,14 @@ div#stat div.hr { border-bottom:2px dotted #ccc; margin-bottom:14px;padding-bott
 
 /** postpad **/
 
-div#post h4 { color:#666;border-bottom:4px solid #666;padding-bottom:14px; }
+div#post { color:#666; }
+div#post h4 { color:#666;border-bottom:4px solid #666;padding:14px 0;font-size:x-large; }
 div#post a { color:#17d; }
+
+ul#share,
+ul#acts {white-space:nowrap;}
+ul#share li,
+ul#acts li {margin:0;padding:0;display:inline;list-style-type:none;}
 
 /** COMMENT LIST **/
 
