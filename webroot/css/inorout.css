@@ -101,7 +101,6 @@ div.user img { float:left;margin-right:8px; }
 div.user a { color:#ccc; }
 
 /** statpad **/
-
 div#stat { color:#666; }
 div#stat div.user { float:none; }
 div#stat img.img { float:left; }
@@ -110,6 +109,8 @@ div#stat span.total { color:#666;font-size:small;font-style:italic;text-transfor
 div#stat span.total { float:left;position:absolute;margin-left:160px; }
 div#stat p.numb { font-family:"Cantarell",sans-serif;text-align:right;font-weight:bold;font-size:large;margin:0; }
 div#stat div.hr { border-bottom:2px dotted #ccc; margin-bottom:14px;padding-bottom:14px; }
+div#stat div.i28 { min-height:28px; }
+div#stat div.i20 { min-height:20px;margin-top:8px; }
 
 /** postpad **/
 
