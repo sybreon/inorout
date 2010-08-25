@@ -100,6 +100,17 @@ div.user { float:right;padding:4px;border:1px solid #ccc;width:160px;min-height:
 div.user img { float:left;margin-right:8px; }
 div.user a { color:#ccc; }
 
+/** statpad **/
+
+div#stat { color:#666; }
+div#stat div.user { float:none; }
+div#stat img.img { float:left; }
+div#stat p.title, 
+div#stat span.total { font-size:small;font-weight:bold;font-style:italic;text-transform:lowercase;margin-bottom:4px; }
+div#stat span.total { float:left;position:absolute;margin-left:160px; }
+div#stat p.numb { font-family:"Cantarell",sans-serif;text-align:right;font-weight:bold;font-size:large;margin:0; }
+div#stat div.hr { border-bottom:2px dotted #ccc; margin-bottom:14px;padding-bottom:14px; }
+
 /** COMMENT LIST **/
 
 #fcomm1, #c-in { background:url("../img/IN_bgtemplate.jpg") }

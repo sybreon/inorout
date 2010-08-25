@@ -19,6 +19,16 @@
   */
 ?>
 <?php echo $javascript->link('prototype'); ?> 
+<div class="grid_8 alpha" id="post">
+    &nbsp;
+</div><!--post-->
+<div class="grid_4 omega">
+    <?=$this->element('statpad',array('post' => $post));?>
+</div><!--stat-->
+
+
+
+<?php /*
 <h4><?=$html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?></h4>
 <hr/>
 <div id="vote" class="grid_1 alpha">
@@ -106,6 +116,6 @@ for ($i=0;$i<2;$i++) {
  }
 ?>
   <div class="clear">&nbsp;</div>
-<pre>
-  <?php // print_r($post_comments); ?>
-</pre>
+*/
+?>
+
