@@ -116,6 +116,7 @@ div#stat div.hr { border-bottom:2px dotted #ccc; margin-bottom:14px;padding-bott
 div#post { color:#666; }
 div#post h4 { color:#666;border-bottom:4px solid #666;padding:14px 0;font-size:x-large; }
 div#post a { color:#17d; }
+div#post div.url { padding:14px;border:2px solid #ccc;margin-bottom:14px; }
 
 ul#share,
 ul#acts {white-space:nowrap;}

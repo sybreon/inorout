@@ -20,49 +20,18 @@
 ?>
 <?php echo $javascript->link('prototype'); ?> 
 <div class="grid_8 alpha" id="post">
-    &laquo;<?=$html->link(' return to main page',
-		   array('controller' => 'posts',
-			 'action' => 'index'));?>
-    <h4><?=$post['Post']['title'];?></h4>
-    <?=$html->tag('p', Sanitize::html($post['Post']['teaser'],true));?>
-
-    <ul class="grid_6 alpha" id="acts">
-    <li><?=$html->image('flag.png')?></li>
-    <li><?=$html->image('edit.png')?></li>
-    <li><?=$html->image('delete.png')?></li>
-    </ul>
-    <ul class="grid_2 omega" id="share">
-    <li><?=$html->image('twitter.png')?></li>
-    <li><?=$html->image('facebook.png')?></li>
-    </ul>
+    <?=$this->element('postpad',
+		      array('post' => $post));?>
 </div><!--post-->
 
 <div class="grid_4 omega" id="stat">
-
-<div class="hr">
-<p class="title">posted by</p>
-<?=$this->element('userpad',array('uid'=>$post['User']['id'],
-				  'nama'=>$post['User']['nama'],
-				  'mail'=>$post['User']['mail'],
-				  'stamp'=>$post['Post']['created'],
-				  ));?>
-</div>
-
-<div class="hr">
-    <div><?=$html->image('vote.png',array('class'=>'img'));?><span class="total">total</span><p class="numb"><?=$post['Post']['ins'] + $post['Post']['outs'];?></p></div>
-</div>
-
-<div class="hr">
-   <div><?=$html->image('comment.png',array('class'=>'img'));?><span class="total">total</span><p class="numb"><?=$post['Post']['comments'];?></p></div>
-</div>
-
-<div class="hr">
-   <div><?=$html->image('view.png',array('class'=>'img'));?><span class="total">total</span><p class="numb"><?=$post['Post']['views']?></p></div>
-</div>
-
+    <?=$this->element('statpad',
+		      array('post' => $post));?>
 </div><!--stat-->
-
-
+<div class="clear">&nbsp;</div>
+<pre>
+    <?php print_r($post);?>
+</pre>
 
 <?php /*
 <h4><?=$html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?></h4>
