@@ -75,6 +75,9 @@ class PostsController extends AppController {
     
     // Extract the post
     $post = $this->Post->find(array('Post.id' => $id));
+    //$post['url'] = base64_encode($post['Post']['url']);
+    $post['bitly'] = $this->bitly_expand($post['Post']['url']);
+
     $this->set('post',$post);
     $this->pageTitle = $post['Post']['title'];
     
