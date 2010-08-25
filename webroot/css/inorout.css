@@ -106,10 +106,15 @@ div#stat { color:#666; }
 div#stat div.user { float:none; }
 div#stat img.img { float:left; }
 div#stat p.title, 
-div#stat span.total { font-size:small;font-weight:bold;font-style:italic;text-transform:lowercase;margin-bottom:4px; }
+div#stat span.total { color:#666;font-size:small;font-style:italic;text-transform:lowercase;margin-bottom:8px; }
 div#stat span.total { float:left;position:absolute;margin-left:160px; }
 div#stat p.numb { font-family:"Cantarell",sans-serif;text-align:right;font-weight:bold;font-size:large;margin:0; }
 div#stat div.hr { border-bottom:2px dotted #ccc; margin-bottom:14px;padding-bottom:14px; }
+
+/** postpad **/
+
+div#post h4 { color:#666;border-bottom:4px solid #666;padding-bottom:14px; }
+div#post a { color:#17d; }
 
 /** COMMENT LIST **/
 

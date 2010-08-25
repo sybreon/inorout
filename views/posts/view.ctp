@@ -20,7 +20,10 @@
 ?>
 <?php echo $javascript->link('prototype'); ?> 
 <div class="grid_8 alpha" id="post">
-    &nbsp;
+    &laquo;<?=$html->link(' return to main page',
+		   array('controller' => 'posts',
+			 'action' => 'index'));?>
+    <h4><?=$post['Post']['title'];?></h4>
 </div><!--post-->
 <div class="grid_4 omega">
     <?=$this->element('statpad',array('post' => $post));?>
