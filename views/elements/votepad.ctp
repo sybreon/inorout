@@ -18,8 +18,22 @@
  <http://www.gnu.org/licenses/>.
 */
 ?>
-<div class="vote">
-    <?php $rnd = rand(); ?>
-<div id="vin<?=$rnd?>" class="in"><?=$ajax->link('', $vin, array('update'=>'vin'.$rnd),'Do you want to vote IN?');?></div>
-<div id="vout<?=$rnd?>" class="out"><?=$ajax->link('', $vout, array('update'=>'vout'.$rnd),'Do you want to vote OUT?');?></div>
-</div>
+<?=$html->image('vote_bar.png');?>
+Are you IN or OUT? (you can only vote once)
+  <br/>
+<?=$ajax->link($html->image('voteIN.png'),
+	       array('controller' => 'posts',
+		     'action' => 'vin', $post['Post']['id']),
+	       array('update' => 'vote',
+		     'escape' => false,
+		     'class' => 'ballot'),
+	       'Do you want to vote IN?'
+	       );?>
+<?=$ajax->link($html->image('voteOUT.png'),
+	       array('controller' => 'posts',
+		     'action' => 'vout', $post['Post']['id']),
+	       array('update' => 'vote',
+		     'escape' => false,
+		     'class' => 'ballot'),
+	       'Do you want to vote OUT?'
+	       );?>

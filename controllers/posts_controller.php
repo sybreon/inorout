@@ -83,7 +83,7 @@ class PostsController extends AppController {
     
     // Extract comments
     $this->loadModel('Comment');
-    $this->set('post_comments', 
+    $this->set('comments', 
 	       $this->Comment->find('threaded', 
 				    array('conditions' => array('Comment.post_id' => $id))));	  
     

@@ -20,17 +20,52 @@
 ?>
 <?php echo $javascript->link('prototype'); ?> 
 <div class="grid_8 alpha" id="post">
-    <?=$this->element('postpad',
-		      array('post' => $post));?>
+    <?=$this->element('postpad');?>
 </div><!--post-->
 
 <div class="grid_4 omega" id="stat">
-    <?=$this->element('statpad',
-		      array('post' => $post));?>
+    <?=$this->element('statpad');?>
 </div><!--stat-->
 <div class="clear">&nbsp;</div>
+
+<div class="grid_12 alpha omega" id="vote">
+  <?=$this->element('votepad');?>
+</div>
+<div class="clear">&nbsp;</div>
+
+<div class="grid_12 alpha omega" id="comm">
+    <?=$html->image('comment_bar.png');?>
+<p>&nbsp;</p>
+    <?=$this->element('commpad');?>
+</div>
+<div class="clear">&nbsp;</div>
+
+<div class="grid_12 alpha omega">
+    <p>&nbsp;</p>
+<?php
+for ($i=0;$i<2;$i++) {
+  $pad = ($i == 0) ? 'alpha' : 'omega';
+  $inout = ($i == 0) ? 1 : 0;
+  echo '<div id="fcomm'. $inout .'" class="grid_6 form fcomm '. $pad .'">';
+  echo $form->create('Comment', array('controller' => 'comments', 'action' => 'add'));
+  echo '<fieldset>';
+  //echo '<legend>Add Comment</legend>';
+  //echo $form->input('comment',array('rows'=>'9'));
+  echo '<label>Have your say:&nbsp;</label>';
+  echo $form->textarea('comment',array('rows'=>'4'));
+  //echo $form->radio('inout',array('1' => 'In', '0' => 'Out'), array('separator' => '', 'legend' => false));
+  echo '</fieldset>';
+  echo $form->hidden('id', array('value' => $post['Post']['id']));
+  echo $form->hidden('inout', array('value' => $inout));
+  echo $form->submit('add-comment.png',array('class' => 'fcomm'));
+  echo $form->end();
+  echo '</div>';
+ }
+?>
+</div>
+
 <pre>
-    <?php print_r($post);?>
+<?php print_r($comments);?>
 </pre>
 
 <?php /*

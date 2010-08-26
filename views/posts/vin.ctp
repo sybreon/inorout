@@ -18,4 +18,4 @@
    <http://www.gnu.org/licenses/>.
   */
 ?>
-<div class="inro"><a>&nbsp;</a></div>
+<?=$this->element('votepad');?>
