@@ -18,6 +18,9 @@
  <http://www.gnu.org/licenses/>.
 */
 ?>
+<?=$html->image('vote_bar.png');?>
+Are you IN or OUT? (you can only vote once)
+  <br/>
 <?=$ajax->link($html->image('voteIN.png'),
 	       array('controller' => 'posts',
 		     'action' => 'vin', $post['Post']['id']),

@@ -29,6 +29,12 @@
 </div>
 <div class="hr">
    <div class="i28"><?=$html->image('vote.png',array('class'=>'img'));?><span class="total">total</span><p class="numb"><?=$post['Post']['ins'] + $post['Post']['outs'];?></p></div>
+   <div class="i20">
+    <?=$html->image('stat_IN.png');?><div class="b100"></div>
+   </div>
+   <div class="i20">
+    <?=$html->image('stat_OUT.png');?>
+   </div>
 </div>
 <div class="hr">
    <div class="i28"><?=$html->image('comment.png',array('class'=>'img'));?><span class="total">total</span><p class="numb"><?=$post['Post']['comments'];?></p></div>

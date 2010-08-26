@@ -92,7 +92,7 @@ div#vote a.ballot { display:inline-block;width:140px;height:46px;margin:20px 10p
 div#vote a.ballot { background:url("../img/voting.png") no-repeat right 0; }
 div#vote a.ballot:hover { background:url("../img/voting.png") no-repeat right -46px; }
 div#vote a.balloty { background:url("../img/voting.png") no-repeat right -96px; }
-div#vote a.ballotn { background:url("../img/voting.png") no-repeat right 0; }
+div#vote a.balloto { background:url("../img/voting.png") no-repeat right 0; }
 
 /** userpad **/
 
@@ -111,6 +111,7 @@ div#stat p.numb { font-family:"Cantarell",sans-serif;text-align:right;font-weigh
 div#stat div.hr { border-bottom:2px dotted #ccc; margin-bottom:14px;padding-bottom:14px; }
 div#stat div.i28 { min-height:28px; }
 div#stat div.i20 { min-height:20px;margin-top:8px; }
+div#stat div.b100 { width:100px;height:10px;margin:5px 0;display:inline-block;background:#ccc; }
 
 /** postpad **/
 

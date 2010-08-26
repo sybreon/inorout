@@ -29,9 +29,6 @@
 <div class="clear">&nbsp;</div>
 
 <div class="grid_12 alpha omega" id="vote">
-    <?=$html->image('vote_bar.png');?>
-Are you IN or OUT? (you can only vote once)
-  <br/>
   <?=$this->element('votepad');?>
 </div>
 <div class="clear">&nbsp;</div>
@@ -40,6 +37,31 @@ Are you IN or OUT? (you can only vote once)
     <?=$html->image('comment_bar.png');?>
 <p>&nbsp;</p>
     <?=$this->element('commpad');?>
+</div>
+<div class="clear">&nbsp;</div>
+
+<div class="grid_12 alpha omega">
+    <p>&nbsp;</p>
+<?php
+for ($i=0;$i<2;$i++) {
+  $pad = ($i == 0) ? 'alpha' : 'omega';
+  $inout = ($i == 0) ? 1 : 0;
+  echo '<div id="fcomm'. $inout .'" class="grid_6 form fcomm '. $pad .'">';
+  echo $form->create('Comment', array('controller' => 'comments', 'action' => 'add'));
+  echo '<fieldset>';
+  //echo '<legend>Add Comment</legend>';
+  //echo $form->input('comment',array('rows'=>'9'));
+  echo '<label>Have your say:&nbsp;</label>';
+  echo $form->textarea('comment',array('rows'=>'4'));
+  //echo $form->radio('inout',array('1' => 'In', '0' => 'Out'), array('separator' => '', 'legend' => false));
+  echo '</fieldset>';
+  echo $form->hidden('id', array('value' => $post['Post']['id']));
+  echo $form->hidden('inout', array('value' => $inout));
+  echo $form->submit('add-comment.png',array('class' => 'fcomm'));
+  echo $form->end();
+  echo '</div>';
+ }
+?>
 </div>
 
 <pre>
