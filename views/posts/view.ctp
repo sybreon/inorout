@@ -20,17 +20,20 @@
 ?>
 <?php echo $javascript->link('prototype'); ?> 
 <div class="grid_8 alpha" id="post">
-    <?=$this->element('postpad',
-		      array('post' => $post));?>
+    <?=$this->element('postpad');?>
 </div><!--post-->
 
 <div class="grid_4 omega" id="stat">
-    <?=$this->element('statpad',
-		      array('post' => $post));?>
+    <?=$this->element('statpad');?>
 </div><!--stat-->
 <div class="clear">&nbsp;</div>
+
+<div class="grid_12 alpha omega">
+    <?=$this->element('votepad');?>
+</div>
+
 <pre>
-    <?php print_r($post);?>
+<?php //print_r($post);?>
 </pre>
 
 <?php /*

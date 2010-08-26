@@ -87,12 +87,12 @@ div.score div.view { background:url("../img/icon_view.png");color:#ddd;}
 
 /** votepad **/
 
-div.vote div a { width:60px;height:27px;margin:8px;display:block; }
-div.vote div.in { background:url("../img/voteIN.png") }
-div.vote div.out { background:url("../img/voteOUT.png") }
-div.vote div.view { background:url("../img/view.png") }
-div.vote div.in:hover, div.vote div.inro { background:url("../img/voteIN_RO.png") }
-div.vote div.out:hover, div.vote div.outro { background:url("../img/voteOUT_RO.png") }
+div#vote { color:#666; }
+div#vote a.ballot { display:inline-block;width:140px;height:46px;margin:20px 10px; }
+div#vote a.ballot { background:url("../img/voting.png") no-repeat right 0; }
+div#vote a.ballot:hover { background:url("../img/voting.png") no-repeat right -46px; }
+div#vote a.balloty { background:url("../img/voting.png") no-repeat right -96px; }
+div#vote a.ballotn { background:url("../img/voting.png") no-repeat right 0; }
 
 /** userpad **/
 
