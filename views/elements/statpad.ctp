@@ -30,10 +30,10 @@
 <div class="hr">
    <div class="i28"><?=$html->image('vote.png',array('class'=>'img'));?><span class="total">total</span><p class="numb"><?=$post['Post']['ins'] + $post['Post']['outs'];?></p></div>
    <div class="i20">
-    <?=$html->image('stat_IN.png');?><div class="b100"></div>
+    <?=$html->image('stat_IN.png');?><div class="b100"><div class="bin" style="width:<?=$post['Post']['ins']*100/($post['Post']['ins']+$post['Post']['outs']);?>%;"></div></div>
    </div>
    <div class="i20">
-    <?=$html->image('stat_OUT.png');?>
+    <?=$html->image('stat_OUT.png');?><div class="b100"><div class="bout" style="width:<?=$post['Post']['outs']*100/($post['Post']['ins']+$post['Post']['outs']);?>%;"></div></div>
    </div>
 </div>
 <div class="hr">

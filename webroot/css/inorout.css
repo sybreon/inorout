@@ -109,9 +109,11 @@ div#stat span.total { color:#666;font-size:small;font-style:italic;text-transfor
 div#stat span.total { float:left;position:absolute;margin-left:160px; }
 div#stat p.numb { font-family:"Cantarell",sans-serif;text-align:right;font-weight:bold;font-size:large;margin:0; }
 div#stat div.hr { border-bottom:2px dotted #ccc; margin-bottom:14px;padding-bottom:14px; }
-div#stat div.i28 { min-height:28px; }
-div#stat div.i20 { min-height:20px;margin-top:8px; }
-div#stat div.b100 { width:100px;height:10px;margin:5px 0;display:inline-block;background:#ccc; }
+div#stat div.i28 { min-height:28px;margin-bottom:8px; }
+div#stat div.i20 { min-height:20px;margin-top:4px; }
+div#stat div.b100 { width:100px;height:14px;margin:3px 0;display:inline-block;background:#ccc; }
+div#stat div.bin { height:14px;background:#17d;border-right:1px solid #fff; }
+div#stat div.bout { height:14px;background:#e22;border-right:1px solid #fff; }
 
 /** postpad **/
 
