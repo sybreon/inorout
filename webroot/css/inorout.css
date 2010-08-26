@@ -107,7 +107,7 @@ div#stat img.img { float:left; }
 div#stat p.title, 
 div#stat span.total { color:#666;font-size:small;font-style:italic;text-transform:lowercase;margin-bottom:8px; }
 div#stat span.total { float:left;position:absolute;margin-left:160px; }
-div#stat p.numb { font-family:"Cantarell",sans-serif;text-align:right;font-weight:bold;font-size:large;margin:0; }
+div#stat p.numb { font-family:"Cantarell",sans-serif;text-align:right;font-weight:bolder;font-size:x-large;margin:0; }
 div#stat div.hr { border-bottom:2px dotted #ccc; margin-bottom:14px;padding-bottom:14px; }
 div#stat div.i28 { min-height:28px;margin-bottom:8px; }
 div#stat div.i20 { min-height:20px;margin-top:4px; }
