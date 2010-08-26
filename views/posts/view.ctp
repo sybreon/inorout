@@ -28,12 +28,22 @@
 </div><!--stat-->
 <div class="clear">&nbsp;</div>
 
-<div class="grid_12 alpha omega">
-    <?=$this->element('votepad');?>
+<div class="grid_12 alpha omega" id="vote">
+    <?=$html->image('vote_bar.png');?>
+Are you IN or OUT? (you can only vote once)
+  <br/>
+  <?=$this->element('votepad');?>
+</div>
+<div class="clear">&nbsp;</div>
+
+<div class="grid_12 alpha omega" id="comm">
+    <?=$html->image('comment_bar.png');?>
+<p>&nbsp;</p>
+    <?=$this->element('commpad');?>
 </div>
 
 <pre>
-<?php //print_r($post);?>
+<?php print_r($comments);?>
 </pre>
 
 <?php /*
