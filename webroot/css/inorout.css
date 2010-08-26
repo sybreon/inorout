@@ -111,9 +111,9 @@ div#stat p.numb { font-family:"Cantarell",sans-serif;text-align:right;font-weigh
 div#stat div.hr { border-bottom:2px dotted #ccc; margin-bottom:14px;padding-bottom:14px; }
 div#stat div.i28 { min-height:28px;margin-bottom:8px; }
 div#stat div.i20 { min-height:20px;margin-top:4px; }
-div#stat div.b100 { width:100px;height:14px;margin:3px 0;display:inline-block;background:#ccc; }
-div#stat div.bin { height:14px;background:#17d;border-right:1px solid #fff; }
-div#stat div.bout { height:14px;background:#e22;border-right:1px solid #fff; }
+div#stat div.b100 { width:100px;height:14px;margin:3px 0;display:inline-block;background:#ddd; }
+div#stat div.bin { height:14px;background:#17d;border-right:1px solid #eee; }
+div#stat div.bout { height:14px;background:#e22;border-right:1px solid #eee; }
 
 /** postpad **/
 
