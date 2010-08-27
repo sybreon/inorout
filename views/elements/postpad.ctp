@@ -52,22 +52,23 @@
 		     array('update' => 'vote',
 			   'escape' => false,
 			   'title' => 'delete',
-			   'class' => 'del')
+			   'class' => 'del'),
+		     'Do you want to delete post #'.$post['Post']['id'].'?'
 		     );?></li>
 		     <li class="sep">&nbsp;</li>
   <li><?=$html->link('',
-		     array('controller' => 'posts',
-			   'action' => 'delete', $post['Post']['id']),
+		     'http://twitter.com/share?url='.urlencode(Router::url('',true)).'&text='.urlencode($post['Post']['title']),
 		     array('update' => 'vote',
 			   'escape' => false,
+			   'target' => '_blank',
 			   'title' => 'share on twitter',
 			   'class' => 'twit')
 		     );?></li>
   <li><?=$html->link('',
-		     array('controller' => 'posts',
-			   'action' => 'delete', $post['Post']['id']),
+		     'http://www.facebook.com/sharer.php?u='.urlencode(Router::url('',true)).'&t='.urlencode($post['Post']['title']),
 		     array('update' => 'vote',
 			   'escape' => false,
+			   'target' => '_blank',
 			   'title' => 'share on facebook',
 			   'class' => 'fb')
 		     );?></li>
