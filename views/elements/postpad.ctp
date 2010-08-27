@@ -57,8 +57,7 @@
 		     );?></li>
 		     <li class="sep">&nbsp;</li>
   <li><?=$html->link('',
-		     array('controller' => 'posts',
-			   'action' => 'delete', $post['Post']['id']),
+		     'http://twitter.com/share?url='.urlencode(Router::url('',true)).'&text='.urlencode($post['Post']['title']),
 		     array('update' => 'vote',
 			   'escape' => false,
 			   'target' => '_blank',
