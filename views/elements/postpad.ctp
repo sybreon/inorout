@@ -29,12 +29,46 @@
 </div>
 <?=$html->tag('p', Sanitize::html($post['Post']['teaser'],true));?>
 
-<ul class="grid_6 alpha" id="acts">
-  <li><?=$html->image('flag.png')?></li>
-  <li><?=$html->image('edit.png')?></li>
-  <li><?=$html->image('delete.png')?></li>
-</ul>
-<ul class="grid_2 omega" id="share">
-  <li><?=$html->image('twitter.png')?></li>
-  <li><?=$html->image('facebook.png')?></li>
+<ul class="grid_8 alpha omega" id="pact">
+  <li><?=$ajax->link('',
+		     array('controller' => 'posts',
+			   'action' => 'flag', $post['Post']['id']),
+		     array('update' => 'flag',
+			   'escape' => false,
+			   'title' => 'flag',
+			   'class' => 'flag')
+		     );?></li>
+  <li><?=$html->link('',
+		     array('controller' => 'posts',
+			   'action' => 'edit', $post['Post']['id']),
+		     array(//'update' => 'vote',
+			   'escape' => false,
+			   'title' => 'edit',
+			   'class' => 'edit')
+		     );?></li>
+  <li><?=$ajax->link('',
+		     array('controller' => 'posts',
+			   'action' => 'delete', $post['Post']['id']),
+		     array('update' => 'vote',
+			   'escape' => false,
+			   'title' => 'delete',
+			   'class' => 'del')
+		     );?></li>
+		     <li class="sep">&nbsp;</li>
+  <li><?=$html->link('',
+		     array('controller' => 'posts',
+			   'action' => 'delete', $post['Post']['id']),
+		     array('update' => 'vote',
+			   'escape' => false,
+			   'title' => 'share on twitter',
+			   'class' => 'twit')
+		     );?></li>
+  <li><?=$html->link('',
+		     array('controller' => 'posts',
+			   'action' => 'delete', $post['Post']['id']),
+		     array('update' => 'vote',
+			   'escape' => false,
+			   'title' => 'share on facebook',
+			   'class' => 'fb')
+		     );?></li>
 </ul>
