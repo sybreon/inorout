@@ -126,16 +126,16 @@ div#post div.url { padding:14px;border:2px solid #ccc;margin-bottom:14px; }
 
 ul#pact {white-space:nowrap;}
 ul#pact li {margin:0;padding:0;display:inline;list-style-type:none; }
-ul#pact li a { width:32px;height:32px;display:inline-block; }
+ul#pact li a { width:32px;height:32px;display:inline-block;margin:0 2px;float:left; }
 ul#pact a.edit { background:url("../img/sprite.png") no-repeat -160px 0; }
 ul#pact a.edit:hover { background:url("../img/sprite.png") no-repeat -160px -32px; }
 ul#pact a.flag { background:url("../img/sprite.png") no-repeat -192px 0; }
 ul#pact a.flag:hover { background:url("../img/sprite.png") no-repeat -192px -32px; }
 ul#pact a.del { background:url("../img/sprite.png") no-repeat -224px 0; }
 ul#pact a.del:hover { background:url("../img/sprite.png") no-repeat -224px -32px; }
-ul#pact a.twit { float:right;margin:0 2px;background:url("../img/sprite.png") no-repeat -96px 0; }
+ul#pact a.twit { float:right;background:url("../img/sprite.png") no-repeat -96px 0; }
 ul#pact a.twit:hover { background:url("../img/sprite.png") no-repeat -96px -32px; }
-ul#pact a.fb { float:right;margin:0 2px;background:url("../img/sprite.png") no-repeat -128px 0; }
+ul#pact a.fb { float:right;background:url("../img/sprite.png") no-repeat -128px 0; }
 ul#pact a.fb:hover { background:url("../img/sprite.png") no-repeat -128px -32px; }
 
 /** top header **/

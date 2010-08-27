@@ -55,7 +55,7 @@
 			   'class' => 'del'),
 		     'Do you want to delete post #'.$post['Post']['id'].'?'
 		     );?></li>
-		     <li class="sep">&nbsp;</li>
+
   <li><?=$html->link('',
 		     'http://twitter.com/share?url='.urlencode(Router::url('',true)).'&text='.urlencode($post['Post']['title']),
 		     array('update' => 'vote',
