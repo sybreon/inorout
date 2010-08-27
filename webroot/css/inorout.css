@@ -17,7 +17,7 @@
  <http://www.gnu.org/licenses/>.
 */
 
-body { font-family:"Cantarell",sans-serif;background:#fff; }
+body { font-family:"Nobile",sans-serif;background:#fff; }
 a {text-decoration:none;}
 
 div#flashMessage {color:#fff;background:#e22;padding:12px;}
@@ -80,7 +80,7 @@ p.teaser { color:#666;margin-top:8px;padding-top:8px;border-top:1px dotted #ccc;
 
 div.score { float:right;max-width:120px;padding-left:8px;background:#fff; }
 div.score div { width:100px;height:35px;margin:8px 0;}
-div.score div p { text-align:right;padding:6px 8px;vertical-align:middle;font-weight:bold;font-size:16px;font-family:"Cardo",serif; }
+div.score div p { text-align:right;padding:6px 8px;vertical-align:middle;font-weight:bold;font-size:16px;font-family:"Vollkorn",serif; }
 div.score div.in { background:url("../img/icon_IN.png");color:#8cf;margin-top:1px;}
 div.score div.out { background:url("../img/icon_OUT.png");color:#fbc;}
 div.score div.view { background:url("../img/icon_view.png");color:#ddd;}
@@ -101,13 +101,14 @@ div.user img { float:left;margin-right:8px; }
 div.user a { color:#ccc; }
 
 /** statpad **/
+
 div#stat { color:#666; }
 div#stat div.user { float:none; }
 div#stat img.img { float:left; }
 div#stat p.title, 
 div#stat span.total { color:#666;font-size:small;font-style:italic;text-transform:lowercase;margin-bottom:8px; }
 div#stat span.total { float:left;position:absolute;margin-left:160px; }
-div#stat p.numb { font-family:"Cantarell",sans-serif;text-align:right;font-weight:bolder;font-size:x-large;margin:0; }
+div#stat p.numb { font-family:"Vollkorn",sans-serif;text-align:right;font-weight:bolder;font-size:x-large;margin:0; }
 div#stat div.hr { border-bottom:2px dotted #ccc; margin-bottom:14px;padding-bottom:14px; }
 div#stat div.i28 { min-height:28px;margin-bottom:8px; }
 div#stat div.i20 { min-height:20px;margin-top:4px; }
@@ -136,6 +137,14 @@ ul#pact a.twit { float:right;margin:0 2px;background:url("../img/sprite.png") no
 ul#pact a.twit:hover { background:url("../img/sprite.png") no-repeat -96px -32px; }
 ul#pact a.fb { float:right;margin:0 2px;background:url("../img/sprite.png") no-repeat -128px 0; }
 ul#pact a.fb:hover { background:url("../img/sprite.png") no-repeat -128px -32px; }
+
+/** top header **/
+
+div#count a { width:100px;height:100px;display:inline-block;float:right; }
+div#count a.star { background:url("../img/groupreg.png") 0 0; }
+div#count a.star:hover { background:url("../img/groupreg.png") 0 -100px; }
+p#count { text-align:right;color:#e22;font-size:x-small; }
+p#count b { font-size:xx-large;font-weight:bold;font-family:"Vollkorn",serif; }
 
 /** COMMENT LIST **/
 

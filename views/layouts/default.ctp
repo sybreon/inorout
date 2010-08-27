@@ -28,31 +28,38 @@
 <title><?php echo $title_for_layout; ?></title>
 <?php
 echo $html->meta('icon');
-echo $html->css('http://fonts.googleapis.com/css?family=Cantarell:regular,bold|Cardo');
+echo $html->css('http://fonts.googleapis.com/css?family=Vollkorn|Cardo|Nobile:regular,bold,italic');
 echo $html->css(array('reset','text','960','inorout'));
 echo $scripts_for_layout;
 ?>
 </head>
 <body id="<?php echo Router::url(''); ?>">
   <?php $session->flash(); ?>
-  <div style="background:#eee;">
+<div style="background:#eee;">
   <div class="container_12">
   <div class="grid_9"><?=$this->element('dashboard');?></div>
   <div class="grid_3" id="sabm">by <?=$html->link('Saya Anak Bangsa Malaysia','http://www.sayaanakbangsamalaysia.net')?>&nbsp;&raquo;</div>
   <div class="clear">&nbsp;</div>
   </div>
   </div>
-  <?php if (Router::url('') == Router::url('/')): ?>
-  <div class="container_12" id="container">
-  <div class="grid_3">
-  <?=$html->image('LOGO.png');?>
+  <?php if (Router::url('') === Router::url('/')): ?>
+			       <div class="container_12" id="container">
+				  <div class="grid_3">
+				  <?=$html->image('LOGO.png');?>
   </div>
-  <div class="grid_2 prefix_3">
-  <?=$html->image('button_group-reg.png',array('style'=>'float:right;'));?>
+  <div class="grid_2 prefix_3" id="count">
+  <?=$html->link('&nbsp;',
+		 '#',
+		 array('class' => 'star',
+		       'escape' => false,
+		       'title' => 'Please contact us to organise group registrations!')
+		 ); ?>
   </div>
-  <div class="grid_4" style="padding-top:10px;">
-  <?=$html->image('countdown.png');?>
-  </div>								       
+  <div class="grid_1" style="padding-top:10px;"><?=$html->image('countdown.png');?></div>								       
+  <div class="grid_3" style="padding-top:10px;">
+																<p id="count"><b>2,147,483</b><br/>unregistered voters &mdash; provided by <a href="http://www.spr.gov.my">SPR</a>
+  </p>
+  </div>
   <div class="clear">&nbsp;</div>
   </div>
   <?php endif; ?>
