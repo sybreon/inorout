@@ -27,17 +27,22 @@
 				 64). ' &raquo;', 
 		 $post['Post']['url'],array('escape'=>false))?>
 </div>
-<?=$html->tag('p', Sanitize::html($post['Post']['teaser'],true));?>
+    <?php $del = ($post['Post']['flags'] >= 0) ? 'reg' : 'del'; ?>
+<?=$html->tag('p', 
+	      Sanitize::html($post['Post']['teaser'], true),
+	      array('class' => $del)
+	      );?>
 
 <ul class="grid_8 alpha omega" id="pact">
   <li><?=$ajax->link('',
 		     array('controller' => 'posts',
 			   'action' => 'flag', $post['Post']['id']),
-		     array('update' => 'flag',
+		     array('update' => 'post',
 			   'escape' => false,
 			   'title' => 'flag',
 			   'class' => 'flag')
-		     );?></li>
+		     );?></li>	    
+		     <?php if($post['Post']['user_id'] == $session->read('User.id')): ?>
   <li><?=$html->link('',
 		     array('controller' => 'posts',
 			   'action' => 'edit', $post['Post']['id']),
@@ -46,15 +51,18 @@
 			   'title' => 'edit',
 			   'class' => 'edit')
 		     );?></li>
+		     <?php if($post['Post']['flags'] >= 0): ?>
   <li><?=$ajax->link('',
 		     array('controller' => 'posts',
 			   'action' => 'delete', $post['Post']['id']),
-		     array('update' => 'vote',
+		     array('update' => 'post',
 			   'escape' => false,
 			   'title' => 'delete',
 			   'class' => 'del'),
 		     'Do you want to delete post #'.$post['Post']['id'].'?'
-		     );?></li>
+		     );?></li>			      
+			      <?php endif;?>
+			      <?php endif;?>
 
   <li><?=$html->link('',
 		     'http://twitter.com/share?url='.urlencode(Router::url('',true)).'&text='.urlencode($post['Post']['title']),
