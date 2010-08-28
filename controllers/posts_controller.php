@@ -131,6 +131,7 @@ class PostsController extends AppController {
 	  $this->redirect(array('action' => 'view', $id));
 	}
       } else {
+	$this->Session->setFlash('You do not have the rights to edit post #'.$id);
 	$this->redirect($this->referer());
       }
     }
@@ -195,7 +196,9 @@ class PostsController extends AppController {
       Configure::write('debug', 0); // dont want debug in ajax returned html
       // TODO: Check for ACL
       $this->Post->updateAll(array('Post.flags' => '-1'), array('Post.id' => $id));
-      $this->set('result', 'Deleted');
+      $post = $this->Post->find(array('Post.id' => $id));
+      $post['bitly'] = $this->bitly_expand($post['Post']['url']);
+      $this->set('post',$post);
       $this->layout = 'ajax';
     }
   }
@@ -210,7 +213,9 @@ class PostsController extends AppController {
       Configure::write('debug', 0); // dont want debug in ajax returned html
       // TODO: Check for ACL
       $this->Post->updateAll(array('Post.flags' => 'Post.flags+1'), array('Post.id' => $id));
-      $this->set('result', 'Flagged');
+      $post = $this->Post->find(array('Post.id' => $id));
+      $post['bitly'] = $this->bitly_expand($post['Post']['url']);
+      $this->set('post',$post);
       $this->layout = 'ajax';
     }
   }
@@ -225,7 +230,7 @@ class PostsController extends AppController {
       Configure::write('debug', 0); // dont want debug in ajax returned html
       // TODO: Check for ACL
       $this->Post->updateAll(array('Post.ins' => 'Post.ins+1'), array('Post.id' => $id));
-      //$this->set('result', 'Flagged');
+      //$this->set('post', );
       $this->layout = 'ajax';
     }	  
   }

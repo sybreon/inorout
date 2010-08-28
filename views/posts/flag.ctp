@@ -18,4 +18,4 @@
    <http://www.gnu.org/licenses/>.
   */
 ?>
-<?php echo '<a href="#" class="disable">'. $result . '</a>';?>
+<?=$this->element('postpad');?>

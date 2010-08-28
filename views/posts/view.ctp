@@ -65,7 +65,7 @@ for ($i=0;$i<2;$i++) {
 </div>
 
 <pre>
-<?php print_r($comments);?>
+<?php print_r($post);?>
 </pre>
 
 <?php /*

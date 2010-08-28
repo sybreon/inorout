@@ -21,6 +21,7 @@ body { font-family:"Nobile",sans-serif;background:#fff; }
 a {text-decoration:none;}
 
 div#flashMessage {color:#fff;background:#e22;padding:12px;}
+.del { text-decoration:line-through;color:#eee !important; }
 
 /** NAVI BAR **/
 
