@@ -38,14 +38,13 @@ echo $scripts_for_layout;
 <div style="background:#eee;">
   <div class="container_12">
   <div class="grid_9"><?=$this->element('dashboard');?></div>
-  <div class="grid_3" id="sabm">by <?=$html->link('Saya Anak Bangsa Malaysia','http://www.sayaanakbangsamalaysia.net')?>&nbsp;&raquo;</div>
+  <div class="grid_3" id="sabm">by <?=$html->link('Saya Anak Bangsa Malaysia','http://www.sayaanakbangsamalaysia.net');?>&nbsp;&raquo;</div>
   <div class="clear">&nbsp;</div>
   </div>
   </div>
-  <?php if (Router::url('') === Router::url('/')): ?>
-			       <div class="container_12" id="container">
-				  <div class="grid_3">
-				  <?=$html->image('LOGO.png');?>
+  <?php //if (Router::url('') === Router::url('/')): ?>
+  <div class="container_12" id="container"><div class="grid_3">
+     <?=$html->image('LOGO.png');?>
   </div>
   <div class="grid_2 prefix_3" id="count">
   <?=$html->link('&nbsp;',
@@ -55,29 +54,32 @@ echo $scripts_for_layout;
 		       'title' => 'Please contact us to organise group registrations!')
 		 ); ?>
   </div>
-  <div class="grid_1" style="padding-top:10px;"><?=$html->image('countdown.png');?></div>								       
+  <div class="grid_1" style="padding-top:10px;"><?=$html->link($html->image('countdown.png'),
+							       array('controller' => 'pages',
+								     'action' => 'group'),
+							       array('escape' => false));?></div>								       
   <div class="grid_3" style="padding-top:10px;">
-																<p id="count"><b>2,147,483</b><br/>unregistered voters &mdash; provided by <a href="http://www.spr.gov.my">SPR</a>
+    <p id="count"><b>2,147,483</b><br/>unregistered voters &mdash; provided by <a href="http://www.spr.gov.my">SPR</a>
   </p>
   </div>
   <div class="clear">&nbsp;</div>
   </div>
-  <?php endif; ?>
+  <?php //endif; ?>
   <div class="container_12" id="container">
   <ul id="pages" class="grid_12">
-  <li><?=(Router::url('') != Router::url(array('controller'=>'posts','action'=>'index'))) ? 
+  <li><?=(!strstr(Router::url(''),Router::url(array('controller'=>'posts','action'=>'view')))) ? 
   $html->link('',array('controller' => 'posts', 'action' => 'index'), array('class' => 'btnspeak')): 
   $html->image('button_speak_clicked.png');?></li>
-  <li><?=(Router::url('') != Router::url(array('controller'=>'pages','action'=>'about'))) ? 
+  <li><?=(!strstr(Router::url(''),Router::url(array('controller'=>'pages','action'=>'about')))) ? 
   $html->link('',array('controller' => 'pages', 'action' => 'about'), array('class' => 'btninfo')):
   $html->image('button_about_clicked.png');?></li>
-  <li><?=(Router::url('') != Router::url(array('controller'=>'pages','action'=>'news'))) ? 
+  <li><?=(!strstr(Router::url(''),Router::url(array('controller'=>'pages','action'=>'news')))) ? 
   $html->link('',array('controller' => 'pages', 'action' => 'news'), array('class' => 'btnnews')):
   $html->image('button_news_clicked.png');?></li>
-  <li><?=(Router::url('') != Router::url(array('controller'=>'pages','action'=>'vote'))) ? 
+  <li><?=(!strstr(Router::url(''),Router::url(array('controller'=>'pages','action'=>'vote')))) ? 
   $html->link('',array('controller' => 'pages', 'action' => 'vote'), array('class' => 'btnvote')):
   $html->image('button_vote_clicked.png');?></li>
-  <li><?=(Router::url('') != Router::url(array('controller'=>'pages','action'=>'friends'))) ? 
+  <li><?=(!strstr(Router::url(''),Router::url(array('controller'=>'pages','action'=>'friends')))) ? 
   $html->link('',array('controller' => 'pages', 'action' => 'friends'), array('class' => 'btnfren')):
   $html->image('button_friends_clicked.png');?></li>
   </ul>
