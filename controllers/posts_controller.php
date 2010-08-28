@@ -84,6 +84,12 @@ class PostsController extends AppController {
       $this->set('vote', 
 		 $this->Vote->find(array('Vote.post_id' => $id,
 					 'Vote.user_id' => $this->Session->read('User.id'))));
+
+      $this->loadModel('Flag');
+      $this->set('flag', 
+		 $this->Flag->find(array('Flag.post_id' => $id,
+					 'Flag.user_id' => $this->Session->read('User.id'))));
+     
     }
 
     $this->set('post',$post);

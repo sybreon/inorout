@@ -41,14 +41,18 @@
 
 <ul class="grid_8 alpha omega" id="pact">
     <?php if ($session->check('User.id')): ?>
+   <?php if (isset($flag['Flag']['flag'])): ?>
+       <li><?=$html->link('','#',array('class' => 'flagged')); ?></li>
+       <?php else: ?>
    <li><?=$ajax->link('',//$post['Post']['flags'],
-		     array('controller' => 'posts',
+		     array('controller' => 'votes',
 			   'action' => 'flag', $post['Post']['id']),
 		     array('update' => 'post',
 			   'escape' => false,
 			   'title' => 'flag',
 			   'class' => 'flag')
 		     );?></li>	    
+		     <?php endif; ?>
 		     <?php if($post['Post']['user_id'] == $session->read('User.id')): ?>
    <li><?=$html->link('',
 		     array('controller' => 'posts',

@@ -20,7 +20,7 @@
 body { font-family:"Cantarell",sans-serif;background:#fff; }
 a {text-decoration:none;}
 
-div#flashMessage {color:#fff;background:#e22;padding:12px;}
+div#flashMessage {color:#fff;background:#333;padding:8px;}
 .del { text-decoration:line-through;color:#eee !important; }
 .ita { font-style:italic; }
 
@@ -135,7 +135,8 @@ ul#pact li a { width:32px;height:32px;display:inline-block;margin:0 2px;float:le
 ul#pact a.edit { background:url("../img/sprite.png") no-repeat -160px 0; }
 ul#pact a.edit:hover { background:url("../img/sprite.png") no-repeat -160px -32px; }
 ul#pact a.flag { background:url("../img/sprite.png") no-repeat -192px 0; }
-ul#pact a.flag:hover { background:url("../img/sprite.png") no-repeat -192px -32px; }
+ul#pact a.flag:hover,
+ul#pact a.flagged { background:url("../img/sprite.png") no-repeat -192px -32px; }
 ul#pact a.del { background:url("../img/sprite.png") no-repeat -224px 0; }
 ul#pact a.del:hover { background:url("../img/sprite.png") no-repeat -224px -32px; }
 ul#pact a.twit { float:right;background:url("../img/sprite.png") no-repeat -96px 0; }
