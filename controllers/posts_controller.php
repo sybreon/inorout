@@ -46,14 +46,14 @@ class PostsController extends AppController {
   function index() {
     $this->set('posts_in', $this->Post->find('all', 
 					     array('limit' => 10,
-						   'conditions' => array('Post.ins >= Post.outs', 'Post.flags >= 0'),
+						   'conditions' => array('Post.vins >= Post.vouts', 'Post.flags >= 0'),
 						   'order' => 'Post.id DESC',
 						   )
 					     )
 	       );	  
     $this->set('posts_out', $this->Post->find('all',
 					      array('limit' => 10,
-						    'conditions' => array('Post.outs >= Post.ins', 'Post.flags >= 0'),
+						    'conditions' => array('Post.vouts >= Post.vins', 'Post.flags >= 0'),
 						    'order' => 'Post.id DESC',
 						    )
 					      )
@@ -220,31 +220,5 @@ class PostsController extends AppController {
     }
   }
   
-  /**
-   Vote IN/OUT
-  */
-
-  function vin($id = null) {
-    if ($this->RequestHandler->isAjax()) {
-      assert('is_numeric($id)'); // check input
-      Configure::write('debug', 0); // dont want debug in ajax returned html
-      // TODO: Check for ACL
-      $this->Post->updateAll(array('Post.ins' => 'Post.ins+1'), array('Post.id' => $id));
-      //$this->set('post', );
-      $this->layout = 'ajax';
-    }	  
-  }
-  
-  function vout($id = null) {
-    if ($this->RequestHandler->isAjax()) {
-      assert('is_numeric($id)'); // check input
-      Configure::write('debug', 0); // dont want debug in ajax returned html
-      // TODO: Check for ACL
-      $this->Post->updateAll(array('Post.outs' => 'Post.outs+1'), array('Post.id' => $id));
-      //$this->set('result', 'Flagged');
-      $this->layout = 'ajax';
-    }	  
-  }
-
 }
 ?>

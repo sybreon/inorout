@@ -18,5 +18,15 @@
  <http://www.gnu.org/licenses/>.
 */
 ?>
-<div class="score"><div class="in"><p><?=($ins>0)?$ins:'';?></p></div><div class="out"><p><?=($outs>0)?$outs:'';?></p></div><div class="view"><p><?=($views>0)?$views:'';?></p></div></div>
+<div class="score">
+<div class="in">
+    <p><?=($post['Post']['vins']>0)?$post['Post']['vins']:'0';?></p>
+</div>
+<div class="out">
+    <p><?=($post['Post']['vouts']>0)?$post['Post']['vouts']:'0';?></p>
+</div>
+<div class="view">
+    <p><?=($post['Post']['views']>0)?$post['Post']['views']:'0';?></p>
+</div>
+</div>
     
