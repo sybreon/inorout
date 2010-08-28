@@ -149,7 +149,7 @@ div#count a { width:100px;height:100px;display:inline-block;float:right; }
 div#count a.star { background:url("../img/groupreg.png") 0 0; }
 div#count a.star:hover { background:url("../img/groupreg.png") 0 -100px; }
 p#count { text-align:right;color:#e22;font-size:x-small; }
-p#count b { font-size:xx-large;font-weight:bold;font-family:"Vollkorn",serif; }
+p#count b { font-size:450%;font-weight:bold;font-family:"Vollkorn",serif; }
 
 /** COMMENT LIST **/
 

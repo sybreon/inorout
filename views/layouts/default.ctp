@@ -48,18 +48,17 @@ echo $scripts_for_layout;
   </div>
   <div class="grid_2 prefix_3" id="count">
   <?=$html->link('&nbsp;',
-		 '#',
+		 array('controller' => 'pages',
+		       'action' => 'group'),
 		 array('class' => 'star',
 		       'escape' => false,
 		       'title' => 'Please contact us to organise group registrations!')
 		 ); ?>
   </div>
-  <div class="grid_1" style="padding-top:10px;"><?=$html->link($html->image('countdown.png'),
-							       array('controller' => 'pages',
-								     'action' => 'group'),
-							       array('escape' => false));?></div>								       
-  <div class="grid_3" style="padding-top:10px;">
-    <p id="count"><b>2,147,483</b><br/>unregistered voters &mdash; provided by <a href="http://www.spr.gov.my">SPR</a>
+  <div class="grid_4" style="">
+   <?=$html->image('countdown.png',array('style' => 'float:left;padding-top:10px'));?>
+    <p id="count">
+<b>2,147,483</b><br/>unregistered voters &mdash; provided by <a href="http://www.spr.gov.my" target="_blank">SPR</a>
   </p>
   </div>
   <div class="clear">&nbsp;</div>
