@@ -41,7 +41,7 @@
 
 <ul class="grid_8 alpha omega" id="pact">
     <?php if ($session->check('User.id')): ?>
-  <li><?=$ajax->link('',
+   <li><?=$ajax->link('',//$post['Post']['flags'],
 		     array('controller' => 'posts',
 			   'action' => 'flag', $post['Post']['id']),
 		     array('update' => 'post',
@@ -50,7 +50,7 @@
 			   'class' => 'flag')
 		     );?></li>	    
 		     <?php if($post['Post']['user_id'] == $session->read('User.id')): ?>
-  <li><?=$html->link('',
+   <li><?=$html->link('',
 		     array('controller' => 'posts',
 			   'action' => 'edit', $post['Post']['id']),
 		     array(//'update' => 'vote',
