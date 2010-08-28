@@ -37,8 +37,8 @@ class CommentsController extends AppController {
       $this->redirect(array('controller' => 'users', 'action' => 'login'));
     } elseif (!empty($this->data)) {
       assert('is_string($this->data[\'Comment\'][\'comment\'])');
-      assert("is_numeric($this->data['Comment']['inout'])");
-      assert("is_numeric($this->data['Comment']['id'])");
+      assert('is_numeric($this->data[\'Comment\'][\'inout\'])');
+      assert('is_numeric($this->data[\'Comment\'][\'id\'])');
 
       // add Comment
       //$uid = $this->Session->read('User.id');
