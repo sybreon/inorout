@@ -81,7 +81,9 @@ class PostsController extends AppController {
     if ($this->Session->check('User.id')) {
       // Extract votes
       $this->loadModel('Vote');
-      $post['vote'] = $this->Vote->find(array('Vote.post_id' => $id, 'Vote.user_id' => $this->Session->read('User.id')));
+      $this->set('vote', 
+		 $this->Vote->find(array('Vote.post_id' => $id,
+					 'Vote.user_id' => $this->Session->read('User.id'))));
     }
 
     $this->set('post',$post);

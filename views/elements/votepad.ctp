@@ -22,16 +22,28 @@
 <?=$html->image('vote_bar.png');?>
 Are you IN or OUT? (you can only vote once)
   <br/>
-<?=$ajax->link($html->image('voteIN.png'),
-	       ($log) ?
-	       array('controller' => 'votes',
-		     'action' => 'vin', $post['Post']['id']) : '#',	      
-	       array('update' => ($log) ? 'vote' : '#',
-		     'escape' => false,
-		     'class' => 'ballot'),
-	       ($log) ?
-	       'Do you want to vote IN?' : 'Please login to vote!'
-	       );?>
+  <?php if (isset($vote['Vote']['vote'])): ?>
+  <?=$html->link($html->image('voteIN.png'),
+		 '#',	      
+		 array('class' => ($vote['Vote']['vote'] == 1) ? 'balloted' : 'ballot',
+		       'escape' => false),
+		 'You can only vote once!');?>
+<?=$html->link($html->image('voteOUT.png'),
+	       '#',	      
+	       array('class' => ($vote['Vote']['vote'] == 0) ? 'balloted' : 'ballot',
+		     'escape' => false),
+	       'You can only vote once!');?>
+  <?php else: ?>
+	  <?=$ajax->link($html->image('voteIN.png'),
+			 ($log) ?
+			 array('controller' => 'votes',
+			       'action' => 'vin', $post['Post']['id']) : '#',	      
+			 array('update' => ($log) ? 'vote' : '#',
+			       'escape' => false,
+			       'class' => 'ballot'),
+			 ($log) ?
+			 'Do you want to vote IN?' : 'Please login to vote!'
+			 );?>
 <?=$ajax->link($html->image('voteOUT.png'),
 	       ($log) ?
 	       array('controller' => 'votes',
@@ -41,4 +53,6 @@ Are you IN or OUT? (you can only vote once)
 		     'class' => 'ballot'),
 	       ($log) ? 
 	       'Do you want to vote OUT?' : 'Please login to vote!'
-	       );?>
+	       );?>	  
+<?php endif; ?>
+
