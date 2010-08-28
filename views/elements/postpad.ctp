@@ -18,16 +18,22 @@
  <http://www.gnu.org/licenses/>.
 */
 ?>
+<?php $del = ($post['Post']['flags'] >= 0) ? 'reg' : 'del'; ?>
 <?=$html->link('&laquo; return to main page',
 		      array('controller' => 'posts',
 			    'action' => 'index'),array('escape'=>false));?>
-<h4><?=$post['Post']['title'];?></h4>
+<?=$html->tag('h4',
+	      $post['Post']['title'],
+	      array('class' => $del)
+	      );?>
 <div class="url">
-  <?=$html->link($text->truncate($post['bitly'],
-				 64). ' &raquo;', 
-		 $post['Post']['url'],array('escape'=>false))?>
+    <?=$html->link($text->truncate($post['bitly'],
+				   64). ' &raquo;', 
+		   $post['Post']['url'],
+		   array('escape'=>false,
+			 'class' => $del)
+		   );?>
 </div>
-    <?php $del = ($post['Post']['flags'] >= 0) ? 'reg' : 'del'; ?>
 <?=$html->tag('p', 
 	      Sanitize::html($post['Post']['teaser'], true),
 	      array('class' => $del)
