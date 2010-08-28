@@ -90,8 +90,10 @@ div.score div.view { background:url("../img/icon_view.png");color:#ddd;}
 
 div#vote { color:#666; }
 div#vote a.ballot,
+div#vote a.ballotx,
 div#vote a.balloted { display:inline-block;width:140px;height:46px;margin:20px 10px; }
-div#vote a.ballot { background:url("../img/voting.png") no-repeat right 0; }
+div#vote a.ballot,
+div#vote a.ballotx { background:url("../img/voting.png") no-repeat right 0; }
 div#vote a.ballot:hover { background:url("../img/voting.png") no-repeat right -46px; }
 div#vote a.balloted { background:url("../img/voting.png") no-repeat right -92px; }
 

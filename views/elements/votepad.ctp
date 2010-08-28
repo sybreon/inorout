@@ -24,15 +24,15 @@ Are you IN or OUT? (you can only vote once)
   <br/>
   <?php if (isset($vote['Vote']['vote'])): ?>
   <?=$html->link($html->image('voteIN.png'),
-		 '#',	      
-		 array('class' => ($vote['Vote']['vote'] == 1) ? 'balloted' : 'ballot',
-		       'escape' => false),
-		 'You can only vote once!');?>
+		 '#voted',	      
+		 array('class' => ($vote['Vote']['vote'] == 1) ? 'balloted' : 'ballotx',
+		       'escape' => false)
+		 );?>
 <?=$html->link($html->image('voteOUT.png'),
-	       '#',	      
-	       array('class' => ($vote['Vote']['vote'] == 0) ? 'balloted' : 'ballot',
-		     'escape' => false),
-	       'You can only vote once!');?>
+	       '#voted',	      
+	       array('class' => ($vote['Vote']['vote'] == 0) ? 'balloted' : 'ballotx',
+		     'escape' => false)
+	       );?>
   <?php else: ?>
 	  <?=$ajax->link($html->image('voteIN.png'),
 			 ($log) ?
