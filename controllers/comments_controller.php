@@ -37,25 +37,33 @@ class CommentsController extends AppController {
       $this->redirect(array('controller' => 'users', 'action' => 'login'));
     } elseif (!empty($this->data)) {
       assert('is_string($this->data[\'Comment\'][\'comment\'])');
+      assert("is_numeric($this->data['Comment']['inout'])");
+      assert("is_numeric($this->data['Comment']['id'])");
+
       // add Comment
       //$uid = $this->Session->read('User.id');
       $this->data['Comment']['user_id'] = $this->Session->read('User.id');
       $this->data['Comment']['post_id'] = $this->data['Comment']['id'];
       unset($this->data['Comment']['id']);
+
       $this->set('comm',$this->data);
       $this->Comment->save($this->data);
 
       // increment Post.comment
       $this->loadModel('Post');
-      $this->Post->updateAll(array('Post.comments' => 'Post.comments+1'), 
-      			     array('Post.id' => $this->data['Comment']['post_id']));
+      if ($this->data['Comment']['inout'] == 1) {
+	$this->Post->updateAll(array('Post.cins' => 'Post.cins+1'), 
+			       array('Post.id' => $this->data['Comment']['post_id']));
+      } else {
+	$this->Post->updateAll(array('Post.couts' => 'Post.couts+1'), 
+			       array('Post.id' => $this->data['Comment']['post_id']));
+      }
 
       $this->redirect(array('controller' => 'posts',
 			    'action' => 'view',
-			    $this->data['Comment']['post_id']
+			    $this->data['Comment']['post_id'].'#c'.$this->Comment->id
 			    )
-		      );
-      
+		      );      
     }
   }
   

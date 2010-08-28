@@ -18,7 +18,7 @@
  <http://www.gnu.org/licenses/>.
 */
 ?>
-<?php $del = ($post['Post']['flags'] >= 0) ? 'reg' : 'del'; ?>
+<?php $del = ($post['Post']['flags'] < 0) ? 'del' : 'reg'; ?>
 <?=$html->link('&laquo; return to main page',
 		      array('controller' => 'posts',
 			    'action' => 'index'),array('escape'=>false));?>
@@ -41,16 +41,20 @@
 
 <ul class="grid_8 alpha omega" id="pact">
     <?php if ($session->check('User.id')): ?>
-  <li><?=$ajax->link('',
-		     array('controller' => 'posts',
+   <?php if (isset($flag['Flag']['flag'])): ?>
+       <li><?=$html->link('','#',array('class' => 'flagged')); ?></li>
+       <?php else: ?>
+   <li><?=$ajax->link('',//$post['Post']['flags'],
+		     array('controller' => 'votes',
 			   'action' => 'flag', $post['Post']['id']),
 		     array('update' => 'post',
 			   'escape' => false,
 			   'title' => 'flag',
 			   'class' => 'flag')
 		     );?></li>	    
+		     <?php endif; ?>
 		     <?php if($post['Post']['user_id'] == $session->read('User.id')): ?>
-  <li><?=$html->link('',
+   <li><?=$html->link('',
 		     array('controller' => 'posts',
 			   'action' => 'edit', $post['Post']['id']),
 		     array(//'update' => 'vote',

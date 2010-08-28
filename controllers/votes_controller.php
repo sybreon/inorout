@@ -18,11 +18,19 @@
    <http://www.gnu.org/licenses/>.
   */
 
+App::import('Sanitize');
+App::import('Vendor','bitly'); // Import LightOpenID library
+
 class VotesController extends AppController {
   
   var $name = 'Votes';
   var $components = array('RequestHandler');
   var $helpers = array ('Form','Html','Ajax','Javascript','Time','Text');
+
+  private function bitly_expand($url = null) {
+    $bitly = new Bitly('inorout','R_11acbfd4019e1d133a8dd8ebb339da03');
+    return $bitly->expandSingle($url);
+  }
 
   /**
    Vote IN/OUT
@@ -83,6 +91,46 @@ class VotesController extends AppController {
       $this->layout = 'ajax';
     }	  
   }   
+
+  function flag($id = null) {
+    if ($this->RequestHandler->isAjax()) {
+      assert('is_numeric($id)'); // check input
+      Configure::write('debug', 0); // dont want debug in ajax returned html
+      
+      $this->loadModel('Post');
+      $this->loadModel('Flag');
+
+      $tmp = $this->Flag->find(array('Flag.user_id' => $this->Session->read('User.id'),
+				     'Flag.post_id' => $id));
+
+      $post = $this->Post->find(array('Post.id' => $id));
+      
+      //print_r($tmp);
+      if (!isset($tmp['Flag']['flag'])) {
+	// TODO: Check for ACL
+
+	$tmp['Flag']['user_id'] = $this->Session->read('User.id');
+	$tmp['Flag']['post_id'] = $id;
+	$tmp['Flag']['flag'] = 0;
+
+	$this->Flag->save($tmp);
+
+	if ($post['Post']['flags'] >= 9) {
+	  $this->Post->updateAll(array('Post.flags' => '-1'), array('Post.id' => $id));      
+	  $post['Post']['flags'] = -1;
+	} else {
+	  $this->Post->updateAll(array('Post.flags' => 'Post.flags+1'), array('Post.id' => $id));      
+	  $post['Post']['flags'] = $post['Post']['flags'] + 1;
+	}	
+      }          
+      
+      $post['bitly'] = $this->bitly_expand($post['Post']['url']);
+
+      $this->set('post', $post);    
+      $this->set('flag', $tmp);
+      $this->layout = 'ajax';
+    }	  
+  }
 
 }
 ?>
