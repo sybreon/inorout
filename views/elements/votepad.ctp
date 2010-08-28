@@ -18,22 +18,41 @@
  <http://www.gnu.org/licenses/>.
 */
 ?>
+<?php $log = $session->check('User.id'); ?>
 <?=$html->image('vote_bar.png');?>
 Are you IN or OUT? (you can only vote once)
   <br/>
-<?=$ajax->link($html->image('voteIN.png'),
-	       array('controller' => 'posts',
-		     'action' => 'vin', $post['Post']['id']),
-	       array('update' => 'vote',
-		     'escape' => false,
-		     'class' => 'ballot'),
-	       'Do you want to vote IN?'
+  <?php if (isset($vote['Vote']['vote'])): ?>
+  <?=$html->link($html->image('voteIN.png'),
+		 '#voted',	      
+		 array('class' => ($vote['Vote']['vote'] == 1) ? 'balloted' : 'ballotx',
+		       'escape' => false)
+		 );?>
+<?=$html->link($html->image('voteOUT.png'),
+	       '#voted',	      
+	       array('class' => ($vote['Vote']['vote'] == 0) ? 'balloted' : 'ballotx',
+		     'escape' => false)
 	       );?>
+  <?php else: ?>
+	  <?=$ajax->link($html->image('voteIN.png'),
+			 ($log) ?
+			 array('controller' => 'votes',
+			       'action' => 'vin', $post['Post']['id']) : '#',	      
+			 array('update' => ($log) ? 'vote' : '#',
+			       'escape' => false,
+			       'class' => 'ballot'),
+			 ($log) ?
+			 'Do you want to vote IN?' : 'Please login to vote!'
+			 );?>
 <?=$ajax->link($html->image('voteOUT.png'),
-	       array('controller' => 'posts',
-		     'action' => 'vout', $post['Post']['id']),
-	       array('update' => 'vote',
+	       ($log) ?
+	       array('controller' => 'votes',
+		     'action' => 'vout', $post['Post']['id']) : '#',
+	       array('update' => ($log) ? 'vote' : '#',
 		     'escape' => false,
 		     'class' => 'ballot'),
-	       'Do you want to vote OUT?'
-	       );?>
+	       ($log) ? 
+	       'Do you want to vote OUT?' : 'Please login to vote!'
+	       );?>	  
+<?php endif; ?>
+

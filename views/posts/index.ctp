@@ -28,13 +28,13 @@ sort by
   <?=$html->image('IN.png');?>
   <?php foreach ($posts_in as $post): ?>
   <dt>
-    <?php echo $this->element('scorepad',array('ins'=>$post['Post']['ins'],'outs'=>$post['Post']['outs'],'views'=>$post['Post']['views']));?>
+				      <?php echo $this->element('scorepad',array('post' => $post)); ?>
   <p class="title"><?=$html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?></p>
   <p class="teaser"><?=$text->truncate($text->stripLinks($post['Post']['teaser']),128); ?></p>
   </dt>
   <dd>
   <?=$time->niceShort($post['Post']['created']);?> &ndash; <?=$html->link($post['User']['nama'],array('controller'=>'users','action'=>'view',$post['User']['id']));?>
-  <span class="comments"><?=$post['Post']['comments']?>&nbsp;comment(s)</span>
+  <span class="comments"><?=$post['Post']['cins'] + $post['Post']['couts']?>&nbsp;comments</span>
   </dd>
   <?php endforeach; ?>
   </dl>
@@ -43,13 +43,13 @@ sort by
   <?=$html->image('OUT.png');?>
   <?php foreach ($posts_out as $post): ?>
   <dt>
-    <?php echo $this->element('scorepad',array('ins'=>$post['Post']['ins'],'outs'=>$post['Post']['outs'],'views'=>$post['Post']['views']));?>
+				       <?php echo $this->element('scorepad',array('post' => $post)); ?>
   <p class="title"><?=$html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?></p>
   <p class="teaser"><?=Sanitize::html($text->truncate($post['Post']['teaser'],128));?></p>
   </dt>
   <dd>
   <?=$time->niceShort($post['Post']['created']);?> &ndash; <?=$html->link($post['User']['nama'],array('controller'=>'users','action'=>'view',$post['User']['id']));?>
-  <span class="comments"><?=$post['Post']['comments']?>&nbsp;comment(s)</span>
+  <span class="comments"><?=$post['Post']['cins'] + $post['Post']['couts']?>&nbsp;comments</span>
   </dd>
   <?php endforeach; ?>
   </dl>

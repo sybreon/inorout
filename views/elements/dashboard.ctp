@@ -18,7 +18,7 @@
  <http://www.gnu.org/licenses/>.
 */
 
-$id = ($session->check('User.id')) ? $session->check('User.id') : 0;
+$id = ($session->check('User.id')) ? $session->read('User.id') : 0;
 ?>
 <ul id="dashboard">
     <?php if ($session->check('User.id')): ?>

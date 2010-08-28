@@ -17,7 +17,7 @@
  <http://www.gnu.org/licenses/>.
 */
 
-body { font-family:"Nobile",sans-serif;background:#fff; }
+body { font-family:"Cantarell",sans-serif;background:#fff; }
 a {text-decoration:none;}
 
 div#flashMessage {color:#fff;background:#e22;padding:12px;}
@@ -89,11 +89,13 @@ div.score div.view { background:url("../img/icon_view.png");color:#ddd;}
 /** votepad **/
 
 div#vote { color:#666; }
-div#vote a.ballot { display:inline-block;width:140px;height:46px;margin:20px 10px; }
-div#vote a.ballot { background:url("../img/voting.png") no-repeat right 0; }
+div#vote a.ballot,
+div#vote a.ballotx,
+div#vote a.balloted { display:inline-block;width:140px;height:46px;margin:20px 10px; }
+div#vote a.ballot,
+div#vote a.ballotx { background:url("../img/voting.png") no-repeat right 0; }
 div#vote a.ballot:hover { background:url("../img/voting.png") no-repeat right -46px; }
-div#vote a.balloty { background:url("../img/voting.png") no-repeat right -96px; }
-div#vote a.balloto { background:url("../img/voting.png") no-repeat right 0; }
+div#vote a.balloted { background:url("../img/voting.png") no-repeat right -92px; }
 
 /** userpad **/
 
