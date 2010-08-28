@@ -18,22 +18,27 @@
  <http://www.gnu.org/licenses/>.
 */
 ?>
+<?php $log = $session->check('User.id'); ?>
 <?=$html->image('vote_bar.png');?>
 Are you IN or OUT? (you can only vote once)
   <br/>
 <?=$ajax->link($html->image('voteIN.png'),
-	       array('controller' => 'posts',
-		     'action' => 'vin', $post['Post']['id']),
-	       array('update' => 'vote',
+	       ($log) ?
+	       array('controller' => 'votes',
+		     'action' => 'vin', $post['Post']['id']) : '#',	      
+	       array('update' => ($log) ? 'vote' : '#',
 		     'escape' => false,
 		     'class' => 'ballot'),
-	       'Do you want to vote IN?'
+	       ($log) ?
+	       'Do you want to vote IN?' : 'Please login to vote!'
 	       );?>
 <?=$ajax->link($html->image('voteOUT.png'),
-	       array('controller' => 'posts',
-		     'action' => 'vout', $post['Post']['id']),
-	       array('update' => 'vote',
+	       ($log) ?
+	       array('controller' => 'votes',
+		     'action' => 'vout', $post['Post']['id']) : '#',
+	       array('update' => ($log) ? 'vote' : '#',
 		     'escape' => false,
 		     'class' => 'ballot'),
-	       'Do you want to vote OUT?'
+	       ($log) ? 
+	       'Do you want to vote OUT?' : 'Please login to vote!'
 	       );?>
