@@ -22,6 +22,7 @@ a {text-decoration:none;}
 
 div#flashMessage {color:#fff;background:#e22;padding:12px;}
 .del { text-decoration:line-through;color:#eee !important; }
+.ita { font-style:italic; }
 
 /** NAVI BAR **/
 

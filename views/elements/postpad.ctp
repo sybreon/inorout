@@ -18,7 +18,7 @@
  <http://www.gnu.org/licenses/>.
 */
 ?>
-<?php $del = ($post['Post']['flags'] >= 0) ? 'reg' : 'del'; ?>
+<?php $del = ($post['Post']['flags'] < 0) ? 'del' : 'reg'; ?>
 <?=$html->link('&laquo; return to main page',
 		      array('controller' => 'posts',
 			    'action' => 'index'),array('escape'=>false));?>

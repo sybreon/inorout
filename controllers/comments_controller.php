@@ -61,10 +61,9 @@ class CommentsController extends AppController {
 
       $this->redirect(array('controller' => 'posts',
 			    'action' => 'view',
-			    $this->data['Comment']['post_id']
+			    $this->data['Comment']['post_id'].'#c'.$this->Comment->id
 			    )
-		      );
-      
+		      );      
     }
   }
   
