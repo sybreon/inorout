@@ -182,25 +182,6 @@ class PostsController extends AppController {
   }
   
   /**
-   Shorten the URL
-  */
-  function bitly() {
-    Configure::write('debug', 0); // dont want debug in ajax returned html
-    if (!empty($this->data['Post']['url'])) {	      
-      $HttpSocket = new HttpSocket();
-      $bitly = $HttpSocket->get('http://api.bit.ly/v3/shorten', 
-				array('format' => 'txt',
-				      'login' => 'inorout',
-				      'apiKey' => 'R_11acbfd4019e1d133a8dd8ebb339da03',
-				      'longUrl' => $this->data['Post']['url']
-				      )
-				); 	    
-      $this->set('bitly', trim($bitly)); // strip whitespace
-    }	    	  
-    $this->layout = 'ajax';
-  }
-    
-  /**
    Flag a post as DELETED (AJAX)
   */
 
@@ -216,23 +197,6 @@ class PostsController extends AppController {
       $this->layout = 'ajax';
     }
   }
-  
-  /**
-   Flag a post as FLAGGED (AJAX)
-  */
-
-  function flag($id = null) {
-    if ($this->RequestHandler->isAjax()) {
-      assert('is_numeric($id)'); // check input
-      Configure::write('debug', 0); // dont want debug in ajax returned html
-      // TODO: Check for ACL
-      $this->Post->updateAll(array('Post.flags' => 'Post.flags+1'), array('Post.id' => $id));
-      $post = $this->Post->find(array('Post.id' => $id));
-      $post['bitly'] = $this->bitly_expand($post['Post']['url']);
-      $this->set('post',$post);
-      $this->layout = 'ajax';
-    }
-  }
-  
+    
 }
 ?>
