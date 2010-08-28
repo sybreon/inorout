@@ -78,6 +78,12 @@ class PostsController extends AppController {
     //$post['url'] = base64_encode($post['Post']['url']);
     $post['bitly'] = $this->bitly_expand($post['Post']['url']);
 
+    if ($this->Session->check('User.id')) {
+      // Extract votes
+      $this->loadModel('Vote');
+      $post['vote'] = $this->Vote->find(array('Vote.post_id' => $id, 'Vote.user_id' => $this->Session->read('User.id')));
+    }
+
     $this->set('post',$post);
     $this->pageTitle = $post['Post']['title'];
     
