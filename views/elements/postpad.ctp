@@ -40,6 +40,7 @@
 	      );?>
 
 <ul class="grid_8 alpha omega" id="pact">
+    <?php if ($session->check('User.id')): ?>
   <li><?=$ajax->link('',
 		     array('controller' => 'posts',
 			   'action' => 'flag', $post['Post']['id']),
@@ -67,6 +68,7 @@
 			   'class' => 'del'),
 		     'Do you want to delete post #'.$post['Post']['id'].'?'
 		     );?></li>			      
+			      <?php endif;?>
 			      <?php endif;?>
 			      <?php endif;?>
 
