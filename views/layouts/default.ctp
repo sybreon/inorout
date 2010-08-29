@@ -44,10 +44,10 @@ echo $scripts_for_layout;
   </div>
   <?php //if (Router::url('') === Router::url('/')): ?>
   <div class="container_12" id="container"><div class="grid_3">
-																 <?=$html->link($html->image('LOGO.png'),
-																		array('controller' => 'posts',
-																		      'action' => 'index'),
-																		array('escape' => false));?>
+      <?=$html->link($html->image('LOGO.png'),
+		     array('controller' => 'posts',
+			   'action' => 'index'),
+		     array('escape' => false));?>
   </div>
   <div class="grid_2 prefix_3" id="count">
   <?=$html->link('&nbsp;',
@@ -85,12 +85,12 @@ echo $scripts_for_layout;
   $html->link('',array('controller' => 'pages', 'action' => 'friends'), array('class' => 'btnfren')):
   $html->image('button_friends_clicked.png');?></li>
   <li class="sprite"><?=$html->link('',
-				    'http://twitter.com/inoutmsia',
-				    array('class' => 'twit',
-					  'target' => '_blank'));?></li>
-  <li class="sprite"><?=$html->link('',
 				    'http://www.facebook.com/pages/IN-OUT/118079328213929',
 				    array('class' => 'fb',
+					  'target' => '_blank'));?></li>
+  <li class="sprite"><?=$html->link('',
+				    'http://twitter.com/inoutmsia',
+				    array('class' => 'twit',
 					  'target' => '_blank'));?></li>
   <li class="sprite"><?=$html->link('',
 				    '#',
