@@ -27,6 +27,7 @@
 	      array('class' => $del)
 	      );?>
 <div class="url">
+    <?=$html->image('http://snapcasa.com/get.aspx?code=11634&size=t&mark=1&url='.urlencode($post['bitly']));?>
     <?=$html->link($text->truncate($post['bitly'],
 				   64). ' &raquo;', 
 		   $post['Post']['url'],
