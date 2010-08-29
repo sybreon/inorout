@@ -84,7 +84,18 @@ echo $scripts_for_layout;
   <li><?=(!strstr(Router::url(''),Router::url(array('controller'=>'pages','action'=>'friends')))) ? 
   $html->link('',array('controller' => 'pages', 'action' => 'friends'), array('class' => 'btnfren')):
   $html->image('button_friends_clicked.png');?></li>
-  <li></li>
+  <li class="sprite"><?=$html->link('',
+				    'http://twitter.com/inoutmsia',
+				    array('class' => 'twit',
+					  'target' => '_blank'));?></li>
+  <li class="sprite"><?=$html->link('',
+				    'http://www.facebook.com/pages/IN-OUT/118079328213929',
+				    array('class' => 'fb',
+					  'target' => '_blank'));?></li>
+  <li class="sprite"><?=$html->link('',
+				    '#',
+				    array('class' => 'rss',
+					  'target' => '_blank'));?></li>
   </ul>
   <a name="inout">
   <div class="grid_12">

@@ -45,6 +45,21 @@ ul#pages a.btnfren { background:url("../img/button_friends.png");width:172px; }
 ul#pages a.btnfren:hover { background:url("../img/button_friends_RO.gif") }
 ul#pages a.btnfren:active { background:url("../img/button_friends_clicked.png") }
 
+ul#pages li.sprite a { width:32px;height:32px;display:inline-block;margin:7px 2px; }
+ul#pages a.twit { background:url("../img/sprite.png") no-repeat 0 0; }
+ul#pages a.twit:hover { background:url("../img/sprite.png") no-repeat 0 -32px; }
+ul#pages a.fb { background:url("../img/sprite.png") no-repeat -32px 0; }
+ul#pages a.fb:hover { background:url("../img/sprite.png") no-repeat -32px -32px; }
+ul#pages a.rss { background:url("../img/sprite.png") no-repeat -64px 0; }
+ul#pages a.rss:hover { background:url("../img/sprite.png") no-repeat -64px -32px; }
+
+/*
+ul#pact li {margin:0;padding:0;display:inline;list-style-type:none;text-align:center; }
+ul#pact li a { width:32px;height:32px;display:inline-block;margin:0 2px;float:left;color:#333; }
+ul#pact a.edit { background:url("../img/sprite.png") no-repeat -160px 0; }
+ul#pact a.edit:hover { background:url("../img/sprite.png") no-repeat -160px -32px; }
+*/
+
 /** dashboard **/
 
 ul#dashboard {white-space:nowrap;display:inline;font-size:x-small;}
