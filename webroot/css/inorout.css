@@ -74,7 +74,7 @@ ul#acts a.disable {background:none;border:none;color:#ccc;}
 dl.post dt {margin:14px 14px 0 14px;background:#fff;color:#666;min-height:115px;padding:8px;}
 dl.post dd {margin:0 14px 14px 14px;background:#fff;color:#666;padding:8px;}
 dl.post { padding:24px 0; }
-dl.post span.comments { font-size:smaller;color:#ccc;float:right; }
+dl.post span.comments { font-size:smaller;color:#999;float:right; }
 
 p.title { font-size:medium;font-weight:bolder;color:#333;text-transform:capitalize;margin-bottom:0; }
 p.teaser { color:#666;margin-top:8px;padding-top:8px;border-top:1px dotted #ccc; }

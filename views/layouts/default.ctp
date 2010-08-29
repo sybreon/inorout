@@ -44,7 +44,10 @@ echo $scripts_for_layout;
   </div>
   <?php //if (Router::url('') === Router::url('/')): ?>
   <div class="container_12" id="container"><div class="grid_3">
-     <?=$html->image('LOGO.png');?>
+																 <?=$html->link($html->image('LOGO.png'),
+																		array('controller' => 'posts',
+																		      'action' => 'index'),
+																		array('escape' => false));?>
   </div>
   <div class="grid_2 prefix_3" id="count">
   <?=$html->link('&nbsp;',
@@ -81,6 +84,7 @@ echo $scripts_for_layout;
   <li><?=(!strstr(Router::url(''),Router::url(array('controller'=>'pages','action'=>'friends')))) ? 
   $html->link('',array('controller' => 'pages', 'action' => 'friends'), array('class' => 'btnfren')):
   $html->image('button_friends_clicked.png');?></li>
+  <li></li>
   </ul>
   <a name="inout">
   <div class="grid_12">
