@@ -8,7 +8,7 @@
 				     )
 		      )
 		);?>
-<p>Score &mdash; <?=$user['User']['ins'] + $user['User']['outs']?></p>
+<p>Score &mdash; <?=$user['User']['vins'] + $user['User']['vouts']?></p>
 </div>
 <div class="grid_4">
    <p>Nickname<br/><?=$user['User']['nama']?></p>
