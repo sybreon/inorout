@@ -19,21 +19,35 @@
 */
 ?>
     <?php foreach ($comments as $comment): ?>
-    <a name="c<?=$comment['Comment']['id']?>">
+<?php $rnd = rand();?>
+    <a name="c<?=$comment['Comment']['id'];?>">
     <?php if ($comment['Comment']['inout'] == 0): ?>
 				 <dl id="c-out" class="grid_8 push_4 alpha omega comment">
 				    <?php else: ?>
 				    <dl id="c-in" class="grid_8 alpha omega comment">
 				       <?php endif;?>
     
-    <dd>
+    <dt><div style="float:right;">   
     <?=$this->element('userpad',array('uid'=>$comment['User']['id'],
 				      'nama'=>$comment['User']['nama'],
 				      'mail'=>$comment['User']['mail'],
 				      'stamp'=>$comment['Comment']['created'],
 				      ));?>
-    <?=$comment['Comment']['comment']?></dd>    
-    <ul class="grid_7 push_1 alpha omega reply">
+    <div style="text-align:right;">
+    <?=$html->link(count($comment['children']).' replies',
+		   '#'.$comment['Comment']['id'],
+		   array('onclick' => 'Element.toggle("r'.$comment['Comment']['id'].'");',
+			 'style' => 'vertical-align:baseline;font-size:x-small;'));?>
+    <?=$html->link('','',
+		   array('class' => 'reply')
+		   );?>
+    <?=$html->link('','',
+		   array('class' => 'flag')
+		   );?>
+    </div></div>
+    <?=$comment['Comment']['comment']?>
+    </dt>
+    <ul class="grid_7 push_1 alpha omega reply" id="r<?=$comment['Comment']['id'];?>" style="display:none">
     <?php foreach ($comment['children'] as $reply): ?>
     <li><?=$reply['Comment']['comment']?> &ndash; <?=$html->link($reply['User']['nama'],array('controller'=>'users','action'=>'view',$reply['User']['id']))?></li>
     <?php endforeach; ?>

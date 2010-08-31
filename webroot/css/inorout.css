@@ -178,8 +178,14 @@ div.fcomm label { color:#fff;font-weight:bold;font-size:large; }
 div.fcomm input.fcomm { float:right;margin:0 16px 8px 0; }
 
 div.form fieldset { background:none;border:none;} 
-dl.comment dt { margin:14px;color:#666;background:#fff;width:160px;}
-dl.comment dd { margin:14px;background:#fff;color:#666;padding:8px;min-height:56px;}
+
+dl.comment dt,
+dl.comment dd { background:#fff;margin:14px;padding:8px;min-height:100px;color:#666; }
+dl.comment a.reply { margin-top:10px;width:32px;height:32px;display:inline-block;background:url("../img/sprite.png") -256px 0; }
+dl.comment a.reply:hover { background:url("../img/sprite.png") -256px -32px; }
+dl.comment a.flag { width:32px;height:32px;display:inline-block;background:url("../img/sprite.png") -192px 0; }
+dl.comment a.flag:hover { background:url("../img/sprite.png") -192px -32px; }
+
 ul.reply { list-style:none;}
 ul.reply li { margin:2px 14px;background:#fff;padding:4px 8px;color:#666; }
 ul.reply a, dl.comment a { color:#ccc; }
