@@ -19,21 +19,52 @@
 */
 ?>
     <?php foreach ($comments as $comment): ?>
-    <a name="c<?=$comment['Comment']['id']?>">
+<?php $rnd = rand();?>
+    <a name="c<?=$comment['Comment']['id'];?>">
     <?php if ($comment['Comment']['inout'] == 0): ?>
-				 <dl id="c-out" class="grid_8 push_4 alpha omega comment">
-				    <?php else: ?>
-				    <dl id="c-in" class="grid_8 alpha omega comment">
-				       <?php endif;?>
-    
-    <dd>
+       <dl id="c-out" class="grid_8 push_4 alpha omega comment">
+	  <?php else: ?>
+	  <dl id="c-in" class="grid_8 alpha omega comment">
+	     <?php endif;?>    
+    <dt>
+    <div style="float:right;">   
     <?=$this->element('userpad',array('uid'=>$comment['User']['id'],
 				      'nama'=>$comment['User']['nama'],
 				      'mail'=>$comment['User']['mail'],
 				      'stamp'=>$comment['Comment']['created'],
 				      ));?>
-    <?=$comment['Comment']['comment']?></dd>    
-    <ul class="grid_7 push_1 alpha omega reply">
+    <div style="text-align:right;">
+    <?=$html->link(count($comment['children']).' replies',
+		   '#'.$comment['Comment']['id'],
+		   array('onclick' => 'Element.toggle("r'.$comment['Comment']['id'].'");',
+			 'style' => 'vertical-align:baseline;font-size:x-small;'));?>
+    <?=$html->link('',
+		   '#'.$comment['Comment']['id'],
+		   array('class' => 'reply',
+			 'onclick' => 'Element.toggle("f'.$comment['Comment']['id'].'");')
+		   );?>
+    <?=$html->link('','',
+		   array('class' => 'flag')
+		   );?>
+    </div></div>
+    <div>
+    <?=$comment['Comment']['comment']?>
+    </div>
+    </dt>
+    <?=$form->create('Comment',
+		     array('controller' => 'comments',
+			   'style' => 'display:none;',
+			   'id' => 'f'.$comment['Comment']['id'],
+			   'action' => 'reply', 
+			   $comment['Comment']['id']));?>
+    <?=$form->textarea('comment',array('rows' => '2'));?>
+    <?=$form->hidden('user_id',array('value' => $session->read('User.id')));?>
+    <?=$form->hidden('inout',array('value' => '-1'));?>
+    <?=$form->hidden('post_id',array('value' => $comment['Comment']['post_id']));?>
+    <?=$form->hidden('parent_id',array('value' => $comment['Comment']['id']));?>
+    <?=$ajax->submit('Reply',array('url' => array('controller' => 'comments', 'action' => 'reply'), 'update' => 'c'.$comment['Comment']['id']));?>
+    <?=$form->end();?>
+    <ul class="grid_7 push_1 alpha omega reply" id="r<?=$comment['Comment']['id'];?>" style="display:none">
     <?php foreach ($comment['children'] as $reply): ?>
     <li><?=$reply['Comment']['comment']?> &ndash; <?=$html->link($reply['User']['nama'],array('controller'=>'users','action'=>'view',$reply['User']['id']))?></li>
     <?php endforeach; ?>

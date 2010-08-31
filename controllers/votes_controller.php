@@ -41,8 +41,6 @@ class VotesController extends AppController {
       assert('is_numeric($id)'); // check input
       Configure::write('debug', 0); // dont want debug in ajax returned html
 
-      $this->loadModel('Post');
-
       $tmp = $this->Vote->find(array('Vote.user_id' => $this->Session->read('User.id'),
 				     'Vote.post_id' => $id));
       
@@ -55,7 +53,13 @@ class VotesController extends AppController {
 	$tmp['Vote']['vote'] = 1;
 
 	$this->Vote->save($tmp);
+
+	$this->loadModel('Post');
 	$this->Post->updateAll(array('Post.vins' => 'Post.vins+1'), array('Post.id' => $id));      
+	$tmp = $this->Post->find(array('Post.id' => $id));
+
+	$this->loadModel('User');
+	$this->User->updateAll(array('User.vins' => 'User.vins+1'), array('User.id' => $tmp['Post']['user_id']));
 	
       }          
 
@@ -69,8 +73,6 @@ class VotesController extends AppController {
       assert('is_numeric($id)'); // check input
       Configure::write('debug', 0); // dont want debug in ajax returned html
 
-      $this->loadModel('Post');
-
       $tmp = $this->Vote->find(array('Vote.user_id' => $this->Session->read('User.id'),
 				     'Vote.post_id' => $id));
       
@@ -83,8 +85,14 @@ class VotesController extends AppController {
 	$tmp['Vote']['vote'] = 0;
 
 	$this->Vote->save($tmp);
+	
+	$this->loadModel('Post');
 	$this->Post->updateAll(array('Post.vouts' => 'Post.vouts+1'), array('Post.id' => $id));      
 	
+	$tmp = $this->Post->find(array('Post.id' => $id));
+
+	$this->loadModel('User');
+	$this->User->updateAll(array('User.vouts' => 'User.vouts+1'), array('User.id' => $tmp['Post']['user_id']));
       }          
 
       $this->set('vote',$tmp);
