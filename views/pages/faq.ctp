@@ -18,6 +18,11 @@
  <http://www.gnu.org/licenses/>.
 */
 ?>
+<style>
+dl#faq dt { font-weight:bold;background:#e12;color:#fff;padding:4px 8px;margin-bottom:4px; }
+dl#faq dt a { color:#fff; }
+dl#faq dd { background:none;color:#333;padding:4px 8px; }
+</style>
 <?php echo $javascript->link('prototype'); ?> 
 <h2>FAQ</h2>
 <dl id="faq">
