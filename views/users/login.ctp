@@ -19,7 +19,7 @@
   */
 ?>
 <?php echo $javascript->link('prototype');?>
-<h3>Login</h3><hr/>
+<h3>Login</h3>
 <p>You will need to sign in with your existing account on one of the following OpenID providers.</p>
 <?php
 echo $form->create('User', array('type' => 'post', 'action' => 'auth/'. $param . '?oid'));
