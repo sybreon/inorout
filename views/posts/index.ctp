@@ -19,20 +19,20 @@
   */
 ?>
 <div class="grid_6 alpha">
-click here for instructions
-</div>
-<div class="grid_6 omega" style="text-align:right;">
-sort by
-</div>
-<dl class="grid_6 alpha post" id="p-in">
-  <?=$html->image('IN.png');?>
-  <?php foreach ($posts_in as $post): ?>
-  <dt>
-				      <?php echo $this->element('scorepad',array('post' => $post)); ?>
-  <p class="title"><?=$html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?></p>
-  <p class="teaser"><?=$text->truncate($text->stripLinks($post['Post']['teaser']),128); ?></p>
-  </dt>
-  <dd>
+    click here for instructions
+    </div>
+    <div class="grid_6 omega" style="text-align:right;">
+    sort by
+    </div>
+    <dl class="grid_6 alpha post" id="p-in">
+    <?=$html->image('IN.png');?>
+<? foreach ($posts_in as $post): ?>
+<dt>
+<? echo $this->element('scorepad',array('post' => $post)); ?>
+<p class="title"><?=$html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?></p>
+<p class="teaser"><?=$text->truncate($text->stripLinks($post['Post']['teaser']),128); ?></p>
+</dt>
+<dd>
   <?=$time->niceShort($post['Post']['created']);?> &ndash; <?=$html->link($post['User']['nama'],array('controller'=>'users','action'=>'view',$post['User']['id']));?>
   <span class="comments"><?=$post['Post']['cins'] + $post['Post']['couts']?>&nbsp;comments</span>
   </dd>
