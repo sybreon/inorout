@@ -64,6 +64,3 @@ for ($i=0;$i<2;$i++) {
 ?>
 </div>
 <div class="clear">&nbsp;</div>
-<pre>
-<?php print_r($flag); ?>
-</pre>
