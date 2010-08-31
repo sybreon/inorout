@@ -30,19 +30,19 @@
 <div class="hr">
    <div class="i28"><?=$html->image('vote.png',array('class'=>'img'));?><span class="total">total</span><p class="numb"><?=$post['Post']['vins'] + $post['Post']['vouts'];?></p></div>
    <div class="i20">
-    <?=$html->image('stat_IN.png');?><div class="b100"><div class="bin" style="width:<?=($post['Post']['vins']>0||$post['Post']['vouts']>0) ? $post['Post']['vins']*100/($post['Post']['vins']+$post['Post']['vouts']) : 0;?>%;"></div></div>
+    <?=$html->image('stat_IN.png');?><div class="b100"><div class="bin" style="width:<?=($post['Post']['vins']>0||$post['Post']['vouts']>0) ? $post['Post']['vins']*100/($post['Post']['vins']+$post['Post']['vouts']) : 0;?>%;"><?=($post['Post']['vins']>0)?$post['Post']['vins']:'&nbsp;';?></div></div>
    </div>
    <div class="i20">
-    <?=$html->image('stat_OUT.png');?><div class="b100"><div class="bout" style="width:<?=($post['Post']['vins']>0||$post['Post']['vouts']>0) ? $post['Post']['vouts']*100/($post['Post']['vins']+$post['Post']['vouts']) : 0;?>%;"></div></div>
+    <?=$html->image('stat_OUT.png');?><div class="b100"><div class="bout" style="width:<?=($post['Post']['vins']>0||$post['Post']['vouts']>0) ? $post['Post']['vouts']*100/($post['Post']['vins']+$post['Post']['vouts']) : 0;?>%;"><?=($post['Post']['vouts']>0)?$post['Post']['vouts']:'&nbsp;';?></div></div>
    </div>
 </div>
 <div class="hr">
    <div class="i28"><?=$html->image('comment.png',array('class'=>'img'));?><span class="total">total</span><p class="numb"><?=$post['Post']['cins']+$post['Post']['couts'];?></p></div>
    <div class="i20">
-    <?=$html->image('stat_IN.png');?><div class="b100"><div class="bin" style="width:<?=($post['Post']['cins']>0||$post['Post']['couts']>0) ? $post['Post']['cins']*100/($post['Post']['cins']+$post['Post']['couts']) : 0;?>%;"></div></div>
+    <?=$html->image('stat_IN.png');?><div class="b100"><div class="bin" style="width:<?=($post['Post']['cins']>0||$post['Post']['couts']>0) ? $post['Post']['cins']*100/($post['Post']['cins']+$post['Post']['couts']) : 0;?>%;"><?=($post['Post']['cins']>0)?$post['Post']['cins']:'';?></div></div>
    </div>
    <div class="i20">
-    <?=$html->image('stat_OUT.png');?><div class="b100"><div class="bout" style="width:<?=($post['Post']['cins']>0||$post['Post']['couts']>0) ? $post['Post']['couts']*100/($post['Post']['cins']+$post['Post']['couts']) : 0;?>%;"></div></div>
+    <?=$html->image('stat_OUT.png');?><div class="b100"><div class="bout" style="width:<?=($post['Post']['cins']>0||$post['Post']['couts']>0) ? $post['Post']['couts']*100/($post['Post']['cins']+$post['Post']['couts']) : 0;?>%;"><?=($post['Post']['couts']>0)?$post['Post']['couts']:'';?></div></div>
    </div>
 </div>
 <div class="hr">
