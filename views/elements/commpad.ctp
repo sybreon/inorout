@@ -28,11 +28,7 @@
 	     <?php endif;?>    
     <dt>
     <div style="float:right;">   
-    <?=$this->element('userpad',array('uid'=>$comment['User']['id'],
-				      'nama'=>$comment['User']['nama'],
-				      'mail'=>$comment['User']['mail'],
-				      'stamp'=>$comment['Comment']['created'],
-				      ));?>
+    <?=$this->element('userpad',array('user'=>$comment['User']));?>,
     <div style="text-align:right;">
     <?=$html->link(count($comment['children']).' replies',
 		   '#'.$comment['Comment']['id'],

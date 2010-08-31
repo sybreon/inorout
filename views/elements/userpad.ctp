@@ -19,16 +19,16 @@
 */
 ?>
 <div class="user">
-    <?=$html->image('http://www.gravatar.com/avatar/'. $mail .'?d=identicon&r=pg&s=36',
-		    array('alt' => $nama,
+    <?=$html->image('http://www.gravatar.com/avatar/'. $user['mail'] .'?d=identicon&r=pg&s=36',
+		    array('alt' => $user['nama'],
 			  'style' => 'float:left;margin-right:8px;',
 			  'url' => array('controller' => 'users',
 					 'action' => 'view',
-					 $uid
+					 $user['id']
 					 )
 			  )
 		    );?>
-<?=$time->niceShort($stamp)?><br/>
-    <?=$html->link($nama, array('controller' => 'users', 'action' => 'view', $uid));?>
+<?=$time->niceShort($user['created'])?><br/>
+    <?=$html->link($user['nama'], array('controller' => 'users', 'action' => 'view', $user['id']));?>
 </div>
     

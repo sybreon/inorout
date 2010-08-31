@@ -18,17 +18,12 @@
  <http://www.gnu.org/licenses/>.
 */
 ?>
-<div id="stat">
 <div class="hr">
 <p class="title">posted by</p>
-<?=$this->element('userpad',array('uid'=>$post['User']['id'],
-				  'nama'=>$post['User']['nama'],
-				  'mail'=>$post['User']['mail'],
-				  'stamp'=>$post['Post']['created'],
-				  ));?>
+    <?=$this->element('userpad',array('user' => $post['User']));?>
 </div>
 <div class="hr">
-   <div class="i28"><?=$html->image('vote.png',array('class'=>'img'));?><span class="total">total</span><p class="numb"><?=$post['Post']['vins'] + $post['Post']['vouts'];?></p></div>
+   <div class="i28"><div class="total"><?=$html->image('vote.png',array('class'=>'img'));?>total</div><p class="numb"><?=$post['Post']['vins'] + $post['Post']['vouts'];?></p></div>
    <div class="i20">
     <?=$html->image('stat_IN.png');?><div class="b100"><div class="bin" style="width:<?=($post['Post']['vins']>0||$post['Post']['vouts']>0) ? $post['Post']['vins']*100/($post['Post']['vins']+$post['Post']['vouts']) : 0;?>%;"><?=($post['Post']['vins']>0)?$post['Post']['vins']:'&nbsp;';?></div></div>
    </div>
@@ -37,7 +32,7 @@
    </div>
 </div>
 <div class="hr">
-   <div class="i28"><?=$html->image('comment.png',array('class'=>'img'));?><span class="total">total</span><p class="numb"><?=$post['Post']['cins']+$post['Post']['couts'];?></p></div>
+   <div class="i28"><div class="total"><?=$html->image('comment.png',array('class'=>'img'));?>total</div><p class="numb"><?=$post['Post']['cins']+$post['Post']['couts'];?></p></div>
    <div class="i20">
     <?=$html->image('stat_IN.png');?><div class="b100"><div class="bin" style="width:<?=($post['Post']['cins']>0||$post['Post']['couts']>0) ? $post['Post']['cins']*100/($post['Post']['cins']+$post['Post']['couts']) : 0;?>%;"><?=($post['Post']['cins']>0)?$post['Post']['cins']:'';?></div></div>
    </div>
@@ -46,6 +41,6 @@
    </div>
 </div>
 <div class="hr">
-   <div class="i28"><?=$html->image('view.png',array('class'=>'img'));?><span class="total">total</span><p class="numb"><?=$post['Post']['views']?></p></div>
+   <div class="i28"><div class="total"><?=$html->image('view.png',array('class'=>'img'));?>total</div><p class="numb"><?=$post['Post']['views']?></p></div>
 </div>
-</div>
+

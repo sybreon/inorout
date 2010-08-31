@@ -33,7 +33,7 @@ echo $html->css(array('reset','text','960','inorout'));
 echo $scripts_for_layout;
 ?>
 </head>
-<body id="<?php echo Router::url(''); ?>">
+<body id="<?=Router::url('');?>">
   <?php $session->flash(); ?>
 <div style="background:#eee;">
   <div class="container_12">
@@ -42,12 +42,11 @@ echo $scripts_for_layout;
   <div class="clear">&nbsp;</div>
   </div>
   </div>
-  <?php //if (Router::url('') === Router::url('/')): ?>
   <div class="container_12" id="container"><div class="grid_3">
-      <?=$html->link($html->image('LOGO.png'),
-		     array('controller' => 'posts',
-			   'action' => 'index'),
-		     array('escape' => false));?>
+	 <?=$html->link($html->image('LOGO.png'),
+			array('controller' => 'posts',
+			      'action' => 'index'),
+			array('escape' => false));?>
   </div>
   <div class="grid_2 prefix_3" id="count">
   <?=$html->link('&nbsp;',
@@ -59,14 +58,13 @@ echo $scripts_for_layout;
 		 ); ?>
   </div>
   <div class="grid_4" style="">
-   <?=$html->image('countdown.png',array('style' => 'float:left;padding-top:10px'));?>
-    <p id="count">
-<b>2,147,483</b><br/>unregistered voters &mdash; provided by <a href="http://www.spr.gov.my" target="_blank">SPR</a>
-  </p>
+	<?=$html->image('countdown.png',array('style' => 'float:left;padding-top:10px'));?>
+  <p id="count">
+	<b>2,147,483</b><br/>unregistered voters &mdash; provided by <a href="http://www.spr.gov.my" target="_blank">SPR</a>
+   </p>
   </div>
   <div class="clear">&nbsp;</div>
   </div>
-  <?php //endif; ?>
   <div class="container_12" id="container">
   <ul id="pages" class="grid_12">
   <li><?=(!strstr(Router::url(''),Router::url(array('controller'=>'posts','action'=>'view')))) ? 
@@ -97,7 +95,7 @@ echo $scripts_for_layout;
 				    array('class' => 'rss',
 					  'target' => '_blank'));?></li>
   </ul>
-  <a name="inout">
+  <div class="clear"><a name="inout">&nbsp;</a></div>
   <div class="grid_12">
   <?php echo $content_for_layout; ?>
   </div>
