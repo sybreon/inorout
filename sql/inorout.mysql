@@ -1,0 +1,112 @@
+-- phpMyAdmin SQL Dump
+-- version 3.3.2deb1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Aug 31, 2010 at 09:37 PM
+-- Server version: 5.1.41
+-- PHP Version: 5.3.2-1ubuntu4.2
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `inorout`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE IF NOT EXISTS `comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  `comment` varchar(512) NOT NULL,
+  `inout` tinyint(4) NOT NULL,
+  `flags` int(11) NOT NULL DEFAULT '0',
+  `parent_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `flags`
+--
+
+CREATE TABLE IF NOT EXISTS `flags` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `flag` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posts`
+--
+
+CREATE TABLE IF NOT EXISTS `posts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `title` varchar(128) NOT NULL,
+  `url` varchar(32) NOT NULL,
+  `teaser` text NOT NULL,
+  `views` int(11) NOT NULL DEFAULT '0',
+  `vins` int(11) NOT NULL DEFAULT '0',
+  `vouts` int(11) NOT NULL DEFAULT '0',
+  `heat` int(11) NOT NULL DEFAULT '0',
+  `created` datetime NOT NULL,
+  `flags` int(11) NOT NULL COMMENT 'Status',
+  `modified` datetime NOT NULL,
+  `cins` int(11) NOT NULL,
+  `couts` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(64) NOT NULL,
+  `mail` varchar(32) NOT NULL COMMENT 'MD5 email',
+  `vins` int(11) NOT NULL,
+  `vouts` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  `oid` varchar(32) NOT NULL COMMENT 'MD5 OpenID',
+  `flags` int(11) NOT NULL COMMENT 'Privileges',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `oid` (`oid`),
+  UNIQUE KEY `mail` (`mail`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `votes`
+--
+
+CREATE TABLE IF NOT EXISTS `votes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `vote` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
