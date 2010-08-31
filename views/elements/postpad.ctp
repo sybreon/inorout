@@ -27,13 +27,18 @@
 	      array('class' => $del)
 	      );?>
 <div class="url">
-    <?=$html->image('http://api.thumbalizr.com/?width=128&api_key=c61f2fe6c4ebe609c650bcfa6dcab244&url='.urlencode($post['bitly']));?>
+    <div id="thumb"><?=$html->link($html->image('http://api.thumbalizr.com/?width=128&api_key=c61f2fe6c4ebe609c650bcfa6dcab244&url='.urlencode($post['bitly'])),
+				   $post['Post']['url'],
+				   array('escape' => false));?></div>
+    <div id="meta">
     <?=$html->link($text->truncate($post['bitly'],
 				   64). ' &raquo;', 
 		   $post['Post']['url'],
 		   array('escape'=>false,
 			 'class' => $del)
 		   );?>
+    </div>
+    <div class="clear">&nbsp;</div>
 </div>
 <?=$html->tag('p', 
 	      Sanitize::html($post['Post']['teaser'], true),

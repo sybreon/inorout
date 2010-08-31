@@ -134,8 +134,8 @@ div#stat div.hr { border-bottom:2px dotted #ccc; margin-bottom:14px;padding-bott
 div#stat .i28 { min-height:28px;margin-bottom:8px; }
 div#stat .i20 { min-height:20px;margin-top:4px; }
 div#stat .b100 { width:120px;height:14px;margin:3px 0;display:inline-block;background:#ddd;font-size:x-small;color:#fff; }
-div#stat .bin { height:14px;background:#17d;border-right:1px solid #eee;padding:0 4px;}
-div#stat .bout { height:14px;background:#e22;border-right:1px solid #eee;padding:0 4px; }
+div#stat .bin { height:14px;background:#17d;border-right:1px solid #eee;padding:0;}
+div#stat .bout { height:14px;background:#e22;border-right:1px solid #eee;padding:0; }
 
 /** postpad **/
 
@@ -143,7 +143,9 @@ div#post { color:#666; }
 div#post h4 { color:#666;border-bottom:4px solid #666;padding:14px 0;font-size:x-large; }
 div#post a { color:#17d; }
 div#post div.url { padding:14px;border:2px solid #ccc;margin-bottom:14px; }
-
+div#post #thumb { float:left;padding:4px;border:1px solid #ccc;display:block;width:100px;height:75px;overflow:hidden; }
+div#post #thumb img { margin-left:-14px;margin-top:-4px; }
+div#post #meta { padding:8px;float:left; }
 
 ul#pact {white-space:nowrap;}
 ul#pact li {margin:0;padding:0;display:inline;list-style-type:none;text-align:center; }
