@@ -60,7 +60,7 @@ echo $scripts_for_layout;
   <div class="grid_4" style="">
 	<?=$html->image('countdown.png',array('style' => 'float:left;padding-top:10px'));?>
   <p id="count">
-	<b>2,147,483</b><br/>unregistered voters &mdash; provided by <a href="http://www.spr.gov.my" target="_blank">SPR</a>
+																 <b>2,241,565</b><br/>unregistered voters &mdash; provided by <a href="http://www.spr.gov.my" target="_blank">SPR</a>
    </p>
   </div>
   <div class="clear">&nbsp;</div>
