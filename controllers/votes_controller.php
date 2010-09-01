@@ -52,7 +52,7 @@ class VotesController extends AppController {
 	$tmp = $this->Post->find(array('Post.id' => $id));
 
 	$this->loadModel('User');
-	$this->User->updateAll(array('User.vins' => 'User.vins+1'), array('User.id' => $tmp['Post']['user_id']));
+	$this->User->updateAll(array('User.vins' => 'User.vins+10'), array('User.id' => $tmp['Post']['user_id']));
        
 
 	$tmp['Vote']['user_id'] = $this->Session->read('User.id');
@@ -85,7 +85,7 @@ class VotesController extends AppController {
 	$tmp = $this->Post->find(array('Post.id' => $id));
 
 	$this->loadModel('User');
-	$this->User->updateAll(array('User.vouts' => 'User.vouts+1'), array('User.id' => $tmp['Post']['user_id']));
+	$this->User->updateAll(array('User.vouts' => 'User.vouts+10'), array('User.id' => $tmp['Post']['user_id']));
 
 	$tmp['Vote']['user_id'] = $this->Session->read('User.id');
 	$tmp['Vote']['post_id'] = $id;
@@ -115,6 +115,11 @@ class VotesController extends AppController {
       //print_r($tmp);
       if (!isset($tmp['Flag']['flag'])) {
 	// TODO: Check for ACL
+		
+	$tmp = $this->Post->find(array('Post.id' => $id));
+	$this->loadModel('User');
+	$this->User->updateAll(array('User.vouts' => 'User.vouts-1',
+				     'User.vins' => 'User.vins-1'), array('User.id' => $tmp['Post']['user_id']));
 
 	$tmp['Flag']['user_id'] = $this->Session->read('User.id');
 	$tmp['Flag']['post_id'] = $id;
