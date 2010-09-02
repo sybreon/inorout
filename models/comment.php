@@ -27,6 +27,10 @@ class Comment extends AppModel {
 					    'required' => true,
 					    'message' => 'must be longer than 16 characters.'
 					    ),
+			'user_id' => array('rule' => 'numeric',
+					   'required' => true),
+			'post_id' => array('rule' => 'numeric',
+					   'required' => true)
 			);
   }
 ?>

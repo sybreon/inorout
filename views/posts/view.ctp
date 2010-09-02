@@ -49,14 +49,13 @@ for ($i=0;$i<2;$i++) {
   echo '<div id="fcomm'. $inout .'" class="grid_6 form fcomm '. $pad .'">';
   echo $form->create('Comment', array('controller' => 'comments', 'action' => 'add'));
   echo '<fieldset>';
-  //echo '<legend>Add Comment</legend>';
-  //echo $form->input('comment',array('rows'=>'9'));
-  echo '<label>Have your say:&nbsp;</label>';
+  echo '<label>Have your say:</label>';
   echo $form->textarea('comment',array('rows'=>'4'));
-  //echo $form->radio('inout',array('1' => 'In', '0' => 'Out'), array('separator' => '', 'legend' => false));
   echo '</fieldset>';
-  echo $form->hidden('id', array('value' => $post['Post']['id']));
+  echo $form->hidden('post_id', array('value' => $post['Post']['id']));
+  echo $form->hidden('user_id', array('value' => $session->read('User.id')));
   echo $form->hidden('inout', array('value' => $inout));
+  echo $form->hidden('parent_id', array('value' => 0));
   echo $form->submit('add-comment.png',array('class' => 'fcomm'));
   echo $form->end();
   echo '</div>';
