@@ -47,23 +47,25 @@
     <?=$comment['Comment']['comment']?>
     </div>
     </dt>
+    <ul class="grid_7 push_1 alpha omega reply" id="r<?=$comment['Comment']['id'];?>">
+    <?php foreach ($comment['children'] as $reply): ?>
+    <a name="c<?=$reply['Comment']['id'];?>"></a>
+    <li><?=$reply['Comment']['comment']?> &ndash; <?=$html->link($reply['User']['nama'],array('controller'=>'users','action'=>'view',$reply['User']['id']))?></li>
+    <?php endforeach; ?>
     <?=$form->create('Comment',
 		     array('controller' => 'comments',
+			   'class' => 'reply',
 			   'style' => 'display:none;',
 			   'id' => 'f'.$comment['Comment']['id'],
-			   'action' => 'reply', 
+			   'action' => 'add', 
 			   $comment['Comment']['id']));?>
-    <?=$form->textarea('comment',array('rows' => '2'));?>
+    <?=$form->textarea('comment',array('rows' => '1'));?>
     <?=$form->hidden('user_id',array('value' => $session->read('User.id')));?>
     <?=$form->hidden('inout',array('value' => '-1'));?>
     <?=$form->hidden('post_id',array('value' => $comment['Comment']['post_id']));?>
     <?=$form->hidden('parent_id',array('value' => $comment['Comment']['id']));?>
-    <?=$ajax->submit('Reply',array('url' => array('controller' => 'comments', 'action' => 'reply'), 'update' => 'c'.$comment['Comment']['id']));?>
+    <?=$form->submit('Reply');?>
     <?=$form->end();?>
-    <ul class="grid_7 push_1 alpha omega reply" id="r<?=$comment['Comment']['id'];?>" style="display:none">
-    <?php foreach ($comment['children'] as $reply): ?>
-    <li><?=$reply['Comment']['comment']?> &ndash; <?=$html->link($reply['User']['nama'],array('controller'=>'users','action'=>'view',$reply['User']['id']))?></li>
-    <?php endforeach; ?>
     </ul>   
     </dl>
     <?php endforeach; ?>

@@ -29,7 +29,4 @@ echo '</fieldset>';
 echo $form->end('Save');
 echo '</div>';
 // echo $ajax->observeField( 'PostUrl', array('url' => array('action' => 'bitly')));
-
 ?>
-
-<pre><?php  ?></pre>
