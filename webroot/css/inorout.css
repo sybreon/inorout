@@ -186,7 +186,8 @@ dl.comment a.flag { width:32px;height:32px;display:inline-block;background:url("
 dl.comment a.flag:hover { background:url("../img/sprite.png") -192px -32px; }
 
 form.reply { margin:14px; }
-form.reply textarea { width:99%;border:1px solid #333; }
+form.reply textarea,
+form.comment textarea { width:99%;border:1px solid #333; }
 
 ul.reply { list-style:none;}
 ul.reply li { margin:2px 14px;background:#fff;padding:4px 8px;color:#666; }

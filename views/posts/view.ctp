@@ -47,7 +47,7 @@ for ($i=0;$i<2;$i++) {
   $pad = ($i == 0) ? 'alpha' : 'omega';
   $inout = ($i == 0) ? 1 : 0;
   echo '<div id="fcomm'. $inout .'" class="grid_6 form fcomm '. $pad .'">';
-  echo $form->create('Comment', array('controller' => 'comments', 'action' => 'add'));
+  echo $form->create('Comment', array('controller' => 'comments', 'action' => 'add', 'class' => 'comment'));
   echo '<fieldset>';
   echo '<label>Have your say:</label>';
   echo $form->textarea('comment',array('rows'=>'4'));
