@@ -47,6 +47,11 @@
     <?=$comment['Comment']['comment']?>
     </div>
     </dt>
+    <ul class="grid_7 push_1 alpha omega reply" id="r<?=$comment['Comment']['id'];?>">
+    <?php foreach ($comment['children'] as $reply): ?>
+    <a name="c<?=$reply['Comment']['id'];?>" />
+    <li><?=$reply['Comment']['comment']?> &ndash; <?=$html->link($reply['User']['nama'],array('controller'=>'users','action'=>'view',$reply['User']['id']))?></li>
+    <?php endforeach; ?>
     <?=$form->create('Comment',
 		     array('controller' => 'comments',
 			   'class' => 'reply',
@@ -61,10 +66,6 @@
     <?=$form->hidden('parent_id',array('value' => $comment['Comment']['id']));?>
     <?=$form->submit('Reply');?>
     <?=$form->end();?>
-    <ul class="grid_7 push_1 alpha omega reply" id="r<?=$comment['Comment']['id'];?>">
-    <?php foreach ($comment['children'] as $reply): ?>
-    <li><?=$reply['Comment']['comment']?> &ndash; <?=$html->link($reply['User']['nama'],array('controller'=>'users','action'=>'view',$reply['User']['id']))?></li>
-    <?php endforeach; ?>
     </ul>   
     </dl>
     <?php endforeach; ?>
