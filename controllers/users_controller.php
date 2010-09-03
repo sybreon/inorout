@@ -125,7 +125,6 @@ class UsersController extends AppController {
   
   public function login($param = null) {
     $this->pageTitle = 'OpenID Login';
-    //$this->set('params',$this->params);
     $this->set('param',$param);
   }  
 
