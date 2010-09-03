@@ -55,7 +55,7 @@
 			   'action' => 'flag', $post['Post']['id']),
 		     array('update' => 'post',
 			   'escape' => false,
-			   'title' => 'flag',
+			   'title' => 'flag ('.$post['Post']['flags'].')',
 			   'class' => 'flag')
 		     );?></li>	    
 		     <?php endif; ?>

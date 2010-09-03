@@ -52,6 +52,7 @@
     <a name="c<?=$reply['Comment']['id'];?>"></a>
     <li><?=$reply['Comment']['comment']?> &ndash; <?=$html->link($reply['User']['nama'],array('controller'=>'users','action'=>'view',$reply['User']['id']))?></li>
     <?php endforeach; ?>
+    <? if ($session->check('User.id')):?>
     <?=$form->create('Comment',
 		     array('controller' => 'comments',
 			   'class' => 'reply',
@@ -64,8 +65,9 @@
     <?=$form->hidden('inout',array('value' => '-1'));?>
     <?=$form->hidden('post_id',array('value' => $comment['Comment']['post_id']));?>
     <?=$form->hidden('parent_id',array('value' => $comment['Comment']['id']));?>
-    <?=$form->submit('Reply');?>
-    <?=$form->end();?>
+    <span style="font-size:xx-small;color:#eee;">Type at least 16 characters.</span>
+    <?=$form->end('Reply');?>
+    <? endif; ?>
     </ul>   
     </dl>
     <?php endforeach; ?>
