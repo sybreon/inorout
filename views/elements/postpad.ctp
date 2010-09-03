@@ -41,7 +41,7 @@
     <div class="clear">&nbsp;</div>
 </div>
 <?=$html->tag('p', 
-	      Sanitize::html($post['Post']['teaser'], true),
+	      Sanitize::html($post['Post']['teaser'], array('remove' => true)),
 	      array('class' => $del)
 	      );?>
 
