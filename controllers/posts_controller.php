@@ -59,7 +59,8 @@ class PostsController extends AppController {
 					      )
 	       );	  
     //$this->layout = 'landscape';
-    $this->set('dump',$this->data);
+    //$this->set('dump',$this->data);
+    $this->pageTitle = 'IN/OUT - Read. Think. Vote';
   }
   
   /**
