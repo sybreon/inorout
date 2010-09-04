@@ -58,6 +58,7 @@ for ($i=0;$i<2;$i++) {
   echo $form->hidden('parent_id', array('value' => 0));
   echo $form->submit('add-comment.png',array('class' => 'fcomm'));
   echo $form->end();
+  echo $html->tag('em','Please refrain from making racist, sexist or derogatory comments.<br/>Note that such comments will be removed.');
   echo '</div>';
  }
 ?>
