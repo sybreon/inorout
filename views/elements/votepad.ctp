@@ -20,7 +20,7 @@
 ?>
 <?php $log = $session->check('User.id'); ?>
 <?=$html->image('vote_bar.png');?>
-Are you IN or OUT? (you can only vote once)
+Are you IN or OUT for this issue? (you can only vote once)
   <br/>
   <?php if (isset($vote['Vote']['vote'])): ?>
   <?=$html->link($html->image('voteIN.png'),
