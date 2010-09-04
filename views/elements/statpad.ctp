@@ -20,7 +20,7 @@
 ?>
 <div class="hr">
 <p class="title">posted by</p>
-    <?=$this->element('userpad',array('user' => $post['User']));?>
+    <?=$this->element('userpad',array('user' => $post['User'],'date' => $post['Post']));?>
 </div>
 <div class="hr">
    <div class="i28"><div class="total"><?=$html->image('vote.png',array('class'=>'img'));?>total</div><p class="numb"><?=$post['Post']['vins'] + $post['Post']['vouts'];?></p></div>

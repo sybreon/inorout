@@ -28,7 +28,7 @@
 					 )
 			  )
 		    );?>
-<?=$time->niceShort($user['created'])?><br/>
+<?=$time->niceShort($date['created'])?><br/>
     <?=$html->link($user['nama'], array('controller' => 'users', 'action' => 'view', $user['id']));?>
 </div>
     
