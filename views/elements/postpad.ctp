@@ -83,7 +83,7 @@
 			      <?php endif;?>
 
   <li><?=$html->link('',
-		     'http://twitter.com/share?url='.urlencode(Router::url('',true)).'&text='.urlencode($post['Post']['title']),
+		     'http://twitter.com/share?url='.urlencode(Router::url('',true)).'&text='.urlencode('#inoutmsia '.$post['Post']['title']),
 		     array('update' => 'vote',
 			   'escape' => false,
 			   'target' => '_blank',
