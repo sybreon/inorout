@@ -44,7 +44,7 @@ echo $scripts_for_layout;
   </div>
   </div>
   <div class="container_12" id="container"><div class="grid_3">
-	 <?=$html->link($html->image('LOGO.png'),
+   <?=$html->link($html->image('LOGO.png'),
 			array('controller' => 'posts',
 			      'action' => 'index'),
 			array('escape' => false));?>
@@ -104,8 +104,15 @@ echo $scripts_for_layout;
   </div><!--container-->
   <div style="background:#eee;">
   <div class="container_12">
-  <div class="grid_6" id="copy">Copyright &copy; 2010 to INOROUT.ORG</div>
-  <div class="grid_6" id="fmenu"><a href="#inout">Top</a></div>
+  <div class="grid_4" id="copy">Copyright &copy; 2010 to INOROUT.ORG</div>
+  <ul id="fmenu" class="grid_8">
+   <li><?=$html->link('Speak',array('controller' => 'posts', 'action' => 'index'));?></li>
+   <li><?=$html->link('About',array('controller' => 'pages', 'action' => 'about'));?></li>
+   <li><?=$html->link('News',array('controller' => 'pages', 'action' => 'news'));?></li>
+   <li><?=$html->link('Vote',array('controller' => 'pages', 'action' => 'vote'));?></li>
+   <li><?=$html->link('Friends',array('controller' => 'pages', 'action' => 'friends'));?></li>
+   <li><a href="#inout#" style="border-right:none;">Top</a></li>
+  </ul>
   <div class="clear">&nbsp;</div>
   </div><!--container-->
   </div>
