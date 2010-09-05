@@ -25,7 +25,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><?php echo $html->charset(); ?>
-<?=$html->meta(array('http-equiv' => 'X-UA-Compatible', 'content' => 'IE=edge'));?>
+<link rel="alternate" type="application/rss+xml" title="rss" href="<?=Router::url(array('controller' => 'rsses'),true);?>">
+<?=$html->meta(array('http-equiv' => 'X-UA-Compatible', 'content' => 'IE=8'));?>
 <?=$html->tag('title',$title_for_layout);?>
 <?php
 echo $html->meta('icon');
@@ -92,7 +93,7 @@ echo $scripts_for_layout;
 				    array('class' => 'twit',
 					  'target' => '_blank'));?></li>
   <li class="sprite"><?=$html->link('',
-				    '#',
+				    array('controller' => 'rsses'),
 				    array('class' => 'rss',
 					  'target' => '_blank'));?></li>
   </ul>
