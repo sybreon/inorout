@@ -20,7 +20,7 @@
 
 $id = ($session->check('User.id')) ? $session->read('User.id') : 0;
 ?>
-<ul id="dashboard">
+<ul id="dashboard" class="hmenu dashboard grid_6 alpha">
     <?php if ($session->check('User.id')): ?>
    <li><?=$html->link($session->read('User.nama'),array('controller' => 'users', 'action' => 'view', $id))?></li>
       <li><?=$html->link('logout',array('controller' => 'users', 'action' => 'logout', $id))?></li>
@@ -30,3 +30,4 @@ $id = ($session->check('User.id')) ? $session->read('User.id') : 0;
 <li><?=$html->link('faq',array('controller' => 'pages', 'action' => 'faq'))?></li>
 <li><input type="text" value="search" style="margin:6px;border:1px solid #333;"></li>
 </ul>
+<ul class="grid_6 omega hmenu dashboard" id="sabm"><li class="first">by <b><?=$html->link('Saya Anak Bangsa Malaysia','http://www.sayaanakbangsamalaysia.net');?></b>&nbsp;&raquo;</li></ul>

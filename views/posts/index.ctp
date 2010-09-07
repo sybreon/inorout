@@ -19,9 +19,9 @@
   */
 ?>
 <div class="grid_6 alpha">
-    click here for instructions
+    <ul class="hmenu sort"><li class="first">click here for instructions</li></ul>
     </div>
-    <ul class="grid_6 omega" style="text-align:right;" id="sort">sort by:&nbsp;
+    <ul class="grid_6 omega sort hmenu" id="sort">sort by:&nbsp;
     <li class="first"><?=$paginator->sort('Date','id');?></li>
     <li><?=$paginator->sort('Ins','vins');?></li>
     <li><?=$paginator->sort('Outs','vouts');?></li>

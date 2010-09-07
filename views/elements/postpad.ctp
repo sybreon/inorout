@@ -45,7 +45,7 @@
 	      array('class' => $del)
 	      );?>
 
-<ul class="grid_8 alpha omega" id="pact">
+<ul class="grid_8 alpha omega hmenu" id="pact">
     <?php if ($session->check('User.id')): ?>
    <?php if (isset($flag['Flag']['flag'])): ?>
        <li><?=$html->link('','#',array('class' => 'flagged')); ?></li>
