@@ -27,10 +27,18 @@
 	      array('class' => $del)
 	      );?>
 <div class="url">
-    <div id="thumb"><?=$html->link($html->image('http://api.thumbalizr.com/?width=128&api_key=c61f2fe6c4ebe609c650bcfa6dcab244&url='.urlencode($post['bitly'])),
+	
+	<? if($post['Post']['vins'] > 4 || $post['Post']['vouts'] > 4 ): ?>
+	<p id="actnow">ACT NOW!Register as a voter now!</p>
+	<? endif; ?>
+	
+    <div id="thumb">
+	
+	<?=$html->link($html->image('http://api.thumbalizr.com/?width=128&api_key=c61f2fe6c4ebe609c650bcfa6dcab244&url='.urlencode($post['bitly'])),
 				   $post['Post']['url'],
 				   array('escape' => false));?></div>
     <div id="meta">
+	
     <?=$html->link($text->truncate($post['bitly'],
 				   64). ' &raquo;', 
 		   $post['Post']['url'],
