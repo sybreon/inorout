@@ -25,9 +25,10 @@ App::import('Vendor','bitly'); // Import LightOpenID library
 class PostsController extends AppController {
 
   var $name = 'Posts';
-  var $helpers = array ('Form','Html','Text','Ajax','Javascript','Time');
+  var $helpers = array ('Form','Html','Text','Ajax','Javascript','Time','Paginator');
   var $components = array('RequestHandler');
 
+  var $paginate = array();
   
   private function bitly_shorten($url = null) {
     $bitly = new Bitly('inorout','R_11acbfd4019e1d133a8dd8ebb339da03');
@@ -44,6 +45,7 @@ class PostsController extends AppController {
   */
   
   function index() {
+    /*
     $this->set('posts_in', $this->Post->find('all', 
 					     array('limit' => 10,
 						   'conditions' => array('Post.vins >= Post.vouts', 'Post.flags >= 0'),
@@ -58,8 +60,19 @@ class PostsController extends AppController {
 						    )
 					      )
 	       );	  
-    //$this->layout = 'landscape';
-    //$this->set('dump',$this->data);
+    */
+    $this->paginate = array('limit' => 3,
+			    'order' => 'Post.id DESC',
+			    'conditions' => array('Post.vins >= Post.vouts', 'Post.flags >= 0'));
+    $posts_in = $this->paginate('Post');
+    $this->set('posts_in', $posts_in);
+
+    $this->paginate = array('limit' => 3,
+			    'order' => 'Post.id DESC',
+			    'conditions' => array('Post.vins <= Post.vouts', 'Post.flags >= 0'));
+    $posts_out = $this->paginate('Post');
+    $this->set('posts_out', $posts_out);
+
     $this->pageTitle = 'IN/OUT - Read. Think. Vote';
   }
   

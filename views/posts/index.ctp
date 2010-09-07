@@ -22,7 +22,7 @@
     click here for instructions
     </div>
     <div class="grid_6 omega" style="text-align:right;">
-    sort by
+    <?=$paginator->sort('ID','id');?>
     </div>
     <dl class="grid_6 alpha post" id="p-in">
     <?=$html->image('IN.png');?>
@@ -53,6 +53,10 @@
   </dd>
   <?php endforeach; ?>
   </dl>
+
+<div class="clear">&nbsp;</div>
+<div class="grid_6 alpha"><?=$paginator->prev();?>&nbsp;</div>
+<div class="grid_6 omega" style="text-align:right">&nbsp;<?=$paginator->next();?></div>
 
 <div class="clear">&nbsp;</div>
 <div class="grid_12 alpha omega">
