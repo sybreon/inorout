@@ -21,9 +21,12 @@
 <div class="grid_6 alpha">
     click here for instructions
     </div>
-    <div class="grid_6 omega" style="text-align:right;">
-    <?=$paginator->sort('ID','id');?>
-    </div>
+    <ul class="grid_6 omega" style="text-align:right;" id="sort">sort by:&nbsp;
+    <li class="first"><?=$paginator->sort('Date','id');?></li>
+    <li><?=$paginator->sort('Ins','vins');?></li>
+    <li><?=$paginator->sort('Outs','vouts');?></li>
+    <li><?=$paginator->sort('Views','views');?></li>
+    </ul>   
     <dl class="grid_6 alpha post" id="p-in">
     <?=$html->image('IN.png');?>
 <? foreach ($posts_in as $post): ?>
@@ -43,7 +46,7 @@
   <?=$html->image('OUT.png');?>
   <?php foreach ($posts_out as $post): ?>
   <dt>
-				       <?php echo $this->element('scorepad',array('post' => $post)); ?>
+   <?php echo $this->element('scorepad',array('post' => $post)); ?>
   <p class="title"><?=$html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?></p>
   <p class="teaser"><?=Sanitize::html($text->truncate($post['Post']['teaser'],128));?></p>
   </dt>
@@ -55,9 +58,9 @@
   </dl>
 
 <div class="clear">&nbsp;</div>
-<div class="grid_6 alpha"><?=$paginator->prev();?>&nbsp;</div>
-<div class="grid_6 omega" style="text-align:right">&nbsp;<?=$paginator->next();?></div>
-
+<div class="grid_5 alpha"><?=$paginator->prev('&laquo Previous',array('escape' => false));?>&nbsp;</div>
+<div class="grid_2" style="text-align:center"><?=$paginator->counter();?></div>
+<div class="grid_5 omega" style="text-align:right">&nbsp;<?=$paginator->next('Next &raquo',array('escape' => false));?></div>
 <div class="clear">&nbsp;</div>
 <div class="grid_12 alpha omega">
 <?=$html->image('add-post.png',
