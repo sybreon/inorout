@@ -39,8 +39,7 @@ echo $scripts_for_layout;
   <?php $session->flash(); ?>
 <div style="background:#eee;">
   <div class="container_12">
-  <div class="grid_9"><?=$this->element('dashboard');?></div>
-  <div class="grid_3" id="sabm">by <?=$html->link('Saya Anak Bangsa Malaysia','http://www.sayaanakbangsamalaysia.net');?>&nbsp;&raquo;</div>
+  <div class="grid_12"><?=$this->element('dashboard');?></div>
   <div class="clear">&nbsp;</div>
   </div>
   </div>
@@ -68,7 +67,7 @@ echo $scripts_for_layout;
   <div class="clear">&nbsp;</div>
   </div>
   <div class="container_12" id="container">
-  <ul id="pages" class="grid_12">
+  <ul id="pages" class="grid_12 hmenu">
   <li><?=(!strstr(Router::url(''),Router::url(array('controller'=>'posts','action'=>'view')))) ? 
   $html->link('',array('controller' => 'posts', 'action' => 'index'), array('class' => 'btnspeak')): 
   $html->image('button_speak_clicked.png');?></li>
@@ -105,9 +104,9 @@ echo $scripts_for_layout;
   </div><!--container-->
   <div style="background:#eee;">
   <div class="container_12">
-  <div class="grid_4" id="copy">Copyright &copy; 2010 to INOROUT.ORG</div>
-  <ul id="fmenu" class="grid_8">
-   <li><?=$html->link('Speak',array('controller' => 'posts', 'action' => 'index'));?></li>
+  <div class="grid_4 copy">Copyright &copy; 2010 to INOROUT.ORG</div>
+  <ul id="fmenu" class="grid_8 hmenu copy">
+   <li class="first"><?=$html->link('Speak',array('controller' => 'posts', 'action' => 'index'));?></li>
    <li><?=$html->link('About',array('controller' => 'pages', 'action' => 'about'));?></li>
    <li><?=$html->link('News',array('controller' => 'pages', 'action' => 'news'));?></li>
    <li><?=$html->link('Vote',array('controller' => 'pages', 'action' => 'vote'));?></li>
