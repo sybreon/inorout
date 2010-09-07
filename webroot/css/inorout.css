@@ -18,7 +18,7 @@
 */
 
 body { font-family:"Cantarell",sans-serif;background:#fff; }
-a {text-decoration:none;}
+a {text-decoration:none;color:#333;}
 
 div#flashMessage {color:#fff;background:#333;padding:8px;}
 .del { text-decoration:line-through;color:#eee !important; }
@@ -76,11 +76,12 @@ div#copy { font-size:x-small;font-weight:bold;padding:10px 0; }
 
 /** navigation **/
 
-ul#acts {white-space:nowrap;}
-ul#acts li {padding:0;margin:0;display:inline;list-style-type:none;}
-ul#acts li.first {border-left:none;}
+ul#acts, ul#sort {white-space:nowrap;}
+ul#acts li, ul#sort li {padding:0;margin:0;display:inline;list-style-type:none;}
+ul#acts li.first, ul#sort li.first a {border-left:none;}
 ul#acts a {padding:3px 8px;font-size:xx-small;color:#333;text-transform:uppercase;background:#eee;border:1px solid #ccc;}
-ul#acts a.disable {background:none;border:none;color:#ccc;}
+ul#acts a.disable, ul#sort a.disable {background:none;border:none;color:#ccc;}
+ul#sort li a { padding:3px 8px;color:#333;text-transform:lowercase;border-left:1px solid #ccc; }
 
 /** POST PAGE **/
 
