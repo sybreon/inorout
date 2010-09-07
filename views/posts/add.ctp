@@ -27,9 +27,7 @@ echo $form->input('url', array('maxLength' => '2048')); // IE practical limit
 echo $form->input('teaser',array('rows'=>'9'));
 echo '</fieldset>';
 echo $form->end('Save');
+echo $html->tag('em','Please refrain from making racist, sexist or derogatory statements in your post.<br/>Note that such posts will be flagged and removed.');
 echo '</div>';
 // echo $ajax->observeField( 'PostUrl', array('url' => array('action' => 'bitly')));
-
 ?>
-
-<pre><?php  ?></pre>

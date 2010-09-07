@@ -19,87 +19,48 @@
   */
 ?>
 <?php echo $javascript->link('prototype'); ?> 
-<h3><?php 
-    echo $html->link($post['Post']['title'], array('action' => 'view',
-						   $post['Post']['id'])); 
-?></h3><hr/>
-<div id="vote" class="grid_1 alpha">
-<?php
-echo $html->image('emoticon_smile.png') . $post['Post']['ins']; 
-echo $html->image('eye.png') . $post['Post']['views']; 
-echo $html->image('emoticon_unhappy.png') . $post['Post']['outs']; 
-?>
-</div>
-<div id="post" class="grid_7 omega">
-<!-- embed preview -->
-<?php 
-  //  echo $html->link('Link',$post['Post']['url']); 
-  $strike = ($post['Post']['flags'] == -1) ? 'strike' : 'p';
-echo $html->tag($strike, Sanitize::html($post['Post']['teaser'])); 
-?>
+<div class="grid_8 alpha" id="post">
+    <?=$this->element('postpad');?>
+</div><!--post-->
+
+<div class="grid_4 omega" id="stat">
+    <?=$this->element('statpad');?>
+</div><!--stat-->
+<div class="clear">&nbsp;</div>
+
+<div class="grid_12 alpha omega" id="vote">
+  <?=$this->element('votepad');?>
 </div>
 <div class="clear">&nbsp;</div>
-<ul id="acts" class="grid_3 alpha">
-  <li><?php echo $html->link('Edit', array('action' => 'edit', $post['Post']['id'])); ?></li>	  
-  <li id="actflg">
-  <?php 
-  if ($post['Post']['flags'] > 0) {
-    echo $ajax->link('Flag ('. $post['Post']['flags'] .')', array('controller' => 'posts', 'action' => 'flag', $post['Post']['id']), array('update' => 'actflg'), sprintf(__('Flag post #%s?', true), $post['Post']['id']));
-  } else {
-    echo $ajax->link('Flag', array('controller' => 'posts', 'action' => 'flag', $post['Post']['id']), array('update' => 'actflg'), sprintf(__('Flag post #%s?', true), $post['Post']['id']));
-  }
-?></li>
-<li id="actdel">
-  <?php 
-  if ($post['Post']['flags'] == -1) {
-    echo '<a href="#" class="disable">Deleted</a>';
-  } else {
-    echo $ajax->link('Delete', array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']), array('update' => 'actdel'), sprintf(__('Delete post #%s?', true), $post['Post']['id']));
-  }
-?></li>
-</ul>
-<div class="grid_5 omega">
-<?php
-  echo $html->image('http://www.gravatar.com/avatar/'. $post['User']['mail'] .'?d=mm&r=pg&s=16',
-		    array('alt' => $post['User']['nama'],
-			  'url' => array('controller' => 'users',
-					 'action' => 'view',
-					 $post['User']['id']
-					 )
-			  )
-		    );
-  echo 'created: '. $post['Post']['created'] .' by ';
-  echo $html->link($post['User']['nama'], array('controller' => 'users', 'action' => 'view', $post['User']['id']));
-?>
+
+<div class="grid_12 alpha omega" id="comm">
+    <?=$html->image('comment_bar.png');?>
+<p>&nbsp;</p>
+    <?=$this->element('commpad');?>
 </div>
 <div class="clear">&nbsp;</div>
-<dl class="grid_8 alpha omega">
+
+<div class="grid_12 alpha omega">
+<br/>
 <?php
-  foreach ($post['Comment'] as $comm) {
-  
-  if ($comm['inout'] == 0) {
-    echo '<dl id="c-out" class="grid_6 push_2 alpha omega">';
-  } else {
-    echo '<dl id="c-in" class="grid_6 alpha omega">';
-  }
-  
-    echo '<dt>'. $comm['created'] .'</dt>';
-    echo '<dd>'. $comm['comment'] .'</dd>';
-  echo '</dl>';
-}
-?>
-</dl>
-<?php
-  echo '<div id="f.comment" class="grid_6 push_1 alpha omega">';
-  echo $form->create('Comment', array('controller' => 'comments', 'action' => 'add'));
+for ($i=0;$i<2;$i++) {
+  $pad = ($i == 0) ? 'alpha' : 'omega';
+  $inout = ($i == 0) ? 1 : 0;
+  echo '<div id="fcomm'. $inout .'" class="grid_6 form fcomm '. $pad .'">';
+  echo $form->create('Comment', array('controller' => 'comments', 'action' => 'add', 'class' => 'comment'));
   echo '<fieldset>';
-  echo '<legend>Add Comment</legend>';
-  echo $form->input('comment',array('rows'=>'9'));
-  echo $form->radio('inout',array('1' => 'In', '0' => 'Out'), array('separator' => '', 'legend' => false));
+  echo '<label>Have your say:</label>';
+  echo $form->textarea('comment',array('rows'=>'4'));
   echo '</fieldset>';
-  echo $form->end('Save');
+  echo $form->hidden('post_id', array('value' => $post['Post']['id']));
+  echo $form->hidden('user_id', array('value' => $session->read('User.id')));
+  echo $form->hidden('inout', array('value' => $inout));
+  echo $form->hidden('parent_id', array('value' => 0));
+  echo $form->submit('add-comment.png',array('class' => 'fcomm'));
+  echo $form->end();
+  echo $html->tag('em','Please refrain from making racist, sexist or derogatory comments.<br/>Note that such comments will be removed.');
   echo '</div>';
+ }
 ?>
-<pre>
-<?php print_r($post); ?>
-</pre>
+</div>
+<div class="clear">&nbsp;</div>

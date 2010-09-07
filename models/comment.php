@@ -21,12 +21,16 @@
 class Comment extends AppModel {
 
   var $name = 'Comment';
-  var $belongsTo = array('Post', 'User');
-  //var $belongsTo = 'User';
+  var $belongsTo = array('User');
+  //var $hasMany = 'Reply';
   var $validate = array('comment' => array ('rule' => array('minLength', 16),
 					    'required' => true,
 					    'message' => 'must be longer than 16 characters.'
 					    ),
+			'user_id' => array('rule' => 'numeric',
+					   'required' => true),
+			'post_id' => array('rule' => 'numeric',
+					   'required' => true)
 			);
   }
 ?>

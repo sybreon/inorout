@@ -18,57 +18,49 @@
    <http://www.gnu.org/licenses/>.
   */
 ?>
+<div class="grid_6 alpha">
+    click here for instructions
+    </div>
+    <div class="grid_6 omega" style="text-align:right;">
+    sort by
+    </div>
+    <dl class="grid_6 alpha post" id="p-in">
+    <?=$html->image('IN.png');?>
+<? foreach ($posts_in as $post): ?>
+<dt>
+<? echo $this->element('scorepad',array('post' => $post)); ?>
+<p class="title"><?=$html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?></p>
+<p class="teaser"><?=$text->truncate($text->stripLinks($post['Post']['teaser']),128); ?></p>
+</dt>
+<dd>
+  <?=$time->niceShort($post['Post']['created']);?> &ndash; <?=$html->link($post['User']['nama'],array('controller'=>'users','action'=>'view',$post['User']['id']));?>
+  <span class="comments"><?=$post['Post']['cins'] + $post['Post']['couts']?>&nbsp;comments</span>
+  </dd>
+  <?php endforeach; ?>
+  </dl>
 
-<dl class="grid_6 alpha" id="c-in">
-<?php foreach ($posts_in as $post) { ?>
-	<dt>
-	<?php
-		$strike = $post['Post']['flags'] & 0x01;
-		if ($strike == 1) { echo '<strike>'; }
-		print($html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id'])));
-	?>
-	</strike>
-	</dt>
-	<dd>
-	<?php 
-	      echo $text->truncate($text->stripLinks($post['Post']['teaser']), 32);
-	      echo $html->image('emoticon_smile.png') . $post['Post']['ins']; 
-	      echo $html->image('eye.png') . $post['Post']['views']; 
-	      echo $html->image('emoticon_unhappy.png') . $post['Post']['outs']; 
-	?>
-	</dd>
-<?php	} ?>
-</dl>
+<dl class="grid_6 omega post" id="p-out">
+  <?=$html->image('OUT.png');?>
+  <?php foreach ($posts_out as $post): ?>
+  <dt>
+				       <?php echo $this->element('scorepad',array('post' => $post)); ?>
+  <p class="title"><?=$html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id']));?></p>
+  <p class="teaser"><?=Sanitize::html($text->truncate($post['Post']['teaser'],128));?></p>
+  </dt>
+  <dd>
+  <?=$time->niceShort($post['Post']['created']);?> &ndash; <?=$html->link($post['User']['nama'],array('controller'=>'users','action'=>'view',$post['User']['id']));?>
+  <span class="comments"><?=$post['Post']['cins'] + $post['Post']['couts']?>&nbsp;comments</span>
+  </dd>
+  <?php endforeach; ?>
+  </dl>
 
-<dl class="grid_6 omega" id="c-out">
-<?php foreach ($posts_out as $post) { ?>
-	<dt>
-	<?php
-		$strike = $post['Post']['flags'] & 0x01;
-		if ($strike == 1) { echo '<strike>'; }
-		print($html->link($post['Post']['title'], array('action' => 'view', $post['Post']['id'])));
-	?></strike>
-	</dt>
-	<dd>
-	<?php 
-	      echo $text->truncate($text->stripLinks($post['Post']['teaser']), 48);
-	      echo $html->image('emoticon_smile.png') . $post['Post']['ins']; 
-	      echo $html->image('eye.png') . $post['Post']['views']; 
-	      echo $html->image('emoticon_unhappy.png') . $post['Post']['outs']; 
-	?>
-	</dd>
-<?php	} ?>
-</dl>
 <div class="clear">&nbsp;</div>
-<ul id="acts" class="grid_3 alpha">
-    <li><?php echo $html->link('Add Post', array('action' => 'add'));?></li>
-</ul>
-<div class="grid_9 omega">
-<?php
-    echo $test;
-    print_r($session);
-    echo $session->read('User.mail');
-    echo $session->read('User.nama');
-    echo $session->read('User.id');
-?>
+<div class="grid_12 alpha omega">
+<?=$html->image('add-post.png',
+		array('alt' => 'Add a Post',
+		      'url' => array('controller' => 'posts',
+				     'action' => 'add')
+		      )
+		);?>&nbsp;
 </div>
+<div class="clear">&nbsp;</div>

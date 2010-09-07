@@ -25,36 +25,101 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><?php echo $html->charset(); ?>
-<title><?php echo $title_for_layout; ?></title>
+<link rel="alternate" type="application/rss+xml" title="rss" href="<?=Router::url(array('controller' => 'rsses'),true);?>">
+<?=$html->meta(array('http-equiv' => 'X-UA-Compatible', 'content' => 'IE=8'));?>
+<?=$html->tag('title',$title_for_layout);?>
 <?php
 echo $html->meta('icon');
-echo $html->css('reset');
-echo $html->css('text');
-echo $html->css('960');
-//echo $html->css('grid');
-echo $html->css('inorout');
+echo $html->css('http://fonts.googleapis.com/css?family=Vollkorn|Cantarell:regular,bold');
+echo $html->css(array('reset','text','960','inorout'));
 echo $scripts_for_layout;
 ?>
 </head>
-<body>
-<?php $session->flash(); ?>
-<div class="container_12" id="container">
-  <ul id="pages" class="grid_12">
-  <li><?php echo $html->link('Home', array('controller' => 'posts', 'action' => 'index')); ?> </li>
-  <li><?php echo $html->link('About Us', array('controller' => 'pages', 'action' => 'about')); ?> </li>
-  <li><?php echo $html->link('Events', array('controller' => 'pages', 'action' => 'events')); ?> </li>
-  <li><?php echo $html->link('Vote!', array('controller' => 'pages', 'action' => 'vote')); ?> </li>
-  <li><?php echo $html->link('Friends', array('controller' => 'pages', 'action' => 'friends')); ?> </li>
-  </ul>
+<body id="<?=Router::url('');?>">
+  <?php $session->flash(); ?>
+<div style="background:#eee;">
+  <div class="container_12">
+  <div class="grid_9"><?=$this->element('dashboard');?></div>
+  <div class="grid_3" id="sabm">by <?=$html->link('Saya Anak Bangsa Malaysia','http://www.sayaanakbangsamalaysia.net');?>&nbsp;&raquo;</div>
   <div class="clear">&nbsp;</div>
-  <div class="grid_8">
+  </div>
+  </div>
+  <div class="container_12" id="container"><div class="grid_3">
+   <?=$html->link($html->image('LOGO.png'),
+			array('controller' => 'posts',
+			      'action' => 'index'),
+			array('escape' => false));?>
+  </div>
+  <div class="grid_2 prefix_3" id="count">
+  <?=$html->link('&nbsp;',
+		 array('controller' => 'pages',
+		       'action' => 'group'),
+		 array('class' => 'star',
+		       'escape' => false,
+		       'title' => 'Please contact us to organise group registrations!')
+		 ); ?>
+  </div>
+  <div class="grid_4" style="">
+	<?=$html->image('countdown.png',array('style' => 'float:left;padding-top:10px'));?>
+  <p id="count">
+																 <b>2,241,565</b><br/>unregistered voters &mdash; provided by <a href="http://www.spr.gov.my" target="_blank">SPR</a>
+   </p>
+  </div>
+  <div class="clear">&nbsp;</div>
+  </div>
+  <div class="container_12" id="container">
+  <ul id="pages" class="grid_12">
+  <li><?=(!strstr(Router::url(''),Router::url(array('controller'=>'posts','action'=>'view')))) ? 
+  $html->link('',array('controller' => 'posts', 'action' => 'index'), array('class' => 'btnspeak')): 
+  $html->image('button_speak_clicked.png');?></li>
+  <li><?=(!strstr(Router::url(''),Router::url(array('controller'=>'pages','action'=>'about')))) ? 
+  $html->link('',array('controller' => 'pages', 'action' => 'about'), array('class' => 'btninfo')):
+  $html->image('button_about_clicked.png');?></li>
+  <li><?=(!strstr(Router::url(''),Router::url(array('controller'=>'pages','action'=>'news')))) ? 
+  $html->link('',array('controller' => 'pages', 'action' => 'news'), array('class' => 'btnnews')):
+  $html->image('button_news_clicked.png');?></li>
+  <li><?=(!strstr(Router::url(''),Router::url(array('controller'=>'pages','action'=>'vote')))) ? 
+  $html->link('',array('controller' => 'pages', 'action' => 'vote'), array('class' => 'btnvote')):
+  $html->image('button_vote_clicked.png');?></li>
+  <li><?=(!strstr(Router::url(''),Router::url(array('controller'=>'pages','action'=>'friends')))) ? 
+  $html->link('',array('controller' => 'pages', 'action' => 'friends'), array('class' => 'btnfren')):
+  $html->image('button_friends_clicked.png');?></li>
+  <li class="sprite"><?=$html->link('',
+				    'http://www.facebook.com/pages/IN-OUT/118079328213929',
+				    array('class' => 'fb',
+					  'target' => '_blank'));?></li>
+  <li class="sprite"><?=$html->link('',
+				    'http://twitter.com/inoutmsia',
+				    array('class' => 'twit',
+					  'target' => '_blank'));?></li>
+  <li class="sprite"><?=$html->link('',
+				    array('controller' => 'rsses'),
+				    array('class' => 'rss',
+					  'target' => '_blank'));?></li>
+  </ul>
+  <div class="clear"><a name="inout">&nbsp;</a></div>
+  <div class="grid_12">
   <?php echo $content_for_layout; ?>
   </div>
-  <div class="grid_4">&nbsp;</div>
   <div class="clear">&nbsp;</div>
+  </div><!--container-->
+  <div style="background:#eee;">
+  <div class="container_12">
+  <div class="grid_4" id="copy">Copyright &copy; 2010 to INOROUT.ORG</div>
+  <ul id="fmenu" class="grid_8">
+   <li><?=$html->link('Speak',array('controller' => 'posts', 'action' => 'index'));?></li>
+   <li><?=$html->link('About',array('controller' => 'pages', 'action' => 'about'));?></li>
+   <li><?=$html->link('News',array('controller' => 'pages', 'action' => 'news'));?></li>
+   <li><?=$html->link('Vote',array('controller' => 'pages', 'action' => 'vote'));?></li>
+   <li><?=$html->link('Friends',array('controller' => 'pages', 'action' => 'friends'));?></li>
+   <li><a href="#inout#" style="border-right:none;">Top</a></li>
+  </ul>
+  <div class="clear">&nbsp;</div>
+  </div><!--container-->
   </div>
   <pre>
   <?php echo $cakeDebug; ?>
   </pre>
   </body>
   </html>
+  <!-- Copyright (C) 2010 to Shawn Tan. All Rights Reserved. -->

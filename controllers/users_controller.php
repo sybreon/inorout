@@ -27,8 +27,7 @@ class UsersController extends AppController {
   
   var $name = 'Users';
   var $components = array('RequestHandler');
-  var $helpers = array ('Form','Html','Ajax','Javascript');
-  //var $uses = array();
+  var $helpers = array ('Form','Html','Ajax','Javascript','Time','Text');
   
   /**
    Launch OpenID request.
@@ -49,8 +48,14 @@ class UsersController extends AppController {
 
   public function auth($param = null) {	  
     
-    if (isset($this->data['User']['url'])) {
-      $this->requestID($this->data['User']['url']);
+    if (!isset($this->params['url']['openid_mode'])) {
+      // do OpenID
+      switch ($this->data['User']['url']) {
+      case 'g':	$this->requestID('http://www.google.com/accounts/o8/id'); break;
+      case 'y':	$this->requestID('http://me.yahoo.com'); break;
+      case 'w':	$this->requestID('http://wordpress.com'); break;
+      case 'm':	$this->requestID('http://myopenid.com'); break;	
+      }
 
     } elseif ($this->params['url']['openid_mode'] == 'cancel') {	    
       // openid cancel
@@ -64,34 +69,25 @@ class UsersController extends AppController {
 	// valid OpenID reply
 	$attr = $openid->getAttributes(); // extract attributes
 	$mail = (isset($attr['contact/email'])) ? md5(strtolower(trim($attr['contact/email']))) : '';
-	$nama = (isset($attr['namePerson/friendly'])) ? $attr['namePerson/friendly'] : 'Anonymous';	
+	$nama = (isset($attr['namePerson/friendly'])) ? $attr['namePerson/friendly'] : preg_replace('/^([^@]+)(@.*)$/', '$1', $attr['contact/email']);	
 	$oid = md5(trim($openid->identity)); // hash the id returned
 
-	/*
-	$tmp['User']['oid'] = $oid;
-	$tmp['User']['mail'] = $mail;
-	$tmp['User']['nama'] = $nama;
-	*/
 	// find the user based on claimed_id
-	if (($this->data = $this->User->findByOid($oid)) == false) {
+	if (($tmp = $this->User->findByOid($oid)) == false) {
 	  // create user	  
-	  $this->data['User']['oid'] = $oid;
-	  $this->data['User']['mail'] = $mail;
-	  $this->data['User']['nama'] = $nama;
+	  $tmp['User']['oid'] = $oid;
+	  $tmp['User']['mail'] = $mail;
+	  $tmp['User']['nama'] = $nama;
 	  
 	  $this->User->create();
-	  $this->User->save($this->data);
-
+	  $this->User->save($tmp);
 	  $this->Session->setFlash('Welcome to In/Out user #'. $this->User->id .'!');
+	  // TODO: redirect to n00b page.
 	} else {
 	  // update user	  
-	  $this->data['User']['oid'] = $oid;
-	  $this->data['User']['mail'] = $mail;
-	  $this->data['User']['nama'] = $nama;
-
-	  $this->User->id = $this->data['User']['id'];
-	  $this->User->save($this->data);
-
+	  $this->User->id = $tmp['User']['id'];
+	  $this->User->saveField('mail',$mail);
+	  $this->User->saveField('nama',$nama);
 	  $this->Session->setFlash('Welcome back user #'. $this->User->id .'!');
 	}
 
@@ -101,7 +97,10 @@ class UsersController extends AppController {
 	$this->Session->write('User.oid', $oid);
 	$this->Session->write('User.id', $this->User->id);
 	
-	$this->redirect(array('controller' => 'posts', 'action' => 'index'));
+	// redirect to source/default
+	$url = ($this->Session->check('Session.referer')) ? $this->Session->read('Session.referer') : array('controller' => 'posts', 'action' => 'index');	
+	$this->redirect($url);
+
       } else {
 	$this->Session->setFlash('Authentication failed!');
 	$this->redirect(array('controller' => 'users', 'action' => 'login', $param));
@@ -116,7 +115,8 @@ class UsersController extends AppController {
   public function logout() {
     // destroy user session
     $this->Session->delete('User');
-    $this->redirect(array('controller' => 'users', 'action' => 'login'));    
+    //$this->redirect(array('controller' => 'users', 'action' => 'login'));    
+    $this->redirect($this->referer());
   }
   
   /**
@@ -125,8 +125,15 @@ class UsersController extends AppController {
   
   public function login($param = null) {
     $this->pageTitle = 'OpenID Login';
-    //$this->set('params',$this->params);
     $this->set('param',$param);
   }  
+
+
+  public function view($id = null) {
+    $this->PageTitle = 'User #'. $id;
+    
+    $this->set('user',$this->User->read(null,$id));    
+
+  }
 }
 ?>

@@ -20,36 +20,37 @@
 
 class Post extends AppModel {
 
-	var $name = 'Post';
-	/*
-	var $hasMany = array('Comment' => array('className' => 'Comment',
-						//'conditions' => array('Comment.inout' => '0'),
-						'order' => 'Comment.inout',
-						),			     
-			     'CommentOut' => array('className' => 'Comment',
-						   'conditions' => array('Comment.inout' => '1'),
-						   'order' => 'Comment.created DESC',
-						   ),			    
-			     );
-	*/	
-	var $hasMany = 'Comment';
-	var $belongsTo = 'User';
-	var $validate = array('url'=>array(
-					   'rule'=>'url',
-					   'required'=>false,
-					   'allowEmpty'=>true,
-					   'message'=>'Must be a valid url to an online resource.',
-					   ),
-			      'teaser'=>array(
-					      'rule'=>array('minLength',32),
-					      'required'=>true,
-					      'message'=>'Teaser must be longer than 32 characters.'
-					      ),
-			      'title'=>array(
-					     'rule'=>array('minLength',16),
-					     'required'=>true,
-					     'message'=>'Title must be longer than 16 characters.'
-					     ),
-			      );       
-}
+  var $name = 'Post';
+  /*
+   var $hasMany = array('Comment' => array('className' => 'Comment',
+   //'conditions' => array('Comment.inout' => '0'),
+   'order' => 'Comment.inout',
+   ),			     
+   'CommentOut' => array('className' => 'Comment',
+   'conditions' => array('Comment.inout' => '1'),
+   'order' => 'Comment.created DESC',
+   ),			    
+   );
+  */	
+  //var $hasMany = 'Comment';
+  //var $hasAndBelongsToMany = 'User';
+  var $belongsTo = 'User';
+  var $validate = array('url'=>array(
+				     'rule'=>'url',
+				     'required'=>false,
+				     'allowEmpty'=>true,
+				     'message'=>'Must be a valid url to an online resource.',
+				     ),
+			'teaser'=>array(
+					'rule'=>array('minLength',32),
+					'required'=>true,
+					'message'=>'Teaser must be longer than 32 characters.'
+					),
+			'title'=>array(
+				       'rule'=>array('minLength',16),
+				       'required'=>true,
+				       'message'=>'Title must be longer than 16 characters.'
+				       ),
+			);       
+  }
 ?>

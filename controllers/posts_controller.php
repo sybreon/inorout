@@ -20,169 +20,184 @@
 
 App::import('Core', 'HttpSocket');
 App::import('Sanitize');
+App::import('Vendor','bitly'); // Import LightOpenID library
 
 class PostsController extends AppController {
 
-	var $name = 'Posts';
-	var $helpers = array ('Form','Html','Text','Ajax','Javascript');
-	var $components = array('RequestHandler');
+  var $name = 'Posts';
+  var $helpers = array ('Form','Html','Text','Ajax','Javascript','Time');
+  var $components = array('RequestHandler');
 
+  
+  private function bitly_shorten($url = null) {
+    $bitly = new Bitly('inorout','R_11acbfd4019e1d133a8dd8ebb339da03');
+    return $bitly->shortenSingle($url);
+  }
+  
+  private function bitly_expand($url = null) {
+    $bitly = new Bitly('inorout','R_11acbfd4019e1d133a8dd8ebb339da03');
+    return $bitly->expandSingle($url);
+  }
+  
+  /**
+   Default - lists all posts
+  */
+  
+  function index() {
+    $this->set('posts_in', $this->Post->find('all', 
+					     array('limit' => 10,
+						   'conditions' => array('Post.vins >= Post.vouts', 'Post.flags >= 0'),
+						   'order' => 'Post.id DESC',
+						   )
+					     )
+	       );	  
+    $this->set('posts_out', $this->Post->find('all',
+					      array('limit' => 10,
+						    'conditions' => array('Post.vouts >= Post.vins', 'Post.flags >= 0'),
+						    'order' => 'Post.id DESC',
+						    )
+					      )
+	       );	  
+    //$this->layout = 'landscape';
+    //$this->set('dump',$this->data);
+    $this->pageTitle = 'IN/OUT - Read. Think. Vote';
+  }
+  
+  /**
+   Retrieves and displays a single post.
+  */
+  
+  function view($id = null) {    
+    // Increment counter once in a session
+    if (!$this->Session->check('Post.'.$id)) {
+      $this->Post->updateAll(array('Post.views' => 'Post.views+1'), array('Post.id' => $id));
+      $this->Session->write('Post.'.$id,'');
+    }
+    
+    // Extract the post
+    $post = $this->Post->find(array('Post.id' => $id));
+    //$post['url'] = base64_encode($post['Post']['url']);
+    $post['bitly'] = $this->bitly_expand($post['Post']['url']);
 
-	private function bitly_shorten($url = null) {
-	  $HttpSocket = new HttpSocket();
-	  $bitly = $HttpSocket->get('http://api.bit.ly/v3/shorten', 
-				    array('format' => 'txt',
-					  'login' => 'inorout',
-					  'apiKey' => 'R_11acbfd4019e1d133a8dd8ebb339da03',
-					  'longUrl' => $url
-					  )
-				    ); 	    
-	  return trim($bitly);
+    if ($this->Session->check('User.id')) {
+      // Extract votes
+      $this->loadModel('Vote');
+      $this->set('vote', 
+		 $this->Vote->find(array('Vote.post_id' => $id,
+					 'Vote.user_id' => $this->Session->read('User.id'))));
+
+      $this->loadModel('Flag');
+      $this->set('flag', 
+		 $this->Flag->find(array('Flag.post_id' => $id,
+					 'Flag.user_id' => $this->Session->read('User.id'))));
+     
+    }
+
+    $this->set('post',$post);
+    $this->pageTitle = $post['Post']['title'];
+    
+    // Extract comments
+    $this->loadModel('Comment');
+    $this->set('comments', 
+	       $this->Comment->find('threaded', 
+				    array('conditions' => array('Comment.post_id' => $id))));	  
+    
+  }
+
+  /**
+   Edit an existing post.
+  */
+  
+  function edit($id = null) {
+    assert('is_numeric($id)'); // check input
+    $this->pageTitle = 'Edit Post #'.$id;
+
+    if (!$this->Session->check('User.id')) {
+      $this->Session->write('Session.referer', array('controller' => 'posts','action' => 'add'));
+      $this->redirect(array('controller' => 'users', 'action' => 'login'));      
+    } elseif (empty($this->data)) { // load the post
+      $this->data = $this->Post->find(array('Post.id' => $id)); //, 'Post.user_id' => $this->Session->read('User.id'))); //read(null, $id);
+      // Expand the URL using bitly
+      if (!empty($this->data['Post']['url'])) {	      
+	$this->data['Post']['url'] = $this->bitly_expand($this->data['Post']['url']);
+      }
+      /*    
+    } elseif ($this->data['Post']['user_id'] != $this->Session->read('User.id')) { // check save attempt
+      $this->Session->write('Session.referer', array('controller' => 'posts','action' => 'edit', $id));
+      $this->redirect(array('controller' => 'users', 'action' => 'login'));            
+      */
+    } else { // save the post
+      assert('is_string($this->data[\'Post\'][\'teaser\'])');
+      assert('is_string($this->data[\'Post\'][\'title\'])');
+      assert('is_string($this->data[\'Post\'][\'url\'])');
+
+      $tmp = $this->Post->find(array('Post.id' => $id)); //, 'Post.user_id' => $this->Session->read('User.id'))); //read(null, $id);
+
+      if ($tmp['Post']['user_id'] == $this->Session->read('User.id')) {
+	// Shorten the URL using bitly
+	if (!empty($this->data['Post']['url'])) {	      
+	  $this->data['Post']['url'] = $this->bitly_shorten($this->data['Post']['url']);
+	}	    
+	
+	// save the form
+	if ($this->Post->save($this->data)) {	      	      
+	  $id = $this->Post->id; // get new ID
+	  $this->Session->setFlash('Post #'. $id .' updated successfully.');
+	  $this->redirect(array('action' => 'view', $id));
 	}
+      } else {
+	$this->Session->setFlash('You do not have the rights to edit post #'.$id);
+	$this->redirect($this->referer());
+      }
+    }
+  }
+  
+  /**
+   Add a new post.
+  */
+  
+  function add() {	
+    $this->pageTitle = 'Add Post';
+    if (!$this->Session->check('User.id')) {
+      $this->Session->write('Session.referer', array('controller' => 'posts','action' => 'add'));
+      $this->redirect(array('controller' => 'users', 'action' => 'login'));
+    } elseif (!empty($this->data)) {
+      assert('is_string($this->data[\'Post\'][\'teaser\'])');
+      assert('is_string($this->data[\'Post\'][\'title\'])');
+      assert('is_string($this->data[\'Post\'][\'url\'])');
 
-	private function bitly_expand($url = null) {
-	  $HttpSocket = new HttpSocket();
-	  $bitly = $HttpSocket->get('http://api.bit.ly/v3/expand', 
-				    array('format' => 'txt',
-					  'login' => 'inorout',
-					  'apiKey' => 'R_11acbfd4019e1d133a8dd8ebb339da03',
-					  'shortUrl' => $url
-					  )
-				    ); 	    
-	  return trim($bitly);
-	}
+      // Shorten the URL using bitly
+      if (!empty($this->data['Post']['url'])) {	      
+	$this->data['Post']['url'] = $this->bitly_shorten($this->data['Post']['url']);
+      }	    
 
-	/**
-	 Default - lists all posts
-	 */
+      $this->data['Post']['user_id'] = $this->Session->read('User.id');
 
-	function index() {
-	  $this->set('posts_in', $this->Post->find('all', 
-						array('limit' => 10,
-						      'conditions' => array('Post.ins >= Post.outs'),
-						      'order' => 'Post.id DESC',
-						      )
-						)
-		     );	  
-	  $this->set('posts_out', $this->Post->find('all',
-						array('limit' => 10,
-						      'conditions' => array('Post.outs >= Post.ins'),
-						      'order' => 'Post.id DESC',
-						      )
-						)
-		     );	  
-	  $this->layout = 'landscape';
-	  $this->set('test',$this->Session->read('User.email'));
-	}
+      // save the form
+      if ($this->Post->save($this->data)) {	      	      
+	$id = $this->Post->id; // get new ID
+	$this->Session->setFlash('Post #'. $id .' added successfully.');
+	$this->redirect(array('action' => 'view', $id));
+      }
+    }
+  }
+  
+  /**
+   Flag a post as DELETED (AJAX)
+  */
 
-	/**
-	 Retrieves and displays a single post.
-	 */
-
-	function view($id = null) {
-	  $this->pageTitle = 'In/Out #'. $id;
-
-	  // Increment counter once in a session
-	  if (!$this->Session->check('Post.'.$id)) {
-	    $this->Post->updateAll(array('Post.views' => 'Post.views+1'), array('Post.id' => $id));
-	    $this->Session->write('Post.'.$id,'');
-	  }
-
-	  // Extract the post
-	  $this->set('post',$this->Post->read(null,$id));	  
-	}
-
-	/**
-	 Edit an existing post.
-	 */
-
-	function edit($id = null) {
-	  $this->pageTitle = 'Edit Post #'.$id;
-	  if (empty($this->data)) {
-	    $this->data = $this->Post->read(null, $id);
-	    // Expand the URL using bitly
-	    if (!empty($this->data['Post']['url'])) {	      
-	      $this->data['Post']['url'] = $this->bitly_expand($this->data['Post']['url']);
-	    }
-	  } else {
-	    // Shorten the URL using bitly
-	    if (!empty($this->data['Post']['url'])) {	      
-	      $this->data['Post']['url'] = $this->bitly_shorten($this->data['Post']['url']);
-	    }	    
-	    // save the form
-	    if ($this->Post->save($this->data)) {	      	      
-	      $id = $this->Post->id; // get new ID
-	      $this->Session->setFlash('Post #'. $id .' updated successfully.');
-	      $this->redirect(array('action' => 'view', $id));
-	    }
-	  }
-	}
-
-	/**
-	 Add a new post.
-	 */
-
-	function add() {	
-	  $this->pageTitle = 'Add Post';	 
-	  if (!empty($this->data)) {
-	    // Shorten the URL using bitly
-	    if (!empty($this->data['Post']['url'])) {	      
-	      $this->data['Post']['url'] = $this->bitly_shorten($this->data['Post']['url']);
-	    }	    
-	    // save the form
-	    if ($this->Post->save($this->data)) {	      	      
-	      $id = $this->Post->id; // get new ID
-	      $this->Session->setFlash('Post #'. $id .' added successfully.');
-	      $this->redirect(array('action' => 'view', $id));
-	    }
-	  }
-	}
-
-	/**
-	 Shorten the URL
-	 */
-	function bitly() {
-	  Configure::write('debug', 0); // dont want debug in ajax returned html
-	  if (!empty($this->data['Post']['url'])) {	      
-	    $HttpSocket = new HttpSocket();
-	    $bitly = $HttpSocket->get('http://api.bit.ly/v3/shorten', 
-				      array('format' => 'txt',
-					    'login' => 'inorout',
-					    'apiKey' => 'R_11acbfd4019e1d133a8dd8ebb339da03',
-					    'longUrl' => $this->data['Post']['url']
-					    )
-				      ); 	    
-	    $this->set('bitly', trim($bitly)); // strip whitespace
-	  }	    	  
-	  $this->layout = 'ajax';
-	}
-
-
-	/**
-	 Flag a post as DELETED (AJAX)
-	 */
-	function delete($id = null) {
-	  if ($this->RequestHandler->isAjax()) {
-	    Configure::write('debug', 0); // dont want debug in ajax returned html
-	    // TODO: Check for ACL
-	    $this->Post->updateAll(array('Post.flags' => '-1'), array('Post.id' => $id));
-	    $this->set('result', 'Deleted');
-	    $this->layout = 'ajax';
-	  }
-	}
-
-	/**
-	 Flag a post as FLAGGED (AJAX)
-	 */
-	function flag($id = null) {
-	  if ($this->RequestHandler->isAjax()) {
-	    Configure::write('debug', 0); // dont want debug in ajax returned html
-	    // TODO: Check for ACL
-	    $this->Post->updateAll(array('Post.flags' => 'Post.flags+1'), array('Post.id' => $id));
-	    $this->set('result', 'Flagged');
-	    $this->layout = 'ajax';
-	  }
-	}
-
+  function delete($id = null) {
+    if ($this->RequestHandler->isAjax()) {
+      assert('is_numeric($id)'); // check input
+      Configure::write('debug', 0); // dont want debug in ajax returned html
+      // TODO: Check for ACL
+      $this->Post->updateAll(array('Post.flags' => '-1'), array('Post.id' => $id));
+      $post = $this->Post->find(array('Post.id' => $id));
+      $post['bitly'] = $this->bitly_expand($post['Post']['url']);
+      $this->set('post',$post);
+      $this->layout = 'ajax';
+    }
+  }
+    
 }
 ?>

@@ -22,16 +22,62 @@
 
 class CommentsController extends AppController {
 
-	var $name = 'Comments';
-	//var $helpers = array ('Form','Html','Text','Ajax','Javascript');
-	var $components = array('RequestHandler');
+  var $name = 'Comments';
+  //var $helpers = array ('Form','Html','Text','Ajax','Javascript');
+  var $components = array('RequestHandler');
+  
+  /**
+   Add a single comment either to IN/OUT side.
+  */
+  
+  function add() {
+    //assert(isset($this->Session->read('User.id')));
+    if (!$this->Session->check('User.id')) {
+      $this->Session->write('Session.referer', $this->referer());
+      $this->redirect(array('controller' => 'users', 'action' => 'login'));
+    } elseif (!empty($this->data)) {
+      assert('is_string($this->data[\'Comment\'][\'comment\'])');
+      assert('is_numeric($this->data[\'Comment\'][\'inout\'])');
+      assert('is_numeric($this->data[\'Comment\'][\'post_id\'])');
+      assert('is_numeric($this->data[\'Comment\'][\'user_id\'])');
+      assert('is_numeric($this->data[\'Comment\'][\'parent_id\'])');
 
-	function add() {
-	  if (!empty($this->data)) {
-	    $this->redirect(array('controller' => 'users', 'action' => 'login', $param));
-	    //$this->redirect();
-	  }
-	}
+      // add Comment
+      $this->data['Comment']['user_id'] = $this->Session->read('User.id'); // force user_id
 
+      $this->set('comm',$this->data);
+      $this->Comment->save($this->data);
+
+      // increment Post.comment
+      $this->loadModel('Post');
+      switch ($this->data['Comment']['inout']) {
+      case 1:
+	$this->Post->updateAll(array('Post.cins' => 'Post.cins+1'), 
+			       array('Post.id' => $this->data['Comment']['post_id']));
+	break;
+      case 0:
+	$this->Post->updateAll(array('Post.couts' => 'Post.couts+1'), 
+			       array('Post.id' => $this->data['Comment']['post_id']));
+	break;     	
+      }
+      
+      $this->redirect(array('controller' => 'posts',
+			    'action' => 'view',
+			    $this->data['Comment']['post_id'].'#c'.$this->Comment->id
+			    )
+		      );      
+    }
+  }
+  
+  /**
+   List all the comments relevant to a post
+  */
+  
+  function post($id = null) {
+    $this->set('post_comments', 
+	       $this->Comment->find('threaded', 
+				    array('conditions' => array('Comment.post_id' => $id))));	  
+  }
+  
 }
 ?>
