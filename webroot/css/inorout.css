@@ -66,6 +66,7 @@ ul#fmenu {text-align:right;}
 ul#fmenu li a {padding:0 14px;}
 .copy { font-size:x-small;font-weight:bold;margin-top:14px;margin-bottom:14px; }
 ul#sabm { text-align:right;margin-top:12px; }
+ul#sabm li a { padding:0 7px; }
 
 /** navigation **/
 

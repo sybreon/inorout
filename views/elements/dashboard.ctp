@@ -30,4 +30,4 @@ $id = ($session->check('User.id')) ? $session->read('User.id') : 0;
 <li><?=$html->link('FAQ',array('controller' => 'pages', 'action' => 'faq'))?></li>
 <li><input type="text" value="search" style="margin:6px;border:1px solid #333;"></li>
 </ul>
-<ul class="grid_6 omega hmenu dashboard" id="sabm"><li class="first">by <b><?=$html->link('Saya Anak Bangsa Malaysia','http://www.sayaanakbangsamalaysia.net');?></b>&nbsp;&raquo;</li></ul>
+    <ul class="grid_6 omega hmenu dashboard" id="sabm"><li class="first"><?=$html->link('Feedback','mailto:info@inorout.org');?></li><li><b><?=$html->link('Saya Anak Bangsa Malaysia','http://www.sayaanakbangsamalaysia.net');?></b></li></ul>
