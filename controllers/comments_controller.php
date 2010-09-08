@@ -78,6 +78,18 @@ class CommentsController extends AppController {
 	       $this->Comment->find('threaded', 
 				    array('conditions' => array('Comment.post_id' => $id))));	  
   }
+
+  function reply($id = null) {
+    $this->Session->write('Session.referer', array('controller' => 'posts','action' => 'view', $id));
+    $this->Session->setFlash('Please log in to SPEAK!');
+    $this->redirect(array('controller' => 'users', 'action' => 'login'));    
+  }
+
+  function flag($id = null) {
+    $this->Session->write('Session.referer', array('controller' => 'posts','action' => 'view', $id));
+    $this->Session->setFlash('Please log in to FLAG!');
+    $this->redirect(array('controller' => 'users', 'action' => 'login'));    
+  }
   
 }
 ?>
