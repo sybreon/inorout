@@ -35,15 +35,19 @@
 		   '#'.$comment['Comment']['id'],
 		   array('onclick' => 'Element.toggle("r'.$comment['Comment']['id'].'");',
 			 'style' => 'vertical-align:baseline;font-size:x-small;'));?>
+    <? if($session->check('User.id')):?>
     <?=$html->link('',
-		   ($log) ? '#'.$comment['Comment']['id'] : array('controller' => 'users', 'action' => 'login'),
+		   '#'.$comment['Comment']['id'],
 		   array('class' => 'reply',
-			 'onclick' => ($log) ? 'Element.toggle("f'.$comment['Comment']['id'].'");' : '')
-		   );?>
+			 'onclick' => 'Element.toggle("f'.$comment['Comment']['id'].'");'));?>
     <?=$html->link('',
-		   ($log) ? '#'.$comment['Comment']['id'] : array('controller' => 'users', 'action' => 'login'),
-		   array('class' => 'flag')
-		   );?>
+		   '#'.$comment['Comment']['id'],
+		   array('class' => 'flag'));?>
+    <? else:?>
+	 <?=$html->link('',
+			array('controller' => 'comments', 'action' => 'reply', $post['Post']['id'].'#c'.$comment['Comment']['id']),
+			array('class' => 'reply'));?>
+	 <? endif;?>
     </div></div>
     <div>
     <?=$comment['Comment']['comment']?>
@@ -54,7 +58,7 @@
     <a name="c<?=$reply['Comment']['id'];?>"></a>
     <li><?=$reply['Comment']['comment']?> &ndash; <?=$html->link($reply['User']['nama'],array('controller'=>'users','action'=>'view',$reply['User']['id']))?></li>
     <?php endforeach; ?>
-    <? if ($log):?>
+    <? if ($session->check('User.id')):?>
     <?=$form->create('Comment',
 		     array('controller' => 'comments',
 			   'class' => 'reply',

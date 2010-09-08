@@ -50,13 +50,13 @@ Are you IN or OUT for this issue? (you can only vote once)
 	       'Do you want to vote OUT?');?>	  
 <?php else: ?>
 	<?=$html->link($html->image('voteIN.png'),
-		       array('controller' => 'users',
-			     'action' => 'login'),	      
+		       array('controller' => 'votes',
+			     'action' => 'vin', $post['Post']['id']),	      
 		       array('escape' => false,
 			     'class' => 'ballot'));?>
 <?=$html->link($html->image('voteOUT.png'),
-	       array('controller' => 'users',
-		     'action' => 'login'),	      
+	       array('controller' => 'votes',
+		     'action' => 'vout', $post['Post']['id']),	      
 	       array('escape' => false,
 		     'class' => 'ballot'));?>	  
 <?php endif; ?>
