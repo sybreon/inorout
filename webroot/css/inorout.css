@@ -154,6 +154,7 @@ ul#pact a.twit { float:right;background:url("../img/sprite.png") no-repeat -96px
 ul#pact a.twit:hover { background:url("../img/sprite.png") no-repeat -96px -32px; }
 ul#pact a.fb { float:right;background:url("../img/sprite.png") no-repeat -128px 0; }
 ul#pact a.fb:hover { background:url("../img/sprite.png") no-repeat -128px -32px; }
+ul#pact { margin-bottom:14px; }
 
 /** top header **/
 
