@@ -104,8 +104,8 @@ echo $scripts_for_layout;
   </div><!--container-->
   <div style="background:#eee;">
   <div class="container_12">
-    <div class="grid_5 copy">Copyright &copy; 2010 to INOROUT.ORG. Source code available on <?=$html->link('GitHub','http://github.com/sybreon/inorout');?>.</div>
-  <ul id="fmenu" class="grid_7 hmenu copy">
+    <div class="grid_6 copy">Copyright &copy; 2010 to INOROUT.ORG. Source on <?=$html->link('GitHub','http://github.com/sybreon/inorout');?>.</div>
+  <ul id="fmenu" class="grid_6 hmenu copy">
    <li class="first"><?=$html->link('Speak',array('controller' => 'posts', 'action' => 'index'));?></li>
    <li><?=$html->link('About',array('controller' => 'pages', 'action' => 'about'));?></li>
    <li><?=$html->link('News',array('controller' => 'pages', 'action' => 'news'));?></li>
@@ -115,9 +115,8 @@ echo $scripts_for_layout;
   </ul>
   <div class="clear">&nbsp;</div>
   </div><!--container-->
-  <div class="container_12"><div class="grid_12">
-    
-  </div></div>
+  <div class="container_12"><p class="grid_12" align="center" style="font-size:footer"><b>Disclaimer:</b> While INOROUT.ORG takes every care to remove any racist or deragatory comments on this site, it will not be responsible for such comments posted prior to its removal and all civil and criminal liabilities arisint therefrom and in connection with vest solely in the original maker of the comment.
+  </p></div>
   </div>
   <pre>
   <?php echo $cakeDebug; ?>
