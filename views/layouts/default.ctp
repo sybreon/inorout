@@ -115,7 +115,7 @@ echo $scripts_for_layout;
   </ul>
   <div class="clear">&nbsp;</div>
   </div><!--container-->
-  <div class="container_12"><p class="grid_12" align="center" style="font-size:footer"><b>Disclaimer:</b> While INOROUT.ORG takes every care to remove any racist or deragatory comments on this site, it will not be responsible for such comments posted prior to its removal and all civil and criminal liabilities arising therefrom and in connection with vest solely in the original maker of the comment.
+  <div class="container_12"><p class="grid_12" align="center" style="font-size:footer"><b>Disclaimer:</b> While INOROUT.ORG takes every care to remove any racist or derogatory comments on this site, it will not be responsible for such comments posted prior to its removal and all civil and criminal liabilities arising therefrom and in connection with vest solely in the original maker of the comment.
   </p></div>
   </div>
   <pre>
