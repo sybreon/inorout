@@ -18,6 +18,7 @@
  <http://www.gnu.org/licenses/>.
 */
 ?>
+<style>p a {color:#e22;font-weight:bold;}</style>
 <h2>In/Out</h2>
 <p>
 What if you could speak up? Without fear of prosecution, but with courage and concern?
@@ -56,7 +57,7 @@ As someone once said, "As citizens of this democracy, you are the rulers and the
 ruled, the law-givers and the law-abiding, the beginning and the end."
 </p>
 <p>
-Do read our <?php echo $html->link('FAQ',array('controller' => 'pages', 'action' => 'faq')) ?> to learn about this site in detail. And email us if you
+    Do read our <?php echo $html->link('FAQ',array('controller' => 'pages', 'action' => 'faq')) ?> to learn about this site in detail. And email us at <?=$html->link('info@inorout.org','mailto:info@inorout.org');?> if you
 want to ask more questions or need help to set up a voters registration booth in
 your area.
 </p>
