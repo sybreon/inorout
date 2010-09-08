@@ -27,7 +27,7 @@ class UsersController extends AppController {
   
   var $name = 'Users';
   var $components = array('RequestHandler');
-  var $helpers = array ('Form','Html','Ajax','Javascript','Time','Text');
+  var $helpers = array ('Form','Html','Ajax','Javascript','Time','Text','Paginator');
   
   /**
    Launch OpenID request.
@@ -134,6 +134,14 @@ class UsersController extends AppController {
     $this->PageTitle = 'User #'. $id;    
     $this->set('user',$this->User->read(null,$id));    
 
+  }
+
+  /**
+   List out users.
+  */
+  public function index() {
+    $users = $this->User->find('all');
+    $this->set('users',$users);
   }
 }
 ?>
