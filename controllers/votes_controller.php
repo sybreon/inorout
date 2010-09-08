@@ -58,6 +58,8 @@ class VotesController extends AppController {
 	$vote['Vote']['user_id'] = $this->Session->read('User.id');
 	$vote['Vote']['post_id'] = $id;
 	$vote['Vote']['vote'] = 1;
+
+	$this->Vote->create();
 	$this->Vote->save($vote);
 	
       }          
@@ -90,6 +92,8 @@ class VotesController extends AppController {
 	$vote['Vote']['user_id'] = $this->Session->read('User.id');
 	$vote['Vote']['post_id'] = $id;
 	$vote['Vote']['vote'] = 0;
+
+	$this->Vote->create();
 	$this->Vote->save($vote);
 
       }          
