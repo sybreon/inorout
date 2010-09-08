@@ -19,7 +19,7 @@
   */
 ?>
 <div class="grid_6 alpha">
-    <ul class="hmenu sort"><li class="first">click here for instructions</li></ul>
+    <ul class="hmenu sort"><li class="first"><?=$html->link('click here for instructions',array('controller' => 'pages', 'action' => 'help'));?></li></ul>
     </div>
     <ul class="grid_6 omega sort hmenu" id="sort">sort by:&nbsp;
     <li class="first"><?=$paginator->sort('Date','id');?></li>
