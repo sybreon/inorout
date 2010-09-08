@@ -60,7 +60,7 @@ ul#pages a.rss:hover { background:url("../img/sprite.png") no-repeat -64px -32px
 /** dashboard **/
 
 
-#dashboard li a { border:none;padding-right:14px;}
+#dashboard li a { border:none;padding-right:14px;font-weight:bold;font-size:small;}
 ul.dashboard {font-size:x-small;font-weight:bold;margin-top:4px;margin-bottom:4px;}
 ul#fmenu {text-align:right;}
 ul#fmenu li a {padding:0 14px;}
