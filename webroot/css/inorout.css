@@ -137,7 +137,7 @@ div#post { color:#666; }
 div#post h4 { color:#666;border-bottom:4px solid #666;padding:14px 0;font-size:x-large; }
 div#post a { color:#17d; }
 div#post div.url { padding:14px;border:2px solid #ccc;margin-bottom:14px; }
-p#actnow { background:#e22;color:#fff;font-weight:bolder;font-size:x-medium }
+p#actnow { background:#e22;color:#fff;font-weight:bolder;font-size:x-medium;padding:14px; }
 div#post #thumb { float:left;padding:4px;border:1px solid #ccc;display:block;width:100px;height:75px;overflow:hidden; }
 div#post #thumb img { margin-left:-14px;margin-top:-4px; }
 div#post #meta { padding:8px;float:left; }
