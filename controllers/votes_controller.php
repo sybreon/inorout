@@ -129,6 +129,7 @@ class VotesController extends AppController {
 	$tmp['Flag']['post_id'] = $id;
 	$tmp['Flag']['flag'] = 0;
 
+	$this->Flag->create();
 	$this->Flag->save($tmp);
 
 	if ($post['Post']['flags'] >= 9) {
