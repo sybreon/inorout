@@ -27,10 +27,17 @@
 	      array('class' => $del)
 	      );?>
 <div class="url">
-    <div id="thumb"><?=$html->link($html->image('http://api.thumbalizr.com/?width=128&api_key=c61f2fe6c4ebe609c650bcfa6dcab244&url='.urlencode($post['bitly'])),
+    <? if($post['Post']['vins'] >=5 || $post['Post']['vouts'] >= 5 ): ?>
+   <p id="actnow">ACT NOW! Register as a voter now!</p>
+      <? endif; ?>
+
+<? if($post['Post']['url'] != null): ?>
+    <div id="thumb">	
+	<?=$html->link($html->image('http://api.thumbalizr.com/?width=128&api_key=c61f2fe6c4ebe609c650bcfa6dcab244&url='.urlencode($post['bitly'])),
 				   $post['Post']['url'],
 				   array('escape' => false));?></div>
     <div id="meta">
+	
     <?=$html->link($text->truncate($post['bitly'],
 				   64). ' &raquo;', 
 		   $post['Post']['url'],
@@ -38,6 +45,7 @@
 			 'class' => $del)
 		   );?>
     </div>
+    <? endif; ?>
     <div class="clear">&nbsp;</div>
 </div>
 <?=$html->tag('p', 
@@ -45,7 +53,7 @@
 	      array('class' => $del)
 	      );?>
 
-<ul class="grid_8 alpha omega" id="pact">
+<ul class="grid_8 alpha omega hmenu" id="pact">
     <?php if ($session->check('User.id')): ?>
    <?php if (isset($flag['Flag']['flag'])): ?>
        <li><?=$html->link('','#',array('class' => 'flagged')); ?></li>

@@ -55,14 +55,16 @@ class VotesController extends AppController {
 	$this->User->updateAll(array('User.vins' => 'User.vins+10'), array('User.id' => $tmp['Post']['user_id']));
        
 
-	$tmp['Vote']['user_id'] = $this->Session->read('User.id');
-	$tmp['Vote']['post_id'] = $id;
-	$tmp['Vote']['vote'] = 1;
-	$this->Vote->save($tmp);
+	$vote['Vote']['user_id'] = $this->Session->read('User.id');
+	$vote['Vote']['post_id'] = $id;
+	$vote['Vote']['vote'] = 1;
+
+	$this->Vote->create();
+	$this->Vote->save($vote);
 	
       }          
 
-      $this->set('vote',$tmp);
+      $this->set('vote',$vote);
       $this->layout = 'ajax';
     }	  
   }
@@ -87,14 +89,16 @@ class VotesController extends AppController {
 	$this->loadModel('User');
 	$this->User->updateAll(array('User.vouts' => 'User.vouts+10'), array('User.id' => $tmp['Post']['user_id']));
 
-	$tmp['Vote']['user_id'] = $this->Session->read('User.id');
-	$tmp['Vote']['post_id'] = $id;
-	$tmp['Vote']['vote'] = 0;
-	$this->Vote->save($tmp);
+	$vote['Vote']['user_id'] = $this->Session->read('User.id');
+	$vote['Vote']['post_id'] = $id;
+	$vote['Vote']['vote'] = 0;
+
+	$this->Vote->create();
+	$this->Vote->save($vote);
 
       }          
 
-      $this->set('vote',$tmp);
+      $this->set('vote',$vote);
       $this->layout = 'ajax';
     }	  
   }   
@@ -125,6 +129,7 @@ class VotesController extends AppController {
 	$tmp['Flag']['post_id'] = $id;
 	$tmp['Flag']['flag'] = 0;
 
+	$this->Flag->create();
 	$this->Flag->save($tmp);
 
 	if ($post['Post']['flags'] >= 9) {

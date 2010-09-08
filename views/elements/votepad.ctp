@@ -37,7 +37,9 @@ Are you IN or OUT for this issue? (you can only vote once)
 	  <?=$ajax->link($html->image('voteIN.png'),
 			 ($log) ?
 			 array('controller' => 'votes',
-			       'action' => 'vin', $post['Post']['id']) : '#',	      
+			       'action' => 'vin', $post['Post']['id']) : 
+			 array('controller' => 'users',
+			       'action' => 'login'),	      
 			 array('update' => ($log) ? 'vote' : '#',
 			       'escape' => false,
 			       'class' => 'ballot'),
@@ -47,7 +49,9 @@ Are you IN or OUT for this issue? (you can only vote once)
 <?=$ajax->link($html->image('voteOUT.png'),
 	       ($log) ?
 	       array('controller' => 'votes',
-		     'action' => 'vout', $post['Post']['id']) : '#',
+		     'action' => 'vout', $post['Post']['id']) :
+	       array('controller' => 'users',
+		     'action' => 'login'),	      
 	       array('update' => ($log) ? 'vote' : '#',
 		     'escape' => false,
 		     'class' => 'ballot'),

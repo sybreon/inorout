@@ -39,8 +39,7 @@ echo $scripts_for_layout;
   <?php $session->flash(); ?>
 <div style="background:#eee;">
   <div class="container_12">
-  <div class="grid_9"><?=$this->element('dashboard');?></div>
-  <div class="grid_3" id="sabm">by <?=$html->link('Saya Anak Bangsa Malaysia','http://www.sayaanakbangsamalaysia.net');?>&nbsp;&raquo;</div>
+  <div class="grid_12"><?=$this->element('dashboard');?></div>
   <div class="clear">&nbsp;</div>
   </div>
   </div>
@@ -68,7 +67,7 @@ echo $scripts_for_layout;
   <div class="clear">&nbsp;</div>
   </div>
   <div class="container_12" id="container">
-  <ul id="pages" class="grid_12">
+  <ul id="pages" class="grid_12 hmenu">
   <li><?=(!strstr(Router::url(''),Router::url(array('controller'=>'posts','action'=>'view')))) ? 
   $html->link('',array('controller' => 'posts', 'action' => 'index'), array('class' => 'btnspeak')): 
   $html->image('button_speak_clicked.png');?></li>
@@ -105,17 +104,19 @@ echo $scripts_for_layout;
   </div><!--container-->
   <div style="background:#eee;">
   <div class="container_12">
-  <div class="grid_4" id="copy">Copyright &copy; 2010 to INOROUT.ORG</div>
-  <ul id="fmenu" class="grid_8">
-   <li><?=$html->link('Speak',array('controller' => 'posts', 'action' => 'index'));?></li>
+    <div class="grid_6 copy">Copyright &copy; 2010 to INOROUT.ORG. Source on <?=$html->link('GitHub','http://github.com/sybreon/inorout');?>.</div>
+  <ul id="fmenu" class="grid_6 hmenu copy">
+   <li class="first"><?=$html->link('Speak',array('controller' => 'posts', 'action' => 'index'));?></li>
    <li><?=$html->link('About',array('controller' => 'pages', 'action' => 'about'));?></li>
    <li><?=$html->link('News',array('controller' => 'pages', 'action' => 'news'));?></li>
    <li><?=$html->link('Vote',array('controller' => 'pages', 'action' => 'vote'));?></li>
    <li><?=$html->link('Friends',array('controller' => 'pages', 'action' => 'friends'));?></li>
-   <li><a href="#inout#" style="border-right:none;">Top</a></li>
+   <li><a href="#inout" style="border-right:none;">Top</a></li>
   </ul>
   <div class="clear">&nbsp;</div>
   </div><!--container-->
+  <div class="container_12"><p class="grid_12" align="center" style="font-size:footer"><b>Disclaimer:</b> While INOROUT.ORG takes every care to remove any racist or derogatory comments on this site, it will not be responsible for such comments posted prior to its removal and all civil and criminal liabilities arising therefrom and in connection with vest solely in the original maker of the comment.
+  </p></div>
   </div>
   <pre>
   <?php echo $cakeDebug; ?>
