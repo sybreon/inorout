@@ -48,15 +48,19 @@ for ($i=0;$i<2;$i++) {
   $inout = ($i == 0) ? 1 : 0;
   echo '<div id="fcomm'. $inout .'" class="grid_6 form fcomm '. $pad .'">';
   echo $form->create('Comment', array('controller' => 'comments', 'action' => 'add', 'class' => 'comment'));
-  echo '<fieldset>';
-  echo '<label>Have your say:</label>';
-  echo $form->textarea('comment',array('rows'=>'4'));
-  echo '</fieldset>';
   echo $form->hidden('post_id', array('value' => $post['Post']['id']));
   echo $form->hidden('user_id', array('value' => $session->read('User.id')));
   echo $form->hidden('inout', array('value' => $inout));
   echo $form->hidden('parent_id', array('value' => 0));
-  echo $form->submit('add-comment.png',array('class' => 'fcomm'));
+  echo '<fieldset>';
+  echo '<label>Have your say:</label>';
+  echo $form->textarea('comment',array('rows'=>'4',				       
+				       'readonly' => ($session->check('User.id')) ? 'false' : 'true',
+				       'value' => ($session->check('User.id')) ? '' : 'Please login to comment.'));
+  echo '</fieldset>';
+  if ($session->check('User.id')) {
+    echo $form->submit('add-comment.png',array('class' => 'fcomm'));
+  }
   echo $form->end();
   echo $html->tag('em','Please refrain from making racist, sexist or derogatory comments.<br/>Note that such comments will be removed.');
   echo '</div>';

@@ -18,6 +18,7 @@
  <http://www.gnu.org/licenses/>.
 */
 ?>
+<?php $log = $session->check('User.id');?>
     <?php foreach ($comments as $comment): ?>
 <?php $rnd = rand();?>
     <a name="c<?=$comment['Comment']['id'];?>">
@@ -35,11 +36,12 @@
 		   array('onclick' => 'Element.toggle("r'.$comment['Comment']['id'].'");',
 			 'style' => 'vertical-align:baseline;font-size:x-small;'));?>
     <?=$html->link('',
-		   '#'.$comment['Comment']['id'],
+		   ($log) ? '#'.$comment['Comment']['id'] : array('controller' => 'users', 'action' => 'login'),
 		   array('class' => 'reply',
-			 'onclick' => 'Element.toggle("f'.$comment['Comment']['id'].'");')
+			 'onclick' => ($log) ? 'Element.toggle("f'.$comment['Comment']['id'].'");' : '')
 		   );?>
-    <?=$html->link('','',
+    <?=$html->link('',
+		   ($log) ? '#'.$comment['Comment']['id'] : array('controller' => 'users', 'action' => 'login'),
 		   array('class' => 'flag')
 		   );?>
     </div></div>
@@ -52,7 +54,7 @@
     <a name="c<?=$reply['Comment']['id'];?>"></a>
     <li><?=$reply['Comment']['comment']?> &ndash; <?=$html->link($reply['User']['nama'],array('controller'=>'users','action'=>'view',$reply['User']['id']))?></li>
     <?php endforeach; ?>
-    <? if ($session->check('User.id')):?>
+    <? if ($log):?>
     <?=$form->create('Comment',
 		     array('controller' => 'comments',
 			   'class' => 'reply',
