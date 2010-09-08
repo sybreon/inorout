@@ -34,6 +34,7 @@
 		   '#'.$comment['Comment']['id'],
 		   array('onclick' => 'Element.toggle("r'.$comment['Comment']['id'].'");',
 			 'style' => 'vertical-align:baseline;font-size:x-small;'));?>
+    <? if ($session->check('User.id')):?>
     <?=$html->link('',
 		   '#'.$comment['Comment']['id'],
 		   array('class' => 'reply',
@@ -42,6 +43,7 @@
     <?=$html->link('','',
 		   array('class' => 'flag')
 		   );?>
+    <? endif; ?>
     </div></div>
     <div>
     <?=$comment['Comment']['comment']?>
