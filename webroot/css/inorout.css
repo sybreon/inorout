@@ -60,18 +60,17 @@ ul#pages a.rss:hover { background:url("../img/sprite.png") no-repeat -64px -32px
 /** dashboard **/
 
 
-#dashboard li a { border:none;padding-right:14px;font-weight:bold;font-size:small;}
+#dashboard li a { padding:0 7px;font-weight:bold;font-size:small;}
 ul.dashboard {font-size:x-small;font-weight:bold;margin-top:4px;margin-bottom:4px;}
 ul#fmenu {text-align:right;}
-ul#fmenu li a {padding:0 14px;}
+ul#fmenu li a, ul#sabm li a {padding:0 7px;}
 .copy { font-size:x-small;font-weight:bold;margin-top:14px;margin-bottom:14px; }
 ul#sabm { text-align:right;margin-top:12px; }
-ul#sabm li a { padding:0 7px; }
 
 /** navigation **/
 
 ul#sort { text-align:right; }
-ul#sort li a { padding:0 8px;text-transform:lowercase;color:#e22; }
+ul#sort li a { padding:0 7px;text-transform:lowercase;color:#e22; }
 ul.sort { margin-top:14px;margin-bottom:6px; }
 
 /** POST PAGE **/
@@ -137,10 +136,11 @@ div#post { color:#666; }
 div#post h4 { color:#666;border-bottom:4px solid #666;padding:14px 0;font-size:x-large; }
 div#post a { color:#17d; }
 div#post div.url { padding:14px;border:2px solid #ccc;margin-bottom:14px; }
-p#actnow { background:#e22;color:#fff;font-weight:bolder;font-size:x-medium;padding:14px; }
 div#post #thumb { float:left;padding:4px;border:1px solid #ccc;display:block;width:100px;height:75px;overflow:hidden; }
 div#post #thumb img { margin-left:-14px;margin-top:-4px; }
 div#post #meta { padding:8px;float:left; }
+
+p#actnow { background:#e22;color:#fff;font-weight:bolder;font-size:x-medium;padding:14px; }
 
 ul#pact li a { width:32px;height:32px;margin:0 2px;float:left;border:none; }
 ul#pact a.edit { background:url("../img/sprite.png") no-repeat -160px 0; }
