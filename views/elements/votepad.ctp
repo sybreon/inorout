@@ -22,41 +22,42 @@
 <?=$html->image('vote_bar.png');?>
 Are you IN or OUT for this issue? (you can only vote once)
   <br/>
-  <?php if (isset($vote['Vote']['vote'])): ?>
-  <?=$html->link($html->image('voteIN.png'),
-		 '#voted',	      
-		 array('class' => ($vote['Vote']['vote'] == 1) ? 'balloted' : 'ballotx',
-		       'escape' => false)
-		 );?>
+<?php if (isset($vote['Vote']['vote'])): ?>
+			     <?=$html->link($html->image('voteIN.png'),
+					    '#voted',	      
+					    array('class' => ($vote['Vote']['vote'] == 1) ? 'balloted' : 'ballotx',
+						  'escape' => false)
+					    );?>
 <?=$html->link($html->image('voteOUT.png'),
 	       '#voted',	      
 	       array('class' => ($vote['Vote']['vote'] == 0) ? 'balloted' : 'ballotx',
 		     'escape' => false)
 	       );?>
-  <?php else: ?>
-	  <?=$ajax->link($html->image('voteIN.png'),
-			 ($log) ?
-			 array('controller' => 'votes',
-			       'action' => 'vin', $post['Post']['id']) : 
-			 array('controller' => 'users',
-			       'action' => 'login'),	      
-			 array('update' => ($log) ? 'vote' : '#',
-			       'escape' => false,
-			       'class' => 'ballot'),
-			 ($log) ?
-			 'Do you want to vote IN?' : 'Please login to vote!'
-			 );?>
-<?=$ajax->link($html->image('voteOUT.png'),
-	       ($log) ?
+<? elseif($session->check('User.id')): ?>
+<?=$ajax->link($html->image('voteIN.png'),
 	       array('controller' => 'votes',
-		     'action' => 'vout', $post['Post']['id']) :
-	       array('controller' => 'users',
-		     'action' => 'login'),	      
-	       array('update' => ($log) ? 'vote' : '#',
+		     'action' => 'vin', $post['Post']['id']),
+	       array('update' => 'vote',
+		     'escape' => false,
+		     'class' => 'ballot'),			 
+	       'Do you want to vote IN?');?>
+<?=$ajax->link($html->image('voteOUT.png'),
+	       array('controller' => 'votes',
+		     'action' => 'vout', $post['Post']['id']),
+	       array('update' => 'vote',
 		     'escape' => false,
 		     'class' => 'ballot'),
-	       ($log) ? 
-	       'Do you want to vote OUT?' : 'Please login to vote!'
-	       );?>	  
+	       'Do you want to vote OUT?');?>	  
+<?php else: ?>
+	<?=$html->link($html->image('voteIN.png'),
+		       array('controller' => 'votes',
+			     'action' => 'vin', $post['Post']['id']),	      
+		       array('escape' => false,
+			     'class' => 'ballot'));?>
+<?=$html->link($html->image('voteOUT.png'),
+	       array('controller' => 'votes',
+		     'action' => 'vout', $post['Post']['id']),	      
+	       array('escape' => false,
+		     'class' => 'ballot'));?>	  
 <?php endif; ?>
 

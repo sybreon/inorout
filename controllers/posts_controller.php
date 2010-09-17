@@ -157,6 +157,7 @@ class PostsController extends AppController {
     $this->pageTitle = 'Add Post';
     if (!$this->Session->check('User.id')) {
       $this->Session->write('Session.referer', array('controller' => 'posts','action' => 'add'));
+      $this->Session->setFlash('Please log in to add a new post!');
       $this->redirect(array('controller' => 'users', 'action' => 'login'));
     } elseif (!empty($this->data)) {
       assert('is_string($this->data[\'Post\'][\'teaser\'])');

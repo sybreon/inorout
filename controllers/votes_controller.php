@@ -66,7 +66,11 @@ class VotesController extends AppController {
 
       $this->set('vote',$vote);
       $this->layout = 'ajax';
-    }	  
+    } else {
+      $this->Session->write('Session.referer', array('controller' => 'posts','action' => 'view', $id));
+      $this->Session->setFlash('Please log in to VOTE!');
+      $this->redirect(array('controller' => 'users', 'action' => 'login'));
+    }
   }
   
   function vout($id = null) {
@@ -100,7 +104,12 @@ class VotesController extends AppController {
 
       $this->set('vote',$vote);
       $this->layout = 'ajax';
-    }	  
+
+    } else {
+      $this->Session->write('Session.referer', array('controller' => 'posts','action' => 'view', $id));
+      $this->Session->setFlash('Please log in to VOTE!');
+      $this->redirect(array('controller' => 'users', 'action' => 'login'));
+    }
   }   
 
   function flag($id = null) {

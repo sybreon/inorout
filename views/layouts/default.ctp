@@ -61,7 +61,7 @@ echo $scripts_for_layout;
   <div class="grid_4" style="">
 	<?=$html->image('countdown.png',array('style' => 'float:left;padding-top:10px'));?>
   <p id="count">
-																 <b>2,241,565</b><br/>unregistered voters &mdash; provided by <a href="http://www.spr.gov.my" target="_blank">SPR</a>
+  <b>4,312,375</b><br/>unregistered voters on 18 August 2010 &mdash; provided by <a href="http://www.spr.gov.my/index_files/artikelweb/artikelBELUMDAFTAR.pdf" target="_blank">SPR</a>
    </p>
   </div>
   <div class="clear">&nbsp;</div>
@@ -115,7 +115,7 @@ echo $scripts_for_layout;
   </ul>
   <div class="clear">&nbsp;</div>
   </div><!--container-->
-  <div class="container_12"><p class="grid_12" align="center" style="font-size:footer"><b>Disclaimer:</b> While INOROUT.ORG takes every care to remove any racist or derogatory comments on this site, it will not be responsible for such comments posted prior to its removal and all civil and criminal liabilities arising therefrom and in connection with vest solely in the original maker of the comment.
+  <div class="container_12"><p class="grid_12" align="center" style="font-size:footer;margin:14px;color:#999;"><b>Disclaimer:</b> While INOROUT.ORG takes every care to remove any racist or derogatory comments on this site,<br/>it will not be responsible for such comments posted prior to its removal and all civil and criminal liabilities arising therefrom and in connection with<br/>vest solely in the original maker of the comment.
   </p></div>
   </div>
   <pre>
