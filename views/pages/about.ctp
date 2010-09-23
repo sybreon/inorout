@@ -57,7 +57,7 @@ As someone once said, "As citizens of this democracy, you are the rulers and the
 ruled, the law-givers and the law-abiding, the beginning and the end."
 </p>
 <p>
-    Do read our <?php echo $html->link('FAQ',array('controller' => 'pages', 'action' => 'faq')) ?> to learn about this site in detail. And email us at <?=$html->link('info@inorout.org','mailto:info@inorout.org');?> if you
+    Do read our <?php echo $html->link('FAQ',array('controller' => 'pages', 'action' => 'faq')) ?> and <?php echo $html->link('Guide to IN or OUT',array('controller' => 'pages', 'action' => 'help')) ?> to learn about this site in detail. And email us at <?=$html->link('info@inorout.org','mailto:info@inorout.org');?> if you
 want to ask more questions or need help to set up a voters registration booth in
 your area.
 </p>

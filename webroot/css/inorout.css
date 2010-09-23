@@ -17,7 +17,7 @@
  <http://www.gnu.org/licenses/>.
 */
 
-body { font-family:"Cantarell",sans-serif;background:#fff;color:#333; }
+body { font-family:"Cantarell",sans-serif;font-size:medium;background:#fff;color:#333; }
 a {text-decoration:none;color:#333;}
 
 div#flashMessage {color:#fff;background:#333;padding:8px;}
@@ -56,6 +56,8 @@ ul#pages a.fb { background:url("../img/sprite.png") no-repeat -32px 0; }
 ul#pages a.fb:hover { background:url("../img/sprite.png") no-repeat -32px -32px; }
 ul#pages a.rss { background:url("../img/sprite.png") no-repeat -64px 0; }
 ul#pages a.rss:hover { background:url("../img/sprite.png") no-repeat -64px -32px; }
+
+ol#help li a  { list-style-type:lower-alpha; }
 
 /** dashboard **/
 
@@ -163,6 +165,11 @@ div#count a.star { background:url("../img/groupreg.png") 0 0; }
 div#count a.star:hover { background:url("../img/groupreg.png") 0 -100px; }
 p#count { text-align:right;color:#e22;font-size:x-small; }
 p#count b { font-size:450%;font-weight:bold;font-family:"Vollkorn",serif; }
+
+
+/** intro at the index page **/
+div#intro a { color:#202020  ;font-size:x-medium;font-weight:bold }
+p#intro { text-align:left;color:#202020  ;font-size:x-medium;font-weight:bold; }
 
 /** COMMENT LIST **/
 
