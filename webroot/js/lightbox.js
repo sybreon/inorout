@@ -46,8 +46,8 @@
 //  Configurationl
 //
 LightboxOptions = Object.extend({
-    fileLoadingImage:        '/cakephp/inorout/webroot/img/lightbox/loading.gif',     
-    fileBottomNavCloseImage: '/cakephp/inorout/webroot/img/lightbox/closelabel.gif',
+    fileLoadingImage:        webRoot + 'img/lightbox/loading.gif',     
+    fileBottomNavCloseImage: webRoot + 'img/lightbox/closelabel.gif',
 
     overlayOpacity: 0.8,   // controls transparency of shadow overlay
 
