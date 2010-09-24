@@ -31,13 +31,19 @@ class PostsController extends AppController {
   var $paginate = array();
   
   private function bitly_shorten($url = null) {
-    $bitly = new Bitly('inorout','R_11acbfd4019e1d133a8dd8ebb339da03');
-    return $bitly->shortenSingle($url);
+    $bitly = new Bitly('inorout','R_2342b6909d934450e77e4cf712a5a7f9');
+    return $bitly->shorten($url);
   }
   
   private function bitly_expand($url = null) {
-    $bitly = new Bitly('inorout','R_11acbfd4019e1d133a8dd8ebb339da03');
-    return $bitly->expandSingle($url);
+    $bitly = new Bitly('inorout','R_2342b6909d934450e77e4cf712a5a7f9');
+    return $bitly->expand($url);
+  }
+
+  private function bitly_info($url = null) {
+    $bitly = new Bitly('inorout','R_2342b6909d934450e77e4cf712a5a7f9');
+    return $bitly->info($url);
+    return array('info' => $bitly->getData());
   }
   
   /**
@@ -74,7 +80,9 @@ class PostsController extends AppController {
     // Extract the post
     $post = $this->Post->find(array('Post.id' => $id));
     //$post['url'] = base64_encode($post['Post']['url']);
-    $post['bitly'] = $this->bitly_expand($post['Post']['url']);
+    if ($post['Post']['url'] != null) {
+      $post['bitly'] = $this->bitly_info($post['Post']['url']);
+    }
 
     if ($this->Session->check('User.id')) {
       // Extract votes
