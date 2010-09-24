@@ -33,16 +33,19 @@
 
 <? if($post['Post']['url'] != null): ?>
     <div id="thumb">	
-	<?=$html->link($html->image('http://api.thumbalizr.com/?width=128&api_key=c61f2fe6c4ebe609c650bcfa6dcab244&url='.urlencode($post['bitly'])),
+	<?=$html->link($html->image('http://api.thumbalizr.com/?width=128&api_key=c61f2fe6c4ebe609c650bcfa6dcab244&url='.urlencode($post['bitly']->longUrl)),
 				   $post['Post']['url'],
 				   array('escape' => false));?></div>
     <div id="meta">
-	
-    <?=$html->link($text->truncate($post['bitly'],
-				   64). ' &raquo;', 
+    <?=$html->link($text->truncate($post['bitly']->htmlTitle,64), 
 		   $post['Post']['url'],
 		   array('escape'=>false,
 			 'class' => $del)
+		   );?> &raquo;<br/>
+		   <?=$html->link($text->truncate($post['bitly']->longUrl,64),
+		   $post['Post']['url'],
+		   array('escape'=>false,
+			 'style' => 'font-size:small')
 		   );?>
     </div>
     <? endif; ?>
