@@ -17,7 +17,7 @@
  <http://www.gnu.org/licenses/>.
 */
 
-body { font-family:"Cantarell",sans-serif;font-size:medium;background:#fff;color:#333; }
+body { font-family:"Cantarell",sans-serif;font-size:small;background:#fff;color:#333; }
 a {text-decoration:none;color:#333;}
 
 div#flashMessage {color:#fff;background:#333;padding:8px;}

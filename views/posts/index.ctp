@@ -26,23 +26,7 @@ echo $javascript->codeBlock('var webRoot = "'.$this->webroot.'";');
 echo $javascript->link('lightbox.js', true);
 echo $html->css(array('lightbox'), 'stylesheet', array('media' => 'screen'));
 ?>
-<div class="intro grid_12 alpha omega">
-<p id="intro">
-	What if you could speak up? 
-	<br>
-	Without fear of prosecution, but with courage and concern?
-	<br>
-	What if we were not just nice men and women, but great citizens as well?
-	<br>
-	What if conversations were driven, not by politicians alone, but by us? 
-	<br?
-	People who believe the right to think is the beginning of freedom.
-	<br>
-	IN/OUT is a platform that empowers you to lead a conversation and shape the way you think about the issues that matter in Malaysia. 
-	<br>
-</p>
-</div>
-<div class="grid_6 alpha">
+<p class="grid_6 alpha" id="help">
 <a href="<?=$this->webroot;?>img/help/instruction_00.gif" rel="lightbox[help]" title="Welcome to The Ultimate IN/OUT Know-How! This guide will briefly tell you what you can in this site.">How does this work?</a>
 <a href="<?=$this->webroot;?>img/help/instruction_01.gif" rel="lightbox[help]" title="You can first read the posts available on both IN and OUT."></a>
 <a href="<?=$this->webroot;?>img/help/instruction_02.gif" rel="lightbox[help]" title="Then, choose your side. Do you agree to the post?"></a>
@@ -57,7 +41,7 @@ echo $html->css(array('lightbox'), 'stylesheet', array('media' => 'screen'));
 <a href="<?=$this->webroot;?>img/help/instruction_11.gif" rel="lightbox[help]" title="You do not have to register. Just login with your existing Google, Yahoo or myOpenID account."></a>
 <a href="<?=$this->webroot;?>img/help/instruction_12.gif" rel="lightbox[help]" title="And you can start to participate: vote, comment or add in your own post!"></a>
 <a href="<?=$this->webroot;?>img/help/instruction_13.gif" rel="lightbox[help]" title="Think. Talk. Vote. This site hopes to provide a platform for Malaysians to share their ideas, discuss about issues and be a voter that is responsible to his/her choice."></a>
-</div>
+</p>
     <ul class="grid_6 omega sort hmenu" id="sort">sort by:&nbsp;
     <li class="first"><?=$paginator->sort('Date','id');?></li>
     <li><?=$paginator->sort('Ins','vins');?></li>
