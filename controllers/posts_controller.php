@@ -51,18 +51,18 @@ class PostsController extends AppController {
   */
   
   function index() {
-    $this->paginate = array('limit' => 10,
-			    'order' => array('Post.id' => 'desc'),
-			    'conditions' => array('Post.vins >= Post.vouts', 'Post.flags >= 0'));
-    $posts_in = $this->paginate('Post');
-    $this->set('posts_in', $posts_in);
-
-    $this->paginate = array('limit' => 10,
+    $this->paginate = array('limit' => 5,
 			    'order' => array('Post.id' => 'desc'),
 			    'conditions' => array('Post.vins <= Post.vouts', 'Post.flags >= 0'));
     $posts_out = $this->paginate('Post');
     $this->set('posts_out', $posts_out);
 
+    $this->paginate = array('limit' => 5,
+			    'order' => array('Post.id' => 'desc'),
+			    'conditions' => array('Post.vins >= Post.vouts', 'Post.flags >= 0'));
+    $posts_in = $this->paginate('Post');
+    $this->set('posts_in', $posts_in);
+    
     $this->pageTitle = 'IN/OUT - Read. Think. Vote';
   }
   
