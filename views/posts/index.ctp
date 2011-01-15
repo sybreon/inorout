@@ -41,13 +41,25 @@ echo $html->css(array('lightbox'), 'stylesheet', array('media' => 'screen'));
 <a href="<?=$this->webroot;?>img/help/instruction_11.gif" rel="lightbox[help]" title="You do not have to register. Just login with your existing Google, Yahoo or myOpenID account."></a>
 <a href="<?=$this->webroot;?>img/help/instruction_12.gif" rel="lightbox[help]" title="And you can start to participate: vote, comment or add in your own post!"></a>
 <a href="<?=$this->webroot;?>img/help/instruction_13.gif" rel="lightbox[help]" title="Think. Talk. Vote. This site hopes to provide a platform for Malaysians to share their ideas, discuss about issues and be a voter that is responsible to his/her choice."></a>
+
 </p>
-    <ul class="grid_6 omega sort hmenu" id="sort">sort by:&nbsp;
+	
+    <ul class="grid_6 omega sort hmenu" id="sort">
+	
+	sort by:&nbsp;
     <li class="first"><?=$paginator->sort('Date','id');?></li>
     <li><?=$paginator->sort('Ins','vins');?></li>
     <li><?=$paginator->sort('Outs','vouts');?></li>
     <li><?=$paginator->sort('Views','views');?></li>
     </ul>   
+<div class="grid_12 alpha omega">
+<?=$html->image('add-post.png',
+		array('alt' => 'Add a Post',
+		      'url' => array('controller' => 'posts',
+				     'action' => 'add')
+		      )
+		);?>&nbsp;
+</div>
     <dl class="grid_6 alpha post" id="p-in">
     <?=$html->image('IN.png');?>
 <? foreach ($posts_in as $post): ?>
@@ -84,11 +96,6 @@ echo $html->css(array('lightbox'), 'stylesheet', array('media' => 'screen'));
 <div class="grid_5 omega" style="text-align:right">&nbsp;<?=$paginator->next('Next &raquo',array('escape' => false));?></div>
 <div class="clear">&nbsp;</div>
 <div class="grid_12 alpha omega">
-<?=$html->image('add-post.png',
-		array('alt' => 'Add a Post',
-		      'url' => array('controller' => 'posts',
-				     'action' => 'add')
-		      )
-		);?>&nbsp;
+
 </div>
 <div class="clear">&nbsp;</div>
